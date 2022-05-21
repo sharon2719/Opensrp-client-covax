@@ -20,4 +20,6 @@
     <color name="report_appbar_background_color">#E6E6E6</color>
     <color name="black_text_color">#2E2E2E</color>
     <color name="black">#090606</color>
+    <color name="white">#F5F7F7</color>
+    <color name="translucent_client_list_grey">#494949</color>
 </resources>

@@ -7,6 +7,11 @@
         <entry key="app/src/main/res/drawable-v24/edit_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/expand_less.xml" value="0.10277777777777777" />
         <entry key="app/src/main/res/drawable-v24/expand_more.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/login_button_bg.xml" value="0.11481481481481481" />
+        <entry key="app/src/main/res/drawable-v24/report_btn_bg.xml" value="0.14" />
+        <entry key="app/src/main/res/drawable-v24/report_btn_text.xml" value="0.14629629629629629" />
+        <entry key="app/src/main/res/drawable-v24/rounded_corner_edit_text.xml" value="0.14629629629629629" />
+        <entry key="app/src/main/res/drawable-v24/rounded_corner_edit_text_bg.xml" value="0.14629629629629629" />
       </map>
     </option>
   </component>
