@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android">
-
-</account-authenticator>
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="com.example.opensrp_client_covax"
+    android:icon="@drawable/ic_covax_launcher"
+    android:label="COVAX"
+    android:smallIcon="@drawable/ic_covax_launcher" />

@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Opensrp-client-covax</string>
+    <string name="app_name">Opensrp Client Covax</string>
+    <string name="powered_by">Powered by</string>
+    <string name="logo_string">logo</string>
+    <string name="app_version">App version: %1$s (built on %2$s)</string>
+    <string name="password">Password</string>
+    <string name="show_password_text">Show Password</string>
+    <string name="login_text">Log In</string>
+    <string name="username">Username</string>
+
+
 </resources>
