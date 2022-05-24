@@ -18,19 +18,29 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-
     <application
         android:allowBackup="false"
         android:icon="@drawable/ic_covax_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute"
         tools:replace="android:allowBackup,android:icon,android:label,android:theme">
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.ChildRegisterActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -51,21 +61,18 @@
         <service android:name="org.smartregister.sync.intent.PullUniqueIdsIntentService" />
         <service android:name="org.smartregister.sync.intent.ValidateIntentService" />
         <service android:name="org.smartregister.sync.intent.ExtendedSyncIntentService" />
-        <service android:name="org.smartregister.sync.intent.SettingsSyncIntentService" />
-<!--        <service android:name="org.smartregister.path.service.intent.AppSyncIntentService" />-->
-<!--        <service android:name="org.smartregister.path.service.intent.ArchiveChildrenAgedAboveFiveIntentService" />-->
-<!--        <service android:name="org.smartregister.path.service.intent.AppVaccineScheduleUpdateIntentService" />-->
-<!--        <service android:name="org.smartregister.path.reporting.dropuout.intent.CoverageDropoutIntentService" />-->
-<!--        <service-->
-<!--            android:name="org.smartregister.stock.sync.StockSyncIntentService"-->
-<!--            android:exported="false" />-->
-<!--        <service android:name="org.smartregister.path.reporting.monthly.intent.HIA2IntentService" />-->
-<!--        <service-->
-<!--            android:name="org.smartregister.immunization.service.intent.RecurringIntentService"-->
-<!--            android:exported="false" />-->
-
-<!--        <receiver android:name="org.smartregister.path.reporting.dropuout.receiver.CoverageDropoutBroadcastReceiver" />-->
-
+        <service android:name="org.smartregister.sync.intent.SettingsSyncIntentService" /> <!-- <service android:name="org.smartregister.path.service.intent.AppSyncIntentService" /> -->
+        <!-- <service android:name="org.smartregister.path.service.intent.ArchiveChildrenAgedAboveFiveIntentService" /> -->
+        <!-- <service android:name="org.smartregister.path.service.intent.AppVaccineScheduleUpdateIntentService" /> -->
+        <!-- <service android:name="org.smartregister.path.reporting.dropuout.intent.CoverageDropoutIntentService" /> -->
+        <!-- <service -->
+        <!-- android:name="org.smartregister.stock.sync.StockSyncIntentService" -->
+        <!-- android:exported="false" /> -->
+        <!-- <service android:name="org.smartregister.path.reporting.monthly.intent.HIA2IntentService" /> -->
+        <!-- <service -->
+        <!-- android:name="org.smartregister.immunization.service.intent.RecurringIntentService" -->
+        <!-- android:exported="false" /> -->
+        <!-- <receiver android:name="org.smartregister.path.reporting.dropuout.receiver.CoverageDropoutBroadcastReceiver" /> -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -73,10 +80,11 @@
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
-
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
+
+        <receiver android:name=".application.CovacsApplication" />
     </application>
 
 </manifest>
