@@ -74,7 +74,7 @@
         },
         "v_required": {
           "value": "false",
-          "err": "{{child_enrollment.step1.First_Name.v_required.err}}"
+          "err": "{{client_enrollment.step1.First_Name.v_required.err}}"
         }
       },
       {
@@ -94,7 +94,7 @@
         },
         "v_required": {
           "value": "false",
-          "err": "{{child_enrollment.step1.Last_Name.v_required.err}}"
+          "err": "{{client_enrollment.step1.Last_Name.v_required.err}}"
         }
       },
       {
@@ -288,7 +288,6 @@
         "openmrs_entity": "person_address",
         "openmrs_entity_id": "address5",
         "type": "spinner",
-        "type": "edit_text",
         "label": "{{client_enrollment.step1.Residential_Area_Other.label}}",
         "label_info_text": "{{client_enrollment.step1.Residential_Area_Other.label_info_text}}",
         "label_info_title": "{{client_enrollment.step1.Residential_Area_Other.label_info_title}}",
@@ -308,7 +307,6 @@
         "label": "{{client_enrollment.step1.Residential_Address.label}}",
         "label_info_text": "{{client_enrollment.step1.Residential_Address.label_info_text}}",
         "label_info_title": "{{client_enrollment.step1.Residential_Address.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Residential_Address.hint}}",
         "hint": "{{client_enrollment.step1.Residential_Address.hint}}",
         "edit_type": "name",
         "v_required": {
