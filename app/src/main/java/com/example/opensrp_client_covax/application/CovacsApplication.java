@@ -90,23 +90,23 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         //Initialize Modules
         CoreLibrary.init(context, new AppSyncConfiguration(), BuildConfig.BUILD_TIMESTAMP);
 
-        GrowthMonitoringConfig growthMonitoringConfig = new GrowthMonitoringConfig();
-        growthMonitoringConfig.setWeightForHeightZScoreFile("weight_for_height.csv");
+//        GrowthMonitoringConfig growthMonitoringConfig = new GrowthMonitoringConfig();
+//        growthMonitoringConfig.setWeightForHeightZScoreFile("weight_for_height.csv");
 
-        GrowthMonitoringLibrary.getInstance().setGrowthMonitoringSyncTime(3, TimeUnit.MINUTES);
+//        GrowthMonitoringLibrary.getInstance().setGrowthMonitoringSyncTime(3, TimeUnit.MINUTES);
 
 
-        ImmunizationLibrary.getInstance().setVaccineSyncTime(3, TimeUnit.MINUTES);
+//        ImmunizationLibrary.getInstance().setVaccineSyncTime(3, TimeUnit.MINUTES);
 
 
         ConfigurableViewsLibrary.init(context);
 
 
-        ChildLibrary childLibrary = ChildLibrary.getInstance();
-        childLibrary.setApplicationVersionName(BuildConfig.VERSION_NAME);
-        childLibrary.setClientProcessorForJava(getClientProcessor());
-        childLibrary.getProperties().setProperty(ChildAppProperties.KEY.FEATURE_SCAN_QR_ENABLED, "true");
-        childLibrary.setEventBus(EventBus.getDefault());
+//        ChildLibrary childLibrary = ChildLibrary.getInstance();
+//        childLibrary.setApplicationVersionName(BuildConfig.VERSION_NAME);
+//        childLibrary.setClientProcessorForJava(getClientProcessor());
+//        childLibrary.getProperties().setProperty(ChildAppProperties.KEY.FEATURE_SCAN_QR_ENABLED, "true");
+//        childLibrary.setEventBus(EventBus.getDefault());
 
 
 

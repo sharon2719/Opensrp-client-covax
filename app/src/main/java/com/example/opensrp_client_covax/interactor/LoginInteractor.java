@@ -10,7 +10,7 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
     @Override
     public void login(WeakReference<BaseLoginContract.View> view, String userName, char[] password) {
         //change case to lowercase before login attempt
-        super.login(view, userName.toLowerCase(), password);
+        super.login(view, userName, password);
     }
 
     public LoginInteractor(BaseLoginContract.Presenter loginPresenter) {
