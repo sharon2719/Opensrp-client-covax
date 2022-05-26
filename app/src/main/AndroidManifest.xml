@@ -62,7 +62,8 @@
         <service android:name="org.smartregister.sync.intent.PullUniqueIdsIntentService" />
         <service android:name="org.smartregister.sync.intent.ValidateIntentService" />
         <service android:name="org.smartregister.sync.intent.ExtendedSyncIntentService" />
-        <service android:name="org.smartregister.sync.intent.SettingsSyncIntentService" /> <!-- <service android:name="org.smartregister.path.service.intent.AppSyncIntentService" /> -->
+        <service android:name="org.smartregister.sync.intent.SettingsSyncIntentService" />
+<!--         <service android:name="org.smartregister.path.service.intent.AppSyncIntentService" /> -->
         <!-- <service android:name="org.smartregister.path.service.intent.ArchiveChildrenAgedAboveFiveIntentService" /> -->
         <!-- <service android:name="org.smartregister.path.service.intent.AppVaccineScheduleUpdateIntentService" /> -->
         <!-- <service android:name="org.smartregister.path.reporting.dropuout.intent.CoverageDropoutIntentService" /> -->
