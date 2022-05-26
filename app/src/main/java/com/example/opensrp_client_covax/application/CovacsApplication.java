@@ -30,6 +30,7 @@ import org.smartregister.immunization.util.VaccinatorUtils;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.reporting.ReportingLibrary;
+import org.smartregister.repository.EventClientRepository;
 import org.smartregister.stock.StockLibrary;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
@@ -45,7 +46,7 @@ import java.util.concurrent.TimeUnit;
 public class CovacsApplication extends DrishtiApplication implements TimeChangedBroadcastReceiver.OnTimeChangedListener {
     private static JsonSpecHelper jsonSpecHelper;
     private static CommonFtsObject commonFtsObject;
-
+    private EventClientRepository eventClientRepository;
 
     public static JsonSpecHelper getJsonSpecHelper() {
         return jsonSpecHelper;
@@ -129,6 +130,12 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         return context;
     }
 
+    public EventClientRepository eventClientRepository() {
+        if (eventClientRepository == null) {
+            eventClientRepository = new EventClientRepository();
+        }
+        return eventClientRepository;
+    }
     public static CommonFtsObject createCommonFtsObject(android.content.Context context) {
         if (commonFtsObject == null) {
             commonFtsObject = new CommonFtsObject(getFtsTables());

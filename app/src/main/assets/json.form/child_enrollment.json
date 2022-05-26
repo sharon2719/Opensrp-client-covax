@@ -63,18 +63,18 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "first_name",
         "type": "edit_text",
-        "label": "{{client_enrollment.step1.First_Name.label}}",
-        "label_info_text": "{{client_enrollment.step1.First_Name.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.First_Name.label_info_title}}",
-        "hint": "{{client_enrollment.step1.First_Name.hint}}",
+        "label": "{{child_enrollment.step1.First_Name.label}}",
+        "label_info_text": "{{child_enrollment.step1.First_Name.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.First_Name.label_info_title}}",
+        "hint": "{{child_enrollment.step1.First_Name.hint}}",
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "{{client_enrollment.step1.First_Name.v_regex.err}}"
+          "err": "{{child_enrollment.step1.First_Name.v_regex.err}}"
         },
         "v_required": {
           "value": "false",
-          "err": "{{client_enrollment.step1.First_Name.v_required.err}}"
+          "err": "{{child_enrollment.step1.First_Name.v_required.err}}"
         }
       },
       {
@@ -83,18 +83,18 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "last_name",
         "type": "edit_text",
-        "label": "{{client_enrollment.step1.Last_Name.label}}",
-        "label_info_text": "{{client_enrollment.step1.Last_Name.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Last_Name.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Last_Name.hint}}",
+        "label": "{{child_enrollment.step1.Last_Name.label}}",
+        "label_info_text": "{{child_enrollment.step1.Last_Name.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Last_Name.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Last_Name.hint}}",
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "{{client_enrollment.step1.Last_Name.v_regex.err}}"
+          "err": "{{child_enrollment.step1.Last_Name.v_regex.err}}"
         },
         "v_required": {
           "value": "false",
-          "err": "{{client_enrollment.step1.Last_Name.v_required.err}}"
+          "err": "{{child_enrollment.step1.Last_Name.v_required.err}}"
         }
       },
       {
@@ -103,18 +103,18 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "ZEIR_ID",
         "type": "edit_text",
-        "label": "{{client_enrollment.step1.ZEIR_ID.label}}",
-        "label_info_text": "{{client_enrollment.step1.ZEIR_ID.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.ZEIR_ID.label_info_title}}",
-        "hint": "{{client_enrollment.step1.ZEIR_ID.hint}}",
+        "label": "{{child_enrollment.step1.ZEIR_ID.label}}",
+        "label_info_text": "{{child_enrollment.step1.ZEIR_ID.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.ZEIR_ID.label_info_title}}",
+        "hint": "{{child_enrollment.step1.ZEIR_ID.hint}}",
         "value": "0",
         "v_numeric": {
           "value": "true",
-          "err": "{{client_enrollment.step1.ZEIR_ID.v_numeric.err}}"
+          "err": "{{child_enrollment.step1.ZEIR_ID.v_numeric.err}}"
         },
         "v_required": {
           "value": "true",
-          "err": "{{client_enrollment.step1.ZEIR_ID.v_required.err}}"
+          "err": "{{child_enrollment.step1.ZEIR_ID.v_required.err}}"
         }
       },
 
@@ -124,27 +124,27 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "gender",
         "type": "spinner",
-        "label": "{{client_enrollment.step1.Sex.label}}",
-        "label_info_text": "{{client_enrollment.step1.Sex.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Sex.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Sex.hint}}",
+        "label": "{{child_enrollment.step1.Sex.label}}",
+        "label_info_text": "{{child_enrollment.step1.Sex.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Sex.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Sex.hint}}",
         "options": [
           {
             "key": "male",
-            "text": "{{client_enrollment.step1.Sex.options.male.text}}",
+            "text": "{{child_enrollment.step1.Sex.options.male.text}}",
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
             "key": "female",
-            "text": "{{client_enrollment.step1.Sex.options.female.text}}",
+            "text": "{{child_enrollment.step1.Sex.options.female.text}}",
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "{{client_enrollment.step1.Sex.v_required.err}}"
+          "err": "{{child_enrollment.step1.Sex.v_required.err}}"
         }
       },
       {
@@ -153,19 +153,19 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "birthdate",
         "type": "date_picker",
-        "label": "{{client_enrollment.step1.Date_Birth.label}}",
-        "label_info_text": "{{client_enrollment.step1.Date_Birth.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Date_Birth.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Date_Birth.hint}}",
+        "label": "{{child_enrollment.step1.Date_Birth.label}}",
+        "label_info_text": "{{child_enrollment.step1.Date_Birth.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Date_Birth.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Date_Birth.hint}}",
         "expanded": false,
         "duration": {
-          "label": "{{client_enrollment.step1.Date_Birth.duration.label}}"
+          "label": "{{child_enrollment.step1.Date_Birth.duration.label}}"
         },
         "min_date": "today-12y",
         "max_date": "today",
         "v_required": {
           "value": "true",
-          "err": "{{client_enrollment.step1.Date_Birth.v_required.err}}"
+          "err": "{{child_enrollment.step1.Date_Birth.v_required.err}}"
         }
       },
       {
@@ -175,21 +175,21 @@
         "openmrs_entity_id": "5916AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_data_type": "text",
         "type": "edit_text",
-        "label": "{{client_enrollment.step1.Weight.label}}",
-        "label_info_text": "{{client_enrollment.step1.Weight.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Weight.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Weight.hint}}",
+        "label": "{{child_enrollment.step1.Weight.label}}",
+        "label_info_text": "{{child_enrollment.step1.Weight.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Weight.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Weight.hint}}",
         "v_min": {
           "value": "0.1",
-          "err": "{{client_enrollment.step1.Weight.v_min.err}}"
+          "err": "{{child_enrollment.step1.Weight.v_min.err}}"
         },
         "v_numeric": {
           "value": "true",
-          "err": "{{client_enrollment.step1.Weight.v_numeric.err}}"
+          "err": "{{child_enrollment.step1.Weight.v_numeric.err}}"
         },
         "v_required": {
           "value": "true",
-          "err": "{{client_enrollment.step1.Weight.v_required.err}}"
+          "err": "{{child_enrollment.step1.Weight.v_required.err}}"
         }
       },
       {
@@ -199,10 +199,10 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "163340AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
-        "label": "{{client_enrollment.step1.Covax_Protection.label}}",
-        "label_info_text": "{{client_enrollment.step1.Covax_Protection.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Covax_Protection.label_info_title}}",
-        "hint": "{client_enrollment.step1.Covax_Protection.hint}}",
+        "label": "{{child_enrollment.step1.Covax_Protection.label}}",
+        "label_info_text": "{{child_enrollment.step1.Covax_Protection.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Covax_Protection.label_info_title}}",
+        "hint": "{child_enrollment.step1.Covax_Protection.hint}}",
         "values": [
           "Yes",
           "No",
@@ -215,7 +215,7 @@
         },
         "v_required": {
           "value": true,
-          "err": "{{client_enrollment.step1.Covax_Protection.v_required.err}}"
+          "err": "{{child_enrollment.step1.Covax_Protection.v_required.err}}"
         }
       },
       {
@@ -227,13 +227,13 @@
         "openmrs_data_type": "text",
         "type": "spinner",
         "sub_type": "location",
-        "label": "{{client_enrollment.step1.Home_Facility.label}}",
-        "label_info_text": "{{client_enrollment.step1.Home_Facility.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Home_Facility.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Home_Facility.hint}}",
+        "label": "{{child_enrollment.step1.Home_Facility.label}}",
+        "label_info_text": "{{child_enrollment.step1.Home_Facility.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Home_Facility.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Home_Facility.hint}}",
         "v_required": {
           "value": true,
-          "err": "{{client_enrollment.step1.Home_Facility.v_required.err}}"
+          "err": "{{child_enrollment.step1.Home_Facility.v_required.err}}"
         }
       },
       {
@@ -243,17 +243,17 @@
         "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "entity_id": "father",
         "type": "edit_text",
-        "label": "{{client_enrollment.step1.Phone_Number.label}}",
-        "label_info_text": "{{client_enrollment.step1.Phone_Number.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Phone_Number.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Phone_Number.hint}}",
+        "label": "{{child_enrollment.step1.Phone_Number.label}}",
+        "label_info_text": "{{child_enrollment.step1.Phone_Number.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Phone_Number.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Phone_Number.hint}}",
         "v_numeric": {
           "value": "true",
-          "err": "{{client_enrollment.step1.Phone_Number.v_numeric.err}}"
+          "err": "{{child_enrollment.step1.Phone_Number.v_numeric.err}}"
         },
         "v_regex": {
           "value": "(0[0-9]{9})|\\s*",
-          "err": "{{client_enrollment.step1.Phone_Number.v_regex.err}}"
+          "err": "{{child_enrollment.step1.Phone_Number.v_regex.err}}"
         }
       },
       {
@@ -264,10 +264,10 @@
         "type": "spinner",
 
         "type": "edit_text",
-        "label": "{{client_enrollment.step1.Residential_Area.label}}",
-        "label_info_text": "{{client_enrollment.step1.Residential_Area.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Residential_Area.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Residential_Area.hint}}",
+        "label": "{{child_enrollment.step1.Residential_Area.label}}",
+        "label_info_text": "{{child_enrollment.step1.Residential_Area.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Residential_Area.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Residential_Area.hint}}",
         "edit_type": "name",
         "values": [
           "Location",
@@ -279,7 +279,7 @@
         },
         "v_required": {
           "value": true,
-          "err": "{{client_enrollment.step1.Residential_Area.v_required.err}}"
+          "err": "{{child_enrollment.step1.Residential_Area.v_required.err}}"
         }
       },
       {
@@ -288,14 +288,14 @@
         "openmrs_entity": "person_address",
         "openmrs_entity_id": "address5",
         "type": "spinner",
-        "label": "{{client_enrollment.step1.Residential_Area_Other.label}}",
-        "label_info_text": "{{client_enrollment.step1.Residential_Area_Other.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Residential_Area_Other.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Residential_Area_Other.hint}}",
+        "label": "{{child_enrollment.step1.Residential_Area_Other.label}}",
+        "label_info_text": "{{child_enrollment.step1.Residential_Area_Other.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Residential_Area_Other.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Residential_Area_Other.hint}}",
         "edit_type": "name",
         "v_required": {
           "value": true,
-          "err": "{{client_enrollment.step1.Residential_Area_Other.v_required.err}}"
+          "err": "{{child_enrollment.step1.Residential_Area_Other.v_required.err}}"
         }
       },
       {
@@ -304,18 +304,18 @@
         "openmrs_entity": "person_address",
         "openmrs_entity_id": "address2",
         "type": "edit_text",
-        "label": "{{client_enrollment.step1.Residential_Address.label}}",
-        "label_info_text": "{{client_enrollment.step1.Residential_Address.label_info_text}}",
-        "label_info_title": "{{client_enrollment.step1.Residential_Address.label_info_title}}",
-        "hint": "{{client_enrollment.step1.Residential_Address.hint}}",
+        "label": "{{child_enrollment.step1.Residential_Address.label}}",
+        "label_info_text": "{{child_enrollment.step1.Residential_Address.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Residential_Address.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Residential_Address.hint}}",
         "edit_type": "name",
         "v_required": {
           "value": true,
-          "err": "{{client_enrollment.step1.Residential_Address.v_required.err}}"
+          "err": "{{child_enrollment.step1.Residential_Address.v_required.err}}"
         }
       }
     ]
   },
 
-  "properties_file_name": "client_enrollment"
+  "properties_file_name": "child_enrollment"
 }

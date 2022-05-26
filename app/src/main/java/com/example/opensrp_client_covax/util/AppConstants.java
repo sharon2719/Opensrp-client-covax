@@ -27,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 public class AppConstants {
     public static final class KeyConstants {
         public static final String VIEW_CONFIGURATION_PREFIX = "ViewConfiguration_";
+        public static final String REGISTRATION_LOCATION_ID = "registration_location_id";
+        public static final String REGISTRATION_LOCATION_NAME = "registration_location_name";
 
     }
     public static class ConfigurationConstants {
@@ -37,7 +39,10 @@ public class AppConstants {
     public interface IntentKeyUtil {
         String IS_REMOTE_LOGIN = "is_remote_login";
     }
+    public interface JsonForm {
+        String CHILD_ENROLLMENT = "child_enrollment";
 
+    }
 
 
     }
