@@ -8,6 +8,7 @@
     <string name="login_text">Log In</string>
     <string name="username">Username</string>
     <string name="search_hint">Find name or id</string>
+    <string name="app_label">COVACS</string>
 
 
 </resources>

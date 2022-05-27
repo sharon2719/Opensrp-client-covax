@@ -37,11 +37,9 @@ public class ChildRegisterActivity extends BaseChildRegisterActivity {
         return AppConstants.JsonForm.CHILD_ENROLLMENT;
     }
 
+
     @Override
     public void startFormActivity(JSONObject jsonForm) {
-        Form form = new Form();
-        form.setWizard(false);
-        form.setHideSaveLabel(true);
-        form.setNextLabel("");
+  startFormActivity("child_enrollment" , null , "");
     }
 }
