@@ -204,6 +204,11 @@
         "label_info_title": "{{child_enrollment.step1.Covax_Protection.label_info_title}}",
         "hint": "{child_enrollment.step1.Covax_Protection.hint}}",
         "values": [
+          "{{child_enrollment.step1.Covax_Protection.values[0]}}",
+          "{{child_enrollment.step1.Covax_Protection.values[1]}}",
+          "{{child_enrollment.step1.Covax_Protection.values[2]}}"
+        ],
+        "keys": [
           "Yes",
           "No",
           "Don't know"
@@ -270,6 +275,10 @@
         "hint": "{{child_enrollment.step1.Residential_Area.hint}}",
         "edit_type": "name",
         "values": [
+          "{{child_enrollment.step1.Residential_Area.values[0]}}",
+          "{{child_enrollment.step1.Residential_Area.values[1]}}"
+        ],
+        "keys": [
           "Location",
           "Other"
         ],
