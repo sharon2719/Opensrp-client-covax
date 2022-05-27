@@ -29,6 +29,10 @@ public class AppConstants {
         public static final String VIEW_CONFIGURATION_PREFIX = "ViewConfiguration_";
         public static final String REGISTRATION_LOCATION_ID = "registration_location_id";
         public static final String REGISTRATION_LOCATION_NAME = "registration_location_name";
+        public static final String KEY = "key";
+        public static final String CHILD_ZONE = "child_zone";
+
+        public static final String LAST_INTERACTED_WITH = "last_interacted_with";
 
     }
     public static class ConfigurationConstants {
