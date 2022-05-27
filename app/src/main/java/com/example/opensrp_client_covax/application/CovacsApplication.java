@@ -32,6 +32,7 @@ import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.reporting.ReportingLibrary;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.stock.StockLibrary;
+import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
 
@@ -47,6 +48,8 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     private static JsonSpecHelper jsonSpecHelper;
     private static CommonFtsObject commonFtsObject;
     private EventClientRepository eventClientRepository;
+    private ECSyncHelper ecSyncHelper;
+
 
     public static JsonSpecHelper getJsonSpecHelper() {
         return jsonSpecHelper;
@@ -148,6 +151,14 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
 
         return commonFtsObject;
     }
+
+    public ECSyncHelper getEcSyncHelper() {
+        if (ecSyncHelper == null) {
+            ecSyncHelper = ECSyncHelper.getInstance(getApplicationContext());
+        }
+        return ecSyncHelper;
+    }
+
     private static String[] getFtsTables() {
         return new String[]{DBConstants.RegisterTable.CLIENT, DBConstants.RegisterTable.MOTHER_DETAILS, DBConstants.RegisterTable.CHILD_DETAILS};
     }

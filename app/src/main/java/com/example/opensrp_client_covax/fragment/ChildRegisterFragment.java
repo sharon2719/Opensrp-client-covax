@@ -1,5 +1,6 @@
 package com.example.opensrp_client_covax.fragment;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
@@ -16,9 +17,7 @@ import org.smartregister.child.fragment.BaseChildRegisterFragment;
 import org.smartregister.child.util.Constants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.view.activity.BaseRegisterActivity;
-import org.smartregister.view.fragment.BaseRegisterFragment;
 
-import java.util.HashMap;
 
 public class ChildRegisterFragment extends BaseChildRegisterFragment {
 
@@ -42,6 +41,8 @@ public class ChildRegisterFragment extends BaseChildRegisterFragment {
     protected String getDefaultSortQuery() {
         return presenter().getDefaultSortQuery();
     }
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onViewClicked(View view) {
 
@@ -100,6 +101,16 @@ public class ChildRegisterFragment extends BaseChildRegisterFragment {
 
     }
 
+    @Override
+    public void setupViews(View view) {
+        super.setupViews(view);
+        View globalSearchButton = view.findViewById(org.smartregister.child.R.id.global_search);
+        View registerClientButton = view.findViewById(org.smartregister.child.R.id.register_client);
+        if (globalSearchButton != null && registerClientButton != null) {
+            globalSearchButton.setVisibility(View.INVISIBLE);
+            registerClientButton.setVisibility(View.INVISIBLE);
+        }
+    }
     @Override
     protected String filterSelectionCondition(boolean urgentOnly) {
         return DBQueryHelper.getFilterSelectionCondition(urgentOnly);

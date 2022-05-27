@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.opensrp_client_covax.BuildConfig;
 import com.example.opensrp_client_covax.application.CovacsApplication;
+import com.example.opensrp_client_covax.dao.AppChildDao;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,16 +20,21 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.child.presenter.BaseChildDetailsPresenter;
 import org.smartregister.child.util.Utils;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.domain.Client;
 import org.smartregister.location.helper.LocationHelper;
+import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.util.JsonFormUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
@@ -136,5 +142,32 @@ public class AppUtils extends Utils {
             Timber.e(e);
         }
         return jsonString;
+    }
+    public static void createClientCardReceivedEvent(String baseEntityId, BaseChildDetailsPresenter.CardStatus cardStatus, String cardStatusDate) {
+        //We do not want to unnecessary events when card is not needed
+        if (cardStatus == BaseChildDetailsPresenter.CardStatus.does_not_need_card && !AppChildDao.clientNeedsCard(baseEntityId)) {
+            return;
+        }
+        try {
+            Event baseEvent = AppJsonFormUtils.createEvent(new JSONArray(), new JSONObject().put(JsonFormUtils.ENCOUNTER_LOCATION, ""),
+                    AppJsonFormUtils.formTag(getAllSharedPreferences()), "", AppConstants.EventTypeConstants.CARD_STATUS_UPDATE, AppConstants.EventTypeConstants.CARD_STATUS_UPDATE);
+
+            baseEvent.setFormSubmissionId(UUID.randomUUID().toString());
+            baseEvent.addDetails(AppConstants.KeyConstants.CARD_STATUS, cardStatus.name());
+            baseEvent.addDetails(AppConstants.KeyConstants.CARD_STATUS_DATE, cardStatusDate);
+            baseEvent.setBaseEntityId(baseEntityId);
+            AppJsonFormUtils.tagEventMetadata(baseEvent);
+
+            CovacsApplication appInstance = CovacsApplication.getInstance();
+            ECSyncHelper ecSyncHelper = appInstance.getEcSyncHelper();
+
+            ecSyncHelper.addEvent(baseEntityId, new JSONObject(AppJsonFormUtils.gson.toJson(baseEvent)));
+            appInstance.getClientProcessor().processClient(ecSyncHelper.getEvents(Collections.singletonList(baseEvent.getFormSubmissionId())));
+
+            Date lastSyncDate = new Date(getAllSharedPreferences().fetchLastUpdatedAtDate(0));
+            getAllSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
+        } catch (Exception e) {
+            Timber.e(e);
+        }
     }
 }
