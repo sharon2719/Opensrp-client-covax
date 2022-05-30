@@ -1,0 +1,247 @@
+[
+  {
+    "name": "First Dose",
+    "id": "First Dose",
+    "days_after_first_days_due": 0,
+    "vaccines": [
+      {
+        "name": "Pfizer",
+        "type": "Pfizer",
+        "schedule": {
+          "due": [
+            {
+              "reference": "first_visit",
+              "offset": "+12y",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "not_given",
+              "vaccine": "Johnson & Jansen",
+              "vaccine": "Moderna"
+
+            }
+          ]
+        }
+      },
+      {
+        "name": "Johnson & Jansen",
+        "type": "Johnson & Jansen",
+        "schedule": {
+          "due": [
+            {
+              "reference": "first_visit",
+              "offset": "+18y",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "not_given",
+              "vaccine": "Pfizer",
+              "vaccine": "Moderna"
+
+            }
+          ]
+        }
+      },
+      {
+        "name": "Moderna",
+        "type": "Moderna",
+        "schedule": {
+          "due": [
+            {
+              "reference": "first_visit",
+              "offset": "+18y",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "not_given",
+              "vaccine": "Moderna",
+              "vaccine": "Pfizer"
+
+            }
+          ]
+        }
+      },
+      {
+        "name": "Pfizer 2",
+        "type": "Pfizer 2",
+        "schedule": {
+          "due": [
+            {
+              "reference": "pfizer1_is_given",
+              "offset": "+3wks 2d",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "not_given",
+              "vaccine": "Pfizer 1"
+
+            }
+          ]
+        }
+      },
+      {
+        "name": "Moderna 2",
+        "type": "Moderna 2",
+        "schedule": {
+          "due": [
+            {
+              "reference": "moderna1_is_given",
+              "offset": "+4wks 2d",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "not_given",
+              "vaccine": "Moderna 1"
+
+            }
+          ]
+        }
+      },
+      {
+        "name": "Pfizer Booster",
+        "type": "Pfizer Booster",
+        "schedule": {
+          "due": [
+            {
+              "reference": "pfizer2_is_given",
+              "offset": "+5m",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "not_given",
+              "vaccine": "Moderna Booster"
+
+            }
+          ]
+        }
+      },
+      {
+        "name": "Moderna Booster",
+        "type": "Moderna Booster",
+        "schedule": {
+          "due": [
+            {
+              "reference": "moderna2_is_given",
+              "offset": "+5m",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "not_given",
+              "vaccine": "Pfizer Booster"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Pfizer Booster 2",
+        "type": "Pfizer Booster 2",
+        "schedule": {
+          "due": [
+            {
+              "reference": "pfizer_booster_is_given",
+              "offset": "+5m",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "reference": "dob",
+              "offset": "+50y",
+              "type": "given",
+              "vaccine": "Pfizer Booster"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Moderna Booster 2",
+        "type": "Moderna Booster 2",
+        "schedule": {
+          "due": [
+            {
+              "reference": "moderna_booster_is_given",
+              "offset": "+5m",
+              "window": "+0d"
+            }
+          ],
+          "expiry": [
+            {
+              "reference": "dob",
+              "offset": "+0d"
+            }
+          ],
+          "conditions": [
+            {
+              "reference": "dob",
+              "offset": "+5m",
+              "type": "given",
+              "vaccine": "Moderna Booster"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
