@@ -163,8 +163,8 @@ android {
             buildConfigField "String[]", "HEALTH_FACILITY_LEVELS", '{"Country", "Region", "County", "Health Facility"}'
             buildConfigField "String[]", "ALLOWED_LEVELS", '{"Health Facility"}'
             buildConfigField "String", 'DEFAULT_LOCATION', '"Health Facility"'
-            buildConfigField "String", "OAUTH_CLIENT_ID", getLocalProperty("oauth.client.id.debug")
-            buildConfigField "String", "OAUTH_CLIENT_SECRET", getLocalProperty("oauth.client.secret.debug")
+            buildConfigField "String", "OAUTH_CLIENT_ID", getLocalProperty("oauth.client.id")
+            buildConfigField "String", "OAUTH_CLIENT_SECRET", getLocalProperty("oauth.client.secret")
         }
 
         preview {
@@ -290,7 +290,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
         exclude group: 'com.ibm.fhir', module: 'fhir-model'
-        exclude group: 'org.smartregister', module: 'opensrp-client-reporting'
+//        exclude group: 'org.smartregister', module: 'opensrp-client-reporting'
     }
 
 

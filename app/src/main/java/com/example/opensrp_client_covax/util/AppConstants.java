@@ -47,6 +47,9 @@ public class AppConstants {
         String CHILD_ENROLLMENT = "child_enrollment";
 
     }
+    public static final class INTENT_KEY {
+        public static final java.lang.String TO_RESCHEDULE = "to_reschedule";
+    }
 
 
     }
