@@ -22,6 +22,7 @@ import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.sync.ClientProcessor;
 import org.smartregister.sync.ClientProcessorForJava;
+import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.util.AppExecutors;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
@@ -34,6 +35,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     private static JsonSpecHelper jsonSpecHelper;
     private static CommonFtsObject commonFtsObject;
     private EventClientRepository eventClientRepository;
+    private ECSyncHelper ecSyncHelper;
     private static ClientProcessorForJava clientProcessor;
     private AppExecutors appExecutors;
 
@@ -146,6 +148,12 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
 //        }
 //        return clientProcessor;
 //    }
+public ECSyncHelper getEcSyncHelper() {
+    if (ecSyncHelper == null) {
+        ecSyncHelper = ECSyncHelper.getInstance(getApplicationContext());
+    }
+    return ecSyncHelper;
+}
 
     private static String[] getFtsSortFields(String tableName, android.content.Context context) {
 //        switch (tableName) {
