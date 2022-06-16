@@ -2,8 +2,14 @@ package com.example.opensrp_client_covax.repository;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
+import com.example.opensrp_client_covax.BuildConfig;
+import com.example.opensrp_client_covax.application.CovacsApplication;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.smartregister.AllConstants;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.repository.ConfigurableViewsRepository;
 import org.smartregister.repository.DrishtiRepository;
@@ -22,8 +28,8 @@ public class CovacsRepository extends Repository {
     private Context context;
     private int databaseVersion;
 
-    public CovacsRepository(Context context, String databaseName, int databaseVersion, Session session, CommonFtsObject commonFtsObject, DrishtiRepository... repositories) {
-        super(context, databaseName, databaseVersion, session, commonFtsObject, repositories);
+    public CovacsRepository(@NonNull Context context, @NonNull org.smartregister.Context openSRPContext) {
+        super(context, AllConstants.DATABASE_NAME, BuildConfig.DATABASE_VERSION, openSRPContext.session(), CovacsApplication.createCommonFtsObject(context), openSRPContext.sharedRepositoriesArray());
         this.context = context;
         this.databaseVersion = databaseVersion;
     }

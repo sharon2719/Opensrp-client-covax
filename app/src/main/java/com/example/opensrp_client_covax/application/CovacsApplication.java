@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.evernote.android.job.JobManager;
 import com.example.opensrp_client_covax.job.CovacsJobCreator;
 import com.example.opensrp_client_covax.activity.LoginActivity;
+import com.example.opensrp_client_covax.repository.CovacsRepository;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -22,6 +23,7 @@ import org.smartregister.configurableviews.helper.JsonSpecHelper;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.repository.EventClientRepository;
+import org.smartregister.repository.Repository;
 import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.ClientProcessorForJava;
 import org.smartregister.sync.helper.ECSyncHelper;
@@ -31,6 +33,8 @@ import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
 
 import java.util.Locale;
 import java.util.Map;
+
+import timber.log.Timber;
 
 
 public class CovacsApplication extends DrishtiApplication implements TimeChangedBroadcastReceiver.OnTimeChangedListener {
@@ -208,4 +212,15 @@ public ECSyncHelper getEcSyncHelper() {
         isBulkProcessing = bulkProcessing;
     }
 
+    @Override
+    public Repository getRepository() {
+        try {
+            if (repository == null) {
+                repository = new CovacsRepository(getApplicationContext(), context);
+            }
+        } catch (UnsatisfiedLinkError e) {
+            Timber.e(e, "CovacsApplication --> getRepository");
+        }
+        return repository;
+    }
 }
