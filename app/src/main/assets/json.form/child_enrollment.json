@@ -1,0 +1,328 @@
+{
+  "count": "1",
+  "encounter_type": "Subject Registration",
+  "validate_on_submit": true,
+  "show_errors_on_submit": true,
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "{{child_enrollment.step1.title}}",
+    "fields": [
+      {
+        "key": "First_Name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "first_name",
+        "type": "edit_text",
+        "label": "{{child_enrollment.step1.First_Name.label}}",
+        "label_info_text": "{{child_enrollment.step1.First_Name.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.First_Name.label_info_title}}",
+        "hint": "{{child_enrollment.step1.First_Name.hint}}",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\s\\.\\-]*",
+          "err": "{{child_enrollment.step1.First_Name.v_regex.err}}"
+        },
+        "v_required": {
+          "value": "false",
+          "err": "{{child_enrollment.step1.First_Name.v_required.err}}"
+        }
+      },
+      {
+        "key": "Last_Name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "last_name",
+        "type": "edit_text",
+        "label": "{{child_enrollment.step1.Last_Name.label}}",
+        "label_info_text": "{{child_enrollment.step1.Last_Name.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Last_Name.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Last_Name.hint}}",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\s\\.\\-]*",
+          "err": "{{child_enrollment.step1.Last_Name.v_regex.err}}"
+        },
+        "v_required": {
+          "value": "false",
+          "err": "{{child_enrollment.step1.Last_Name.v_required.err}}"
+        }
+      },
+      {
+        "key": "ZEIR_ID",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "ZEIR_ID",
+        "type": "edit_text",
+        "label": "{{child_enrollment.step1.ZEIR_ID.label}}",
+        "label_info_text": "{{child_enrollment.step1.ZEIR_ID.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.ZEIR_ID.label_info_title}}",
+        "hint": "{{child_enrollment.step1.ZEIR_ID.hint}}",
+        "value": "0",
+        "v_numeric": {
+          "value": "true",
+          "err": "{{child_enrollment.step1.ZEIR_ID.v_numeric.err}}"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_enrollment.step1.ZEIR_ID.v_required.err}}"
+        }
+      },
+
+      {
+        "key": "Sex",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "gender",
+        "type": "spinner",
+        "label": "{{child_enrollment.step1.Sex.label}}",
+        "label_info_text": "{{child_enrollment.step1.Sex.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Sex.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Sex.hint}}",
+        "options": [
+          {
+            "key": "male",
+            "text": "{{child_enrollment.step1.Sex.options.male.text}}",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "female",
+            "text": "{{child_enrollment.step1.Sex.options.female.text}}",
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_enrollment.step1.Sex.v_required.err}}"
+        }
+      },
+      {
+        "key": "Date_Birth",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdate",
+        "type": "date_picker",
+        "label": "{{child_enrollment.step1.Date_Birth.label}}",
+        "label_info_text": "{{child_enrollment.step1.Date_Birth.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Date_Birth.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Date_Birth.hint}}",
+        "expanded": false,
+        "duration": {
+          "label": "{{child_enrollment.step1.Date_Birth.duration.label}}"
+        },
+        "min_date": "today-12y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "{{child_enrollment.step1.Date_Birth.v_required.err}}"
+        }
+      },
+      {
+        "key": "Weight",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "5916AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "text",
+        "type": "edit_text",
+        "label": "{{child_enrollment.step1.Weight.label}}",
+        "label_info_text": "{{child_enrollment.step1.Weight.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Weight.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Weight.hint}}",
+        "v_min": {
+          "value": "0.1",
+          "err": "{{child_enrollment.step1.Weight.v_min.err}}"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{child_enrollment.step1.Weight.v_numeric.err}}"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_enrollment.step1.Weight.v_required.err}}"
+        }
+      },
+      {
+        "key": "Covax_Protection",
+        "type": "spinner",
+        "openmrs_data_type": "select one",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "163340AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity_parent": "",
+        "label": "{{child_enrollment.step1.Covax_Protection.label}}",
+        "label_info_text": "{{child_enrollment.step1.Covax_Protection.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Covax_Protection.label_info_title}}",
+        "hint": "{child_enrollment.step1.Covax_Protection.hint}}",
+        "values": [
+          "{{child_enrollment.step1.Covax_Protection.values[0]}}",
+          "{{child_enrollment.step1.Covax_Protection.values[1]}}",
+          "{{child_enrollment.step1.Covax_Protection.values[2]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No",
+          "Don't know"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": "",
+          "Don't know": ""
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{child_enrollment.step1.Covax_Protection.v_required.err}}"
+        }
+      },
+      {
+        "key": "Home_Facility",
+        "openmrs_entity_parent": "usual_residence",
+        "openmrs_entity": "person_address",
+        "openmrs_entity_id": "address4",
+        "openmrs_mapping": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "text",
+        "type": "spinner",
+        "sub_type": "location",
+        "label": "{{child_enrollment.step1.Home_Facility.label}}",
+        "label_info_text": "{{child_enrollment.step1.Home_Facility.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Home_Facility.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Home_Facility.hint}}",
+        "v_required": {
+          "value": true,
+          "err": "{{child_enrollment.step1.Home_Facility.v_required.err}}"
+        }
+      },
+      {
+        "key": "Phone_Number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "entity_id": "father",
+        "type": "edit_text",
+        "label": "{{child_enrollment.step1.Phone_Number.label}}",
+        "label_info_text": "{{child_enrollment.step1.Phone_Number.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Phone_Number.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Phone_Number.hint}}",
+        "v_numeric": {
+          "value": "true",
+          "err": "{{child_enrollment.step1.Phone_Number.v_numeric.err}}"
+        },
+        "v_regex": {
+          "value": "(0[0-9]{9})|\\s*",
+          "err": "{{child_enrollment.step1.Phone_Number.v_regex.err}}"
+        }
+      },
+      {
+        "key": "Residential_Area",
+        "openmrs_entity_parent": "usual_residence",
+        "openmrs_entity": "person_address",
+        "openmrs_entity_id": "address3",
+        "type": "spinner",
+
+        "type": "edit_text",
+        "label": "{{child_enrollment.step1.Residential_Area.label}}",
+        "label_info_text": "{{child_enrollment.step1.Residential_Area.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Residential_Area.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Residential_Area.hint}}",
+        "edit_type": "name",
+        "values": [
+          "{{child_enrollment.step1.Residential_Area.values[0]}}",
+          "{{child_enrollment.step1.Residential_Area.values[1]}}"
+        ],
+        "keys": [
+          "Location",
+          "Other"
+        ],
+        "openmrs_choice_ids": {
+          "Location": "",
+          "Other": ""
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{child_enrollment.step1.Residential_Area.v_required.err}}"
+        }
+      },
+      {
+        "key": "Residential_Area_Other",
+        "openmrs_entity_parent": "usual_residence",
+        "openmrs_entity": "person_address",
+        "openmrs_entity_id": "address5",
+        "type": "spinner",
+        "label": "{{child_enrollment.step1.Residential_Area_Other.label}}",
+        "label_info_text": "{{child_enrollment.step1.Residential_Area_Other.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Residential_Area_Other.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Residential_Area_Other.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": true,
+          "err": "{{child_enrollment.step1.Residential_Area_Other.v_required.err}}"
+        }
+      },
+      {
+        "key": "Residential_Address",
+        "openmrs_entity_parent": "usual_residence",
+        "openmrs_entity": "person_address",
+        "openmrs_entity_id": "address2",
+        "type": "edit_text",
+        "label": "{{child_enrollment.step1.Residential_Address.label}}",
+        "label_info_text": "{{child_enrollment.step1.Residential_Address.label_info_text}}",
+        "label_info_title": "{{child_enrollment.step1.Residential_Address.label_info_title}}",
+        "hint": "{{child_enrollment.step1.Residential_Address.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": true,
+          "err": "{{child_enrollment.step1.Residential_Address.v_required.err}}"
+        }
+      }
+    ]
+  },
+
+  "properties_file_name": "child_enrollment"
+}
