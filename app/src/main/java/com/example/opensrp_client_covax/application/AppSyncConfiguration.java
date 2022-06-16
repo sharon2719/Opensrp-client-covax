@@ -23,7 +23,7 @@ public class AppSyncConfiguration extends SyncConfiguration {
 
     @Override
     public String getSyncFilterValue() {
-        return null;
+        return CovacsApplication.getInstance().getSyncLocations();
     }
 
     @Override

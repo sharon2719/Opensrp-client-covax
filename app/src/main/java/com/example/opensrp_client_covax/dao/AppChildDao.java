@@ -10,7 +10,6 @@ public class AppChildDao extends ChildDao {
                 "FROM ec_client\n" +
                 "WHERE opensrp_id = '%s'\n" +
                 "  AND ec_client.date_removed is null\n" +
-                "  AND ec_client.dod is null\n" +
                 "  AND ec_client.is_closed IS NOT '1';", openSRPId);
 
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "base_entity_id");

@@ -1,0 +1,101 @@
+{
+  "bindobjects": [
+    {
+      "name": "ec_client",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "first_name",
+          "type": "Client",
+          "json_mapping": {
+            "field": "firstName"
+          }
+        },
+        {
+          "column_name": "last_name",
+          "type": "Client",
+          "json_mapping": {
+            "field": "lastName"
+          }
+        },
+        {
+          "column_name": "zeir_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "identifiers.zeir_id"
+          }
+        },
+        {
+          "column_name": "zeir_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "identifiers.ZEIR_ID"
+          }
+        },
+        {
+          "column_name": "sex",
+          "type": "Client",
+          "json_mapping": {
+            "field": "sex"
+          }
+        },
+        {
+          "column_name": "dob",
+          "type": "Client",
+          "json_mapping": {
+            "field": "birthdate"
+          }
+        },
+        {
+          "column_name": "weight",
+          "type": "Client",
+          "json_mapping": {
+            "field": "weight"
+          }
+        },
+        {
+          "column_name": "covaxProtection",
+          "type": "Client",
+          "json_mapping": {
+            "field": "covaxProtection"
+          }
+        },
+        {
+          "column_name": "home_facility",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "formSubmissionField": "Home_Facility"
+          }
+        },
+        {
+          "column_name": "residential_area",
+          "type": "Client",
+          "json_mapping": {
+            "field": "addresses.address3"
+          }
+        },
+        {
+        "column_name": "residential_area_other",
+        "type": "Client",
+        "json_mapping": {
+          "field": "addresses.address5"
+        }
+        },
+        {
+          "column_name": "residential_address",
+          "type": "Client",
+          "json_mapping": {
+            "field": "addresses.address2"
+          }
+        }
+      ]
+    }
+      ]
+    }
