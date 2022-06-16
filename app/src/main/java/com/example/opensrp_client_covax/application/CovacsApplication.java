@@ -10,6 +10,8 @@ import com.example.opensrp_client_covax.job.CovacsJobCreator;
 import com.example.opensrp_client_covax.activity.LoginActivity;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.smartregister.BuildConfig;
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
@@ -20,7 +22,7 @@ import org.smartregister.configurableviews.helper.JsonSpecHelper;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.repository.EventClientRepository;
-import org.smartregister.sync.ClientProcessor;
+import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.ClientProcessorForJava;
 import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.util.AppExecutors;
@@ -36,8 +38,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     private static CommonFtsObject commonFtsObject;
     private EventClientRepository eventClientRepository;
     private ECSyncHelper ecSyncHelper;
-    private static ClientProcessorForJava clientProcessor;
-    private AppExecutors appExecutors;
+    private boolean isBulkProcessing;
 
     public static JsonSpecHelper getJsonSpecHelper() {
         return jsonSpecHelper;
@@ -94,6 +95,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         JobManager.create(this).addJobCreator(new CovacsJobCreator());
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
 
 
     }
@@ -196,6 +198,14 @@ public ECSyncHelper getEcSyncHelper() {
     }
     public boolean allowLazyProcessing() {
         return true;
+    }
+
+    public boolean isBulkProcessing() {
+        return isBulkProcessing;
+    }
+
+    public void setBulkProcessing(boolean bulkProcessing) {
+        isBulkProcessing = bulkProcessing;
     }
 
 }

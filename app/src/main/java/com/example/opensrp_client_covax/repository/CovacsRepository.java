@@ -6,16 +6,12 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.repository.ConfigurableViewsRepository;
-import org.smartregister.immunization.ImmunizationLibrary;
-import org.smartregister.immunization.repository.RecurringServiceTypeRepository;
-import org.smartregister.immunization.util.IMDatabaseUtils;
-import org.smartregister.repository.ClientFormRepository;
 import org.smartregister.repository.DrishtiRepository;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.repository.LocationRepository;
 import org.smartregister.repository.LocationTagRepository;
-import org.smartregister.repository.ManifestRepository;
 import org.smartregister.repository.Repository;
+import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.util.Session;
 
 import timber.log.Timber;
@@ -41,11 +37,7 @@ public class CovacsRepository extends Repository {
         ConfigurableViewsRepository.createTable(database);
         LocationRepository.createTable(database);
         LocationTagRepository.createTable(database);
-
-        ManifestRepository.createTable(database);
-        ClientFormRepository.createTable(database);
-        RecurringServiceTypeRepository recurringServiceTypeRepository = ImmunizationLibrary.getInstance().recurringServiceTypeRepository();
-        IMDatabaseUtils.populateRecurringServices(context, database, recurringServiceTypeRepository);
+        UniqueIdRepository.createTable(database);
         onUpgrade(database, 1, databaseVersion);
     }
 

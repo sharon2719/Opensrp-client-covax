@@ -4,14 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.opensrp_client_covax.R;
-import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.presenter.LoginPresenter;
 import com.example.opensrp_client_covax.util.AppConstants;
 
-import org.smartregister.configurableviews.util.Constants;
-import org.smartregister.growthmonitoring.service.intent.WeightForHeightIntentService;
-import org.smartregister.location.helper.LocationHelper;
-import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.task.SaveTeamLocationsTask;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.BaseLoginActivity;

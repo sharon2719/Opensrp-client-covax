@@ -29,7 +29,7 @@ public class SchedulesIntentService extends IntentService {
     }
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        // execute all children schedules
+
         if (isSyncing())
             return;
 

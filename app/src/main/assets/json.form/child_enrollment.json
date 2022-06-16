@@ -3,8 +3,6 @@
   "encounter_type": "Subject Registration",
   "validate_on_submit": true,
   "show_errors_on_submit": true,
-  "validate_on_submit": true,
-  "show_errors_on_submit": true,
   "entity_id": "",
   "metadata": {
     "start": {

@@ -3,6 +3,7 @@ package com.example.opensrp_client_covax.interactor;
 import com.example.opensrp_client_covax.BuildConfig;
 import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.contract.LoginJobScheduler;
+import com.example.opensrp_client_covax.job.ScheduleJob;
 
 import org.smartregister.immunization.job.VaccineServiceJob;
 import org.smartregister.job.DocumentConfigurationServiceJob;
@@ -22,31 +23,6 @@ public class LoginJobSchedulerProvider implements LoginJobScheduler {
     public void scheduleJobsPeriodically() {
         SyncServiceJob.scheduleJob(SyncServiceJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.DATA_SYNC_DURATION_MINUTES), getFlexValue(BuildConfig
                 .DATA_SYNC_DURATION_MINUTES));
-
-//        VaccineRecurringServiceJob.scheduleJob(VaccineRecurringServiceJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.VACCINE_SYNC_PROCESSING_MINUTES), getFlexValue(BuildConfig.VACCINE_SYNC_PROCESSING_MINUTES));
-
-//        ImageUploadServiceJob.scheduleJob(ImageUploadServiceJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.IMAGE_UPLOAD_MINUTES), getFlexValue(BuildConfig.IMAGE_UPLOAD_MINUTES));
-//
-//        PullUniqueIdsServiceJob.scheduleJob(PullUniqueIdsServiceJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.PULL_UNIQUE_IDS_MINUTES), getFlexValue(BuildConfig.PULL_UNIQUE_IDS_MINUTES));
-
-//        ChwIndicatorGeneratingJob.scheduleJob(ChwIndicatorGeneratingJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.REPORT_INDICATOR_GENERATION_MINUTES), getFlexValue(BuildConfig.REPORT_INDICATOR_GENERATION_MINUTES));
-//
-//        HomeVisitServiceJob.scheduleJob(HomeVisitServiceJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.HOME_VISIT_MINUTES), getFlexValue(BuildConfig.HOME_VISIT_MINUTES));
-//
-//        BasePncCloseJob.scheduleJob(BasePncCloseJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.BASE_PNC_CLOSE_MINUTES), getFlexValue(BuildConfig.BASE_PNC_CLOSE_MINUTES));
-
-//        PlanIntentServiceJob.scheduleJob(PlanIntentServiceJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.DATA_SYNC_DURATION_MINUTES), getFlexValue(BuildConfig.DATA_SYNC_DURATION_MINUTES));
-
-//        if (CovacsApplication.getApplicationFlavor().hasTasks())
-//            SyncTaskServiceJob.scheduleJob(PlanIntentServiceJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.DATA_SYNC_DURATION_MINUTES), getFlexValue(BuildConfig.DATA_SYNC_DURATION_MINUTES));
-
-//        ScheduleJob.scheduleJob(ScheduleJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.SCHEDULE_SERVICE_MINUTES), getFlexValue(BuildConfig.SCHEDULE_SERVICE_MINUTES));
-
-//        if (ChwApplication.getApplicationFlavor().hasStockUsageReport())
-//            StockUsageReportJob.scheduleJob(StockUsageReportJob.TAG, TimeUnit.MINUTES.toMinutes(BuildConfig.STOCK_USAGE_REPORT_MINUTES), getFlexValue(BuildConfig.STOCK_USAGE_REPORT_MINUTES));
-
-//        if (BuildConfig.USE_UNIFIED_REFERRAL_APPROACH)
-//            DocumentConfigurationServiceJob.scheduleJob(DocumentConfigurationServiceJob.TAG,TimeUnit.MINUTES.toMinutes(BuildConfig.DATA_SYNC_DURATION_MINUTES), getFlexValue(BuildConfig.DATA_SYNC_DURATION_MINUTES));
     }
 
     @Override
@@ -54,25 +30,7 @@ public class LoginJobSchedulerProvider implements LoginJobScheduler {
         // Run initial job immediately on log in since the job will run a bit later (~ 15 mins +)
 //        ScheduleJob.scheduleJobImmediately(ScheduleJob.TAG);
         SyncServiceJob.scheduleJobImmediately(SyncServiceJob.TAG);
-//        HomeVisitServiceJob.scheduleJobImmediately(HomeVisitServiceJob.TAG);
-//        BasePncCloseJob.scheduleJobImmediately(BasePncCloseJob.TAG);
-//        PlanIntentServiceJob.scheduleJobImmediately(PlanIntentServiceJob.TAG);
-//
-//        if (ChwApplication.getApplicationFlavor().hasTasks())
-//            SyncTaskServiceJob.scheduleJobImmediately(SyncTaskServiceJob.TAG);
-//
-//        VaccineServiceJob.scheduleJobImmediately(VaccineServiceJob.TAG);
-//        VaccineRecurringServiceJob.scheduleJobImmediately(VaccineRecurringServiceJob.TAG);
-//        SyncLocationsByLevelAndTagsServiceJob.scheduleJobImmediately(SyncLocationsByLevelAndTagsServiceJob.TAG);
-//
-//        if (BuildConfig.USE_UNIFIED_REFERRAL_APPROACH)
-//            DocumentConfigurationServiceJob.scheduleJobImmediately(DocumentConfigurationServiceJob.TAG);
-//
-//        if (ChwApplication.getApplicationFlavor().hasStockUsageReport())
-//            StockUsageReportJob.scheduleJobImmediately(StockUsageReportJob.TAG);
-//
-//        if (ChwApplication.getApplicationFlavor().hasServiceReport())
-//            ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
+
     }
 
     @Override
