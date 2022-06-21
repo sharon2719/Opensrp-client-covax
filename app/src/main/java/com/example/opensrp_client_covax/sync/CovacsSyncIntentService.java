@@ -13,6 +13,7 @@ public class CovacsSyncIntentService extends SyncIntentService {
     protected void init(@NonNull Context context) {
         super.init(context);
     }
+
     @Override
     public int getEventPullLimit() {
         return 1000;
@@ -20,7 +21,7 @@ public class CovacsSyncIntentService extends SyncIntentService {
 
 
     @Override
-    protected Integer getEventBatchSize(){
+    protected Integer getEventBatchSize() {
         return 50;
     } // Should this be configurable?
 }

@@ -21,9 +21,6 @@ import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONObject;
-import org.smartregister.child.contract.ChildRegisterContract;
-import org.smartregister.child.model.BaseChildRegisterModel;
-import org.smartregister.child.presenter.BaseChildRegisterPresenter;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.listener.BottomNavigationListener;
 import org.smartregister.view.activity.BaseRegisterActivity;
@@ -55,14 +52,15 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements BaseR
 
     private void onStartActivityWithAction() {
         if (ACTION != null && ACTION.equals(AppConstants.ACTIVITY_PAYLOAD_TYPE.REGISTRATION)) {
-            startFormActivity(getRegistrationForm(), BASE_ENTITY_ID, (String)null);
+            startFormActivity(getRegistrationForm(), BASE_ENTITY_ID, (String) null);
         }
     }
 
     @Override
     protected void initializePresenter() {
-        presenter = new ChildRegisterPresenter( this, new ChildRegisterModel());
+        presenter = new ChildRegisterPresenter(this, new ChildRegisterModel());
     }
+
     public Class getRegisterActivity(String register) {
         return BaseRegisterActivity.class;
     }
@@ -109,10 +107,12 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements BaseR
         this.startActivity(intent);
         this.finish();
     }
+
     @Override
     public BaseRegisterContract.Presenter presenter() {
         return (BaseRegisterContract.Presenter) presenter;
     }
+
     @Override
     protected void onActivityResultExtended(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == AppConstants.REQUEST_CODE_GET_JSON) {
@@ -165,7 +165,7 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements BaseR
 
     @SuppressLint("WrongConstant")
     @Override
-    protected void registerBottomNavigation(){
+    protected void registerBottomNavigation() {
         bottomNavigationHelper = new BottomNavigationHelper();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -181,7 +181,7 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements BaseR
     }
 
     @MenuRes
-    public int getMenuResource(){
+    public int getMenuResource() {
         return R.menu.bottom_nav_menu;
     }
 

@@ -27,6 +27,7 @@ public class SchedulesIntentService extends IntentService {
     public CovacsApplication getCovacsApplication() {
         return (CovacsApplication) CovacsApplication.getInstance();
     }
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
@@ -37,7 +38,8 @@ public class SchedulesIntentService extends IntentService {
             processLazyEvents();
 
     }
-    private void processLazyEvents(){
+
+    private void processLazyEvents() {
         if (isSyncing())
             return;
 

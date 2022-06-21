@@ -6,7 +6,6 @@ import com.example.opensrp_client_covax.contract.ChildRegisterContract;
 import com.example.opensrp_client_covax.util.AppJsonFormUtils;
 
 import org.json.JSONObject;
-import org.smartregister.child.model.BaseChildRegisterModel;
 import org.smartregister.util.FormUtils;
 
 public class ChildRegisterModel implements ChildRegisterContract.Model {

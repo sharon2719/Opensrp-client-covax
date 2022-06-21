@@ -12,11 +12,13 @@ import org.smartregister.view.activity.BaseRegisterActivity;
 
 public class ChildBottomNavigationListener extends BottomNavigationListener {
 
-    private Activity context;
+    private final Activity context;
+
     public ChildBottomNavigationListener(Activity context) {
         super(context);
         this.context = context;
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         super.onNavigationItemSelected(item);
@@ -24,7 +26,8 @@ public class ChildBottomNavigationListener extends BottomNavigationListener {
         BaseRegisterActivity baseRegisterActivity = (BaseRegisterActivity) context;
 
         if (item.getItemId() == R.id.action_child) {
-            baseRegisterActivity.switchToBaseFragment();}
+            baseRegisterActivity.switchToBaseFragment();
+        }
 //        } else if (item.getItemId() == R.id.action_register) {
 //            baseRegisterActivity.startQrCodeScanner();
 //        }

@@ -13,6 +13,7 @@ public class DBQueryHelper {
     public static String getHomeRegisterCondition() {
         return "(ec_client.dod IS NULL AND ec_client.date_removed is null AND ec_client.is_closed IS NOT '1' AND ec_child_details.is_closed IS NOT '1')";
     }
+
     public static String getFilterSelectionCondition(boolean urgentOnly) {
 
         final String AND = " AND ";
@@ -61,6 +62,7 @@ public class DBQueryHelper {
 
         return mainCondition + " ) COLLATE NOCASE";
     }
+
     public static String getSortQuery() {
         return Utils.metadata().getRegisterQueryProvider().getDemographicTable() + "." + AppConstants.KeyConstants.LAST_INTERACTED_WITH + " DESC ";
     }

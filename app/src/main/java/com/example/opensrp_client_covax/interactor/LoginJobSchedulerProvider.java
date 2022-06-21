@@ -1,18 +1,9 @@
 package com.example.opensrp_client_covax.interactor;
 
 import com.example.opensrp_client_covax.BuildConfig;
-import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.contract.LoginJobScheduler;
-import com.example.opensrp_client_covax.job.ScheduleJob;
 
-import org.smartregister.immunization.job.VaccineServiceJob;
-import org.smartregister.job.DocumentConfigurationServiceJob;
-import org.smartregister.job.ImageUploadServiceJob;
-import org.smartregister.job.PlanIntentServiceJob;
-import org.smartregister.job.PullUniqueIdsServiceJob;
-import org.smartregister.job.SyncLocationsByLevelAndTagsServiceJob;
 import org.smartregister.job.SyncServiceJob;
-import org.smartregister.job.SyncTaskServiceJob;
 
 import java.util.concurrent.TimeUnit;
 

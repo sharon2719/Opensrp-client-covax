@@ -13,7 +13,7 @@ import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import java.util.HashMap;
 
-public class ChildRegisterFragment extends BaseRegisterFragment implements ChildRegisterFragmentContract .View{
+public class ChildRegisterFragment extends BaseRegisterFragment implements ChildRegisterFragmentContract.View {
     @Override
     protected void initializePresenter() {
         if (getActivity() == null) {
@@ -28,6 +28,7 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements Child
             }
         }, viewConfigurationIdentifier);
     }
+
     @Override
     public ChildRegisterFragmentContract.Presenter presenter() {
         return (ChildRegisterFragmentContract.Presenter) presenter;
@@ -57,7 +58,7 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements Child
 
     @Override
     protected void startRegistration() {
-        startFormActivity(getRegistrationForm(),null,(String)null);
+        startFormActivity(getRegistrationForm(), null, (String) null);
     }
 
     private String getRegistrationForm() {

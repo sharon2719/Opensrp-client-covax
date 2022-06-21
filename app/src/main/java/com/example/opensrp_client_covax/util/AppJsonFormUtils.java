@@ -38,6 +38,7 @@ public class AppJsonFormUtils extends ChildJsonFormUtils {
             put("Weight", "Weight");
         }
     };
+
     public static String populateFormValues(Context context, Map<String, String> childDetails, List<String> nonEditableFields) {
         JSONObject form = null;
         try {
@@ -119,7 +120,8 @@ public class AppJsonFormUtils extends ChildJsonFormUtils {
         tagSyncMetadata(event);
     }
 
-    public static void getRegistrationForm(JSONObject jsonObject, String entityId, String currentLocationId) throws JSONException {        jsonObject.getJSONObject(METADATA).put(ENCOUNTER_LOCATION, currentLocationId);
+    public static void getRegistrationForm(JSONObject jsonObject, String entityId, String currentLocationId) throws JSONException {
+        jsonObject.getJSONObject(METADATA).put(ENCOUNTER_LOCATION, currentLocationId);
         jsonObject.put(org.smartregister.util.JsonFormUtils.ENTITY_ID, entityId);
     }
 }

@@ -7,9 +7,6 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONObject;
 import org.smartregister.view.contract.BaseRegisterContract;
 
-import java.util.List;
-import java.util.Map;
-
 public interface ChildRegisterContract {
 
     Form getFormConfig();
@@ -17,13 +14,14 @@ public interface ChildRegisterContract {
     BaseRegisterContract.Presenter presenter();
 
     String getRegistrationForm();
+
     void saveForm(String jsonString, boolean isEditMode, String table);
 
-     interface Interactor {
+    interface Interactor {
         void onDestroy(boolean isChangingConfiguration);
     }
 
-     interface Model {
-         JSONObject getFormAsJson(Context context, String formName, String entityId, String currentLocationId) throws Exception;
-     }
+    interface Model {
+        JSONObject getFormAsJson(Context context, String formName, String entityId, String currentLocationId) throws Exception;
+    }
 }

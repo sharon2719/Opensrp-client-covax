@@ -4,7 +4,6 @@ import com.example.opensrp_client_covax.activity.ChildRegisterActivity;
 import com.example.opensrp_client_covax.contract.ChildRegisterContract;
 import com.example.opensrp_client_covax.model.ChildRegisterModel;
 
-import org.smartregister.child.model.BaseChildRegisterModel;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
 import org.smartregister.util.Utils;
 import org.smartregister.view.contract.BaseRegisterContract;
@@ -14,9 +13,9 @@ import java.util.List;
 
 public class ChildRegisterPresenter implements BaseRegisterContract.Presenter {
 
-   protected WeakReference viewReference;
-   protected ChildRegisterContract.Interactor interactor;
-   protected ChildRegisterContract.Model model;
+    protected WeakReference viewReference;
+    protected ChildRegisterContract.Interactor interactor;
+    protected ChildRegisterContract.Model model;
 
     public ChildRegisterPresenter(ChildRegisterActivity childRegisterActivity, ChildRegisterModel childRegisterModel) {
     }
@@ -62,5 +61,5 @@ public class ChildRegisterPresenter implements BaseRegisterContract.Presenter {
         else
             return null;
     }
-    }
+}
 

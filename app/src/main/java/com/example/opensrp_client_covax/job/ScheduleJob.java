@@ -13,6 +13,7 @@ import timber.log.Timber;
 
 public class ScheduleJob extends BaseJob {
     public static final String TAG = "ScheduleJob";
+
     @NonNull
     @Override
     protected Result onRunJob(@NonNull Params params) {

@@ -53,6 +53,7 @@ public class EventDao extends AbstractDao {
         };
         return AbstractDao.readData(sql, dataMap);
     }
+
     @Nullable
     public static Event getLatestEvent(String baseEntityID, List<String> eventTypes) {
         StringBuilder types = new StringBuilder();

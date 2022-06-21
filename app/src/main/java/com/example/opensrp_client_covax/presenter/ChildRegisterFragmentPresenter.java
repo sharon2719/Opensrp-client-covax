@@ -18,8 +18,8 @@ public class ChildRegisterFragmentPresenter implements BaseRegisterFragmentContr
     protected String viewConfigurationIdentifier;
     protected ChildRegisterFragmentContract.Model model;
     protected WeakReference<ChildRegisterFragmentContract.View> viewReference;
-    private Set <ChildRegisterFragmentContract.View> visibleColumns;
     protected RegisterConfiguration config;
+    private Set<ChildRegisterFragmentContract.View> visibleColumns;
 
     public ChildRegisterFragmentPresenter(ChildRegisterFragment childRegisterFragment, BaseChildRegisterFragmentModel baseChildRegisterFragmentModel, String viewConfigurationIdentifier) {
     }
@@ -52,7 +52,8 @@ public class ChildRegisterFragmentPresenter implements BaseRegisterFragmentContr
 
 
     }
-    protected ChildRegisterFragmentContract.View getView(){
+
+    protected ChildRegisterFragmentContract.View getView() {
         if (viewReference != null)
             return viewReference.get();
         else
