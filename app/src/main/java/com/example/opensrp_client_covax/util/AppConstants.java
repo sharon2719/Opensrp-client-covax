@@ -1,30 +1,13 @@
 package com.example.opensrp_client_covax.util;
 
-import androidx.appcompat.app.AppCompatDelegate;
-
-import com.evernote.android.job.JobManager;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
-
-import org.greenrobot.eventbus.EventBus;
-import org.smartregister.Context;
-import org.smartregister.CoreLibrary;
-import org.smartregister.child.ChildLibrary;
-import org.smartregister.child.util.ChildAppProperties;
-import org.smartregister.configurableviews.ConfigurableViewsLibrary;
-import org.smartregister.configurableviews.helper.JsonSpecHelper;
-import org.smartregister.growthmonitoring.GrowthMonitoringConfig;
-import org.smartregister.growthmonitoring.GrowthMonitoringLibrary;
-import org.smartregister.immunization.ImmunizationLibrary;
-import org.smartregister.location.helper.LocationHelper;
-import org.smartregister.receiver.SyncStatusBroadcastReceiver;
-import org.smartregister.reporting.ReportingLibrary;
-import org.smartregister.stock.StockLibrary;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class AppConstants {
+    public static int REQUEST_CODE_GET_JSON =2244;
+    public static final class CONFIGURATION{
+        public static final String CHILD_REGISTER = "base_register";
+
+    };
+
     public static final class KeyConstants {
         public static final String FIRST_NAME = "First_Name";
         public static final String LAST_NAME = "Last_Name";
@@ -42,7 +25,12 @@ public class AppConstants {
         public static final String LAST_INTERACTED_WITH = "last_interacted_with";
 
     }
-    public static final class EventTypeConstants {
+    public static final class ACTIVITY_PAYLOAD_TYPE {
+
+        public static final String REGISTRATION = "REGISTRATION";
+    }
+
+    public static final class EVENT_TYPE {
         public static final String CHILD_REGISTRATION = "Child Registration";
         public static final String UPDATE_CHILD_REGISTRATION = "Update Child Registration";
         public static final String CARD_STATUS_UPDATE = "card_status_update";
@@ -51,16 +39,32 @@ public class AppConstants {
         public static final String LOGIN = "login";
 
     }
+    public static final class ACTIVITY_PAYLOAD{
+
+        public static final String TABLE_NAME = "TABLE";
+        public static final String BASE_ENTITY_ID = "BASE_ENTITY_ID";
+        public static final String ACTION = "ACTION";
+    }
 
     public interface IntentKeyUtil {
         String IS_REMOTE_LOGIN = "is_remote_login";
     }
-    public interface JsonForm {
-        String CHILD_ENROLLMENT = "child_enrollment";
+    public static class JSON_FORM_EXTRA {
+        public static final String JSON = "json";
+        public static final String NEXT = "next";
 
+        public static final String ENCOUNTER_TYPE = "encounter_type";
     }
     public static final class INTENT_KEY {
         public static final java.lang.String TO_RESCHEDULE = "to_reschedule";
+    }
+    public static class FORMS{
+        public static final String CHILD_REGISTRATION = "child-enrollment";
+
+    }
+    public static class TABLES{
+
+        public static final String EC_CHILD = "ec_child";
     }
 
 

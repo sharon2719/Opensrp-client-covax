@@ -10,6 +10,12 @@
     <string name="search_hint">Find name or id</string>
     <string name="app_label">COVACS</string>
     <string name="update_child_registration">Update Child Registration</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="address">Lavington #445</string>
+    <string name="vaccine_status">Vaccine Status</string>
+    <string name="add_child">Add Child</string>
+    <string name="sort">Sort</string>
+
 
 
 </resources>
