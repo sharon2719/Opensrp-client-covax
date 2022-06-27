@@ -340,7 +340,7 @@ dependencies {
         exclude group: 'com.google.code.gson', module: 'gson'
         exclude group: 'com.simprints', module: 'libsimprints'
         exclude group: 'com.ibm.fhir', module: 'fhir-model'
-        exclude group: 'com.github.raihan-mpower', module:'FancyAlertDialog-Android'
+        exclude group: 'com.github.raihan-mpower', module: 'FancyAlertDialog-Android'
     }
     implementation('com.google.android.material:material:1.4.0') {
         exclude group: 'com.android.support', module: 'recyclerview-v7'

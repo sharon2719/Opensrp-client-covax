@@ -30,6 +30,7 @@ public class AppSyncConfiguration extends SyncConfiguration {
     public int getUniqueIdSource() {
         return BuildConfig.OPENMRS_UNIQUE_ID_SOURCE;
     }
+
     @Override
     public int getUniqueIdBatchSize() {
         return BuildConfig.OPENMRS_UNIQUE_ID_BATCH_SIZE;
@@ -79,6 +80,7 @@ public class AppSyncConfiguration extends SyncConfiguration {
     public Class<? extends BaseLoginActivity> getAuthenticationActivity() {
         return LoginActivity.class;
     }
+
     public boolean validateUserAssignments() {
         return false;
     }

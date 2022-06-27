@@ -7,14 +7,12 @@ import com.evernote.android.job.Job;
 import com.evernote.android.job.JobCreator;
 import com.example.opensrp_client_covax.sync.CovacsSyncIntentService;
 
-import org.smartregister.job.DocumentConfigurationServiceJob;
 import org.smartregister.job.ExtendedSyncServiceJob;
 import org.smartregister.job.ImageUploadServiceJob;
 import org.smartregister.job.PullUniqueIdsServiceJob;
 import org.smartregister.job.SyncLocationsByLevelAndTagsServiceJob;
 import org.smartregister.job.SyncServiceJob;
 import org.smartregister.job.ValidateSyncDataServiceJob;
-import org.smartregister.sync.intent.DocumentConfigurationIntentService;
 
 import timber.log.Timber;
 

@@ -28,9 +28,11 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
             goToHome(false);
         }
     }
+
     @Override
     protected int getContentView() {
-        return R.layout.activity_login;    }
+        return R.layout.activity_login;
+    }
 
     @Override
     protected void initializePresenter() {

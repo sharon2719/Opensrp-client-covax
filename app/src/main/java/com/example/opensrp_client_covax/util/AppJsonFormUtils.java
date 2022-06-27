@@ -38,6 +38,7 @@ public class AppJsonFormUtils extends ChildJsonFormUtils {
             put("Weight", "Weight");
         }
     };
+
     public static String populateFormValues(Context context, Map<String, String> childDetails, List<String> nonEditableFields) {
         JSONObject form = null;
         try {

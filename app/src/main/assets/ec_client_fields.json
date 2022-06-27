@@ -82,11 +82,11 @@
           }
         },
         {
-        "column_name": "residential_area_other",
-        "type": "Client",
-        "json_mapping": {
-          "field": "addresses.address5"
-        }
+          "column_name": "residential_area_other",
+          "type": "Client",
+          "json_mapping": {
+            "field": "addresses.address5"
+          }
         },
         {
           "column_name": "residential_address",
@@ -97,5 +97,5 @@
         }
       ]
     }
-      ]
-    }
+  ]
+}

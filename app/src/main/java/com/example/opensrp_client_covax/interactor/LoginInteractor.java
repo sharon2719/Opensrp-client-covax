@@ -1,5 +1,7 @@
 package com.example.opensrp_client_covax.interactor;
+
 import com.example.opensrp_client_covax.contract.LoginJobScheduler;
+
 import org.smartregister.login.interactor.BaseLoginInteractor;
 import org.smartregister.view.contract.BaseLoginContract;
 
