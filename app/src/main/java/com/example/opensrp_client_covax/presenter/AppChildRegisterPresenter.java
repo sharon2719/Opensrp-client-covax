@@ -16,23 +16,23 @@ public class AppChildRegisterPresenter extends BaseChildRegisterPresenter {
         super((ChildRegisterContract.View) childRegisterActivity,model);
     }
 
-    @Override
-    public void registerViewConfigurations(List<String> list) {
-
-    }
-
-    @Override
-    public void unregisterViewConfiguration(List<String> list) {
-
-    }
-
-    @Override
-    public void onDestroy(boolean b) {
-
-    }
+//    @Override
+//    public void registerViewConfigurations(List<String> list) {
+//
+//    }
+//
+//    @Override
+//    public void unregisterViewConfiguration(List<String> list) {
+//
+//    }
+//
+//    @Override
+//    public void onDestroy(boolean b) {
+//
+//    }
 
     @Override
     public void updateInitials() {
-
+        super.updateInitials();
     }
 }

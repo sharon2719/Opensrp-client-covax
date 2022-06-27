@@ -9,6 +9,7 @@ import com.example.opensrp_client_covax.model.AppChildRegisterModel;
 import com.example.opensrp_client_covax.presenter.AppChildRegisterPresenter;
 
 import org.json.JSONObject;
+import org.smartregister.child.contract.ChildRegisterContract;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
@@ -16,7 +17,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
 
-public class ChildRegisterActivity extends BaseRegisterActivity {
+public class ChildRegisterActivity extends BaseRegisterActivity implements ChildRegisterContract.View{
     @Override
     protected void initializePresenter() {
         presenter = new AppChildRegisterPresenter(this, new AppChildRegisterModel());
@@ -61,5 +62,10 @@ public class ChildRegisterActivity extends BaseRegisterActivity {
     @Override
     protected void registerBottomNavigation() {
         super.registerBottomNavigation();
+    }
+
+    @Override
+    public ChildRegisterContract.Presenter presenter() {
+        return (ChildRegisterContract.Presenter) presenter;
     }
 }
