@@ -62,6 +62,7 @@ public class AppUtils extends Utils {
             allCommonsRepository.updateSearch(client.getBaseEntityId());
         }
     }
+
     @NonNull
     public static ArrayList<String> getLocationLevels() {
         return new ArrayList<>(Arrays.asList(BuildConfig.LOCATION_LEVELS));
@@ -71,6 +72,7 @@ public class AppUtils extends Utils {
     public static ArrayList<String> getHealthFacilityLevels() {
         return new ArrayList<>(Arrays.asList(BuildConfig.HEALTH_FACILITY_LEVELS));
     }
+
     @NonNull
     public static String getCurrentLocality() {
         String selectedLocation = CovacsApplication.getInstance().context().allSharedPreferences().fetchCurrentLocality();
@@ -92,9 +94,11 @@ public class AppUtils extends Utils {
             return false;
         }
     }
+
     public static void updateSyncStatus(boolean isComplete) {
         CovacsApplication.getInstance().context().allSharedPreferences().savePreference("syncComplete", String.valueOf(isComplete));
     }
+
     public static Date getLastDayOfMonth(Date month) {
         if (month == null) {
             return null;
@@ -146,6 +150,7 @@ public class AppUtils extends Utils {
         }
         return jsonString;
     }
+
     public static void createClientCardReceivedEvent(String baseEntityId, BaseChildDetailsPresenter.CardStatus cardStatus, String cardStatusDate) {
         //We do not want to unnecessary events when card is not needed
         if (cardStatus == BaseChildDetailsPresenter.CardStatus.does_not_need_card && !AppChildDao.clientNeedsCard(baseEntityId)) {

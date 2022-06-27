@@ -26,7 +26,6 @@
               "type": "not_given",
               "vaccine": "Johnson & Jansen",
               "vaccine": "Moderna"
-
             }
           ]
         }
@@ -53,7 +52,6 @@
               "type": "not_given",
               "vaccine": "Pfizer",
               "vaccine": "Moderna"
-
             }
           ]
         }
@@ -80,7 +78,6 @@
               "type": "not_given",
               "vaccine": "Moderna",
               "vaccine": "Pfizer"
-
             }
           ]
         }
@@ -106,7 +103,6 @@
             {
               "type": "not_given",
               "vaccine": "Pfizer 1"
-
             }
           ]
         }
@@ -132,7 +128,6 @@
             {
               "type": "not_given",
               "vaccine": "Moderna 1"
-
             }
           ]
         }
@@ -158,7 +153,6 @@
             {
               "type": "not_given",
               "vaccine": "Moderna Booster"
-
             }
           ]
         }

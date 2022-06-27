@@ -10,15 +10,12 @@ import com.example.opensrp_client_covax.application.CovacsApplication;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.smartregister.AllConstants;
-import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.repository.ConfigurableViewsRepository;
-import org.smartregister.repository.DrishtiRepository;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.repository.LocationRepository;
 import org.smartregister.repository.LocationTagRepository;
 import org.smartregister.repository.Repository;
 import org.smartregister.repository.UniqueIdRepository;
-import org.smartregister.util.Session;
 
 import timber.log.Timber;
 

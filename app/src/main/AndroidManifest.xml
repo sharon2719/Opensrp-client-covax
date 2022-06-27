@@ -33,10 +33,6 @@
         tools:ignore="UnusedAttribute"
         tools:replace="android:allowBackup,android:icon,android:label,android:theme">
         <activity
-            android:name=".activity.ChildRegisterActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.LoginActivity"
             android:exported="true"
             android:launchMode="singleTask"

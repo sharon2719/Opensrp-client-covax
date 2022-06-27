@@ -6,23 +6,14 @@ import android.util.Pair;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.evernote.android.job.JobManager;
-import com.example.opensrp_client_covax.activity.ChildFormActivity;
-import com.example.opensrp_client_covax.activity.ChildImmunizationActivity;
-import com.example.opensrp_client_covax.activity.ChildProfileActivity;
-import com.example.opensrp_client_covax.activity.ChildRegisterActivity;
 import com.example.opensrp_client_covax.activity.LoginActivity;
-import com.example.opensrp_client_covax.domain.ChildMetaData;
 import com.example.opensrp_client_covax.job.CovacsJobCreator;
-import com.example.opensrp_client_covax.provider.AppRegisterQueryProvider;
 import com.example.opensrp_client_covax.repository.CovacsRepository;
-import com.example.opensrp_client_covax.util.AppConstants;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import org.smartregister.BuildConfig;
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
-import org.smartregister.child.ChildLibrary;
-import org.smartregister.child.domain.ChildMetadata;
 import org.smartregister.child.util.DBConstants;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
@@ -35,9 +26,6 @@ import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 
@@ -169,7 +157,6 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         return eventClientRepository;
     }
 
-
     public ECSyncHelper getEcSyncHelper() {
         if (ecSyncHelper == null) {
             ecSyncHelper = ECSyncHelper.getInstance(getApplicationContext());
@@ -195,18 +182,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         isBulkProcessing = bulkProcessing;
     }
 
-    private Object getMetadata() {
-        ChildMetaData metadata = new ChildMetaData(ChildFormActivity.class, ChildProfileActivity.class,
-                ChildImmunizationActivity.class, ChildRegisterActivity.class, true, new AppRegisterQueryProvider());
-        metadata.updateChildRegister(AppConstants.JSON_FORM.CHILD_ENROLLMENT, DBConstants.RegisterTable.CLIENT,
-                DBConstants.RegisterTable.CLIENT, AppConstants.EVENT_TYPE.CHILD_REGISTRATION,
-                AppConstants.EVENT_TYPE.UPDATE_CHILD_REGISTRATION, AppConstants.CONFIGURATION.CHILD_REGISTER,
-                AppConstants.RELATIONSHIP.GUARDIAN, AppConstants.JSON_FORM.OUT_OF_CATCHMENT_SERVICE);
-        metadata.setFieldsWithLocationHierarchy(new HashSet<>(Arrays.asList("Home_Facility")));
-        metadata.setLocationLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.LOCATION_LEVELS)));
-        metadata.setHealthFacilityLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.HEALTH_FACILITY_LEVELS)));
-        return metadata;
-    }
+
     @Override
     public Repository getRepository() {
         try {

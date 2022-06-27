@@ -4,7 +4,7 @@ package com.example.opensrp_client_covax.util;
 public class AppConstants {
 
 
-   
+
     public static int REQUEST_CODE_GET_JSON =2244;
     public static final class CONFIGURATION{
         public static final String CHILD_REGISTER = "base_register";
