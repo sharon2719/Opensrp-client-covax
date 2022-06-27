@@ -6,6 +6,7 @@ import com.example.opensrp_client_covax.util.AppConstants;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.child.model.BaseChildRegisterFragmentModel;
+import org.smartregister.child.presenter.BaseChildRegisterFragmentPresenter;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.ViewConfiguration;
 import org.smartregister.view.contract.BaseRegisterFragmentContract;
@@ -13,7 +14,7 @@ import org.smartregister.view.contract.BaseRegisterFragmentContract;
 import java.lang.ref.WeakReference;
 import java.util.Set;
 
-public class ChildRegisterFragmentPresenter implements BaseRegisterFragmentContract.Presenter {
+public class ChildRegisterFragmentPresenter extends BaseChildRegisterFragmentPresenter implements ChildRegisterFragmentContract.Presenter {
 
     protected String viewConfigurationIdentifier;
     protected ChildRegisterFragmentContract.Model model;
@@ -21,7 +22,9 @@ public class ChildRegisterFragmentPresenter implements BaseRegisterFragmentContr
     protected RegisterConfiguration config;
     private Set<ChildRegisterFragmentContract.View> visibleColumns;
 
-    public ChildRegisterFragmentPresenter(ChildRegisterFragment childRegisterFragment, BaseChildRegisterFragmentModel baseChildRegisterFragmentModel, String viewConfigurationIdentifier) {
+
+    public ChildRegisterFragmentPresenter(org.smartregister.child.contract.ChildRegisterFragmentContract.View view, org.smartregister.child.contract.ChildRegisterFragmentContract.Model model, String viewConfigurationIdentifier) {
+        super(view, model, viewConfigurationIdentifier);
     }
 
 
@@ -68,5 +71,15 @@ public class ChildRegisterFragmentPresenter implements BaseRegisterFragmentContr
     @Override
     public void searchGlobally(String s) {
 
+    }
+
+    @Override
+    public String getMainCondition() {
+        return null;
+    }
+
+    @Override
+    public String getDefaultSortQuery() {
+        return null;
     }
 }

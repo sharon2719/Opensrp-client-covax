@@ -9,14 +9,6 @@ import org.smartregister.view.contract.BaseRegisterContract;
 
 public interface ChildRegisterContract {
 
-    Form getFormConfig();
-
-    BaseRegisterContract.Presenter presenter();
-
-    String getRegistrationForm();
-
-    void saveForm(String jsonString, boolean isEditMode, String table);
-
     interface Interactor {
         void onDestroy(boolean isChangingConfiguration);
     }

@@ -2,6 +2,9 @@ package com.example.opensrp_client_covax.util;
 
 
 public class AppConstants {
+
+
+   
     public static int REQUEST_CODE_GET_JSON =2244;
     public static final class CONFIGURATION{
         public static final String CHILD_REGISTER = "base_register";
@@ -34,6 +37,8 @@ public class AppConstants {
         public static final String CHILD_REGISTRATION = "Child Registration";
         public static final String UPDATE_CHILD_REGISTRATION = "Update Child Registration";
         public static final String CARD_STATUS_UPDATE = "card_status_update";
+        public static final String OUT_OF_CATCHMENT_SERVICE = "Out of Catchment Service";
+
     }
     public static class ConfigurationConstants {
         public static final String LOGIN = "login";
@@ -61,6 +66,14 @@ public class AppConstants {
     public static class FORMS{
         public static final String CHILD_REGISTRATION = "child-enrollment";
 
+    }
+    public static final class RELATIONSHIP {
+        public static String GUARDIAN= "father";
+    };
+    public static class JSON_FORM{
+
+        public static final String CHILD_ENROLLMENT = "child_enrollment";
+        public static String OUT_OF_CATCHMENT_SERVICE = "out_of_catchment_service";
     }
     public static class TABLES{
 

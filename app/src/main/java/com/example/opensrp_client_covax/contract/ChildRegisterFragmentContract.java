@@ -1,6 +1,10 @@
 package com.example.opensrp_client_covax.contract;
 
+import android.content.Context;
+
+import org.smartregister.child.cursor.AdvancedMatrixCursor;
 import org.smartregister.configurableviews.model.Field;
+import org.smartregister.configurableviews.model.View;
 import org.smartregister.configurableviews.model.ViewConfiguration;
 import org.smartregister.view.contract.BaseRegisterFragmentContract;
 
@@ -11,24 +15,26 @@ import java.util.Set;
 public interface ChildRegisterFragmentContract {
 
 
-    Presenter presenter();
+    interface Presenter extends BaseRegisterFragmentContract.Presenter, org.smartregister.child.contract.ChildRegisterFragmentContract.Presenter {
 
-    void setUniqueID(String s);
-
-    void setAdvancedSearchFormData(HashMap<String, String> hashMap);
-
-    void showNotFoundPopup(String s);
-
-    interface Presenter extends BaseRegisterFragmentContract.Presenter {
-
-        void updateSortAndFilter(List<Field> filterList, Field sortField);
+        @Override
+        void updateSortAndFilter(List<Field> list, Field field);
 
         String getMainCondition();
 
         String getDefaultSortQuery();
 
+        @Override
+        void processViewConfigurations();
 
-        String getDueFilterCondition();
+        @Override
+        void initializeQueries(String mainCondition);
+
+        @Override
+        void startSync();
+
+        @Override
+        void searchGlobally(String uniqueId);
     }
 
     interface Model{
@@ -43,8 +49,46 @@ public interface ChildRegisterFragmentContract {
         ViewConfiguration getViewConfiguration(String viewConfigurationIdentifier);
     }
 
-    public interface View {
-        Presenter presenter();
+    public interface View extends org.smartregister.child.contract.ChildRegisterFragmentContract.View {
+        @Override
+        void initializeAdapter(Set<org.smartregister.configurableviews.model.View> set);
 
+        @Override
+        void recalculatePagination(AdvancedMatrixCursor advancedMatrixCursor);
+
+
+
+        @Override
+        void initializeQueryParams(String tableName, String countSelect, String mainSelect);
+
+        @Override
+        void countExecute();
+
+        @Override
+        void filterandSortInInitializeQueries();
+
+        @Override
+        void updateSearchBarHint(String searchBarText);
+
+        @Override
+        Context getContext();
+
+        @Override
+        String getString(int resId);
+
+        @Override
+        void updateFilterAndFilterStatus(String filterText, String sortText);
+
+        @Override
+        void showProgressView();
+
+        @Override
+        void hideProgressView();
+
+        @Override
+        void showNotFoundPopup(String opensrpId);
+
+        @Override
+        void setTotalPatients();
     }
 }

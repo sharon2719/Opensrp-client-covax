@@ -4,14 +4,17 @@ import android.view.View;
 
 import com.example.opensrp_client_covax.contract.ChildRegisterFragmentContract;
 import com.example.opensrp_client_covax.presenter.ChildRegisterFragmentPresenter;
+import com.example.opensrp_client_covax.provider.ChildRegistrProvider;
 
 import org.smartregister.child.cursor.AdvancedMatrixCursor;
 import org.smartregister.child.model.BaseChildRegisterFragmentModel;
+import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.domain.Response;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class ChildRegisterFragment extends BaseRegisterFragment implements ChildRegisterFragmentContract.View {
     @Override
@@ -67,6 +70,19 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements Child
 
     @Override
     protected void onViewClicked(View view) {
+
+    }
+
+    @Override
+    public void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns) {
+        ChildRegistrProvider childRegisterProvider = new ChildRegistrProvider(getActivity(),commonRepository(),visibleColumns,registerActionHandler,paginationViewHandler);
+        clientAdapter = new RecyclerViewPaginatedAdapter(null, childRegisterProvider, context().commonrepository(this.tablename));
+        clientAdapter.setCurrentlimit(20);
+        clientsView.setAdapter(clientAdapter);
+    }
+
+    @Override
+    public void recalculatePagination(AdvancedMatrixCursor advancedMatrixCursor) {
 
     }
 
