@@ -51,7 +51,7 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements Child
 
     @Override
     public List<String> getViewIdentifiers() {
-        return null;
+         return null;
     }
 
     @Override
