@@ -5,6 +5,8 @@ import android.content.Intent;
 import androidx.fragment.app.Fragment;
 
 import com.example.opensrp_client_covax.fragment.ChildRegisterFragment;
+import com.example.opensrp_client_covax.model.AppChildRegisterModel;
+import com.example.opensrp_client_covax.presenter.AppChildRegisterPresenter;
 
 import org.json.JSONObject;
 import org.smartregister.view.activity.BaseRegisterActivity;
@@ -17,7 +19,7 @@ import java.util.Map;
 public class ChildRegisterActivity extends BaseRegisterActivity {
     @Override
     protected void initializePresenter() {
-
+        presenter = new AppChildRegisterPresenter(this, new AppChildRegisterModel());
     }
 
     @Override
