@@ -17,7 +17,9 @@ public interface AppChildRegisterFragmentContract {
     interface View extends BaseRegisterFragmentContract.View{
         void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns);
 
+
         Presenter presenter();
+
     }
     interface Presenter extends BaseRegisterFragmentContract.Presenter {
 

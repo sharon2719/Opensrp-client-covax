@@ -62,6 +62,7 @@ public class AppConstants {
     }
     public static final class INTENT_KEY {
         public static final java.lang.String TO_RESCHEDULE = "to_reschedule";
+        public static String BASE_ENTITY_ID = "base_entity_id";
     }
     public static class FORMS{
         public static final String CHILD_REGISTRATION = "child-enrollment";
