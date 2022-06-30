@@ -85,38 +85,12 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     }
 
     private static String[] getFtsSortFields(String tableName, android.content.Context context) {
-//        switch (tableName) {
-//            case AppConstants.TableNameConstants.ALL_CLIENTS:
-//                return Arrays.asList(AppConstants.KeyConstants.FIRST_NAME, AppConstants.KeyConstants.LAST_NAME,
-//                        AppConstants.KeyConstants.DOB, AppConstants.KeyConstants.ZEIR_ID, AppConstants.KeyConstants.LAST_INTERACTED_WITH,
-//                        AppConstants.KeyConstants.DOD, AppConstants.KeyConstants.DATE_REMOVED).toArray(new String[0]);
-//            case DBConstants.RegisterTable.CHILD_DETAILS:
-//                List<VaccineGroup> vaccineList = VaccinatorUtils.getVaccineGroupsFromVaccineConfigFile(context, VaccinatorUtils.vaccines_file);
-//                List<String> names = new ArrayList<>();
-//                names.add(DBConstants.KEY.INACTIVE);
-//                names.add(AppConstants.KeyConstants.RELATIONAL_ID);
-//                names.add(DBConstants.KEY.LOST_TO_FOLLOW_UP);
-//
-//                for (VaccineGroup vaccineGroup : vaccineList) {
-//                    populateAlertColumnNames(vaccineGroup.vaccines, names);
-//                }
-//
-//                return names.toArray(new String[0]);
-//
-//            default:
-//                return null;
-//        }
+
         return null;
     }
 
     private static Map<String, Pair<String, Boolean>> getAlertScheduleMap(android.content.Context context) {
-//        List<VaccineGroup> vaccines = getVaccineGroups(context);
-//
-//        Map<String, Pair<String, Boolean>> map = new HashMap<>();
-//
-//        for (VaccineGroup vaccineGroup : vaccines) {
-//            populateAlertScheduleMap(vaccineGroup.vaccines, map);
-//        }
+
         return null;
     }
 
@@ -182,12 +156,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         return eventClientRepository;
     }
 
-    //    public static ClientProcessorForJava getClientProcessor(android.content.Context context) {
-//        if (clientProcessor == null) {
-//            clientProcessor = CoreClientProcessor.getInstance(context);
-//        }
-//        return clientProcessor;
-//    }
+
     public ECSyncHelper getEcSyncHelper() {
         if (ecSyncHelper == null) {
             ecSyncHelper = ECSyncHelper.getInstance(getApplicationContext());
@@ -203,14 +172,6 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
 
     public boolean allowLazyProcessing() {
         return true;
-    }
-
-    public boolean isBulkProcessing() {
-        return isBulkProcessing;
-    }
-
-    public void setBulkProcessing(boolean bulkProcessing) {
-        isBulkProcessing = bulkProcessing;
     }
 
     @Override
