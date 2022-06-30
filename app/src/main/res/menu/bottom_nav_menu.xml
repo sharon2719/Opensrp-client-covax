@@ -11,7 +11,7 @@
     <item
         android:id="@+id/action_register"
         android:enabled="true"
-        android:icon="@mipmap/sidemenu_children"
+        android:icon="@drawable/ic_tabmenu_addchild"
         android:title="@string/add_child"
         app:showAsAction="ifRoom" />
 
