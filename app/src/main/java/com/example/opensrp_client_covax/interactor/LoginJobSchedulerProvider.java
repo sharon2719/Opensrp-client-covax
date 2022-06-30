@@ -19,7 +19,6 @@ public class LoginJobSchedulerProvider implements LoginJobScheduler {
     @Override
     public void scheduleJobsImmediately() {
         // Run initial job immediately on log in since the job will run a bit later (~ 15 mins +)
-//        ScheduleJob.scheduleJobImmediately(ScheduleJob.TAG);
         SyncServiceJob.scheduleJobImmediately(SyncServiceJob.TAG);
 
     }

@@ -29,19 +29,12 @@ public class CovacsJobCreator implements JobCreator {
                 return new PullUniqueIdsServiceJob();
             case ValidateSyncDataServiceJob.TAG:
                 return new ValidateSyncDataServiceJob();
-//            case VaccineRecurringServiceJob.TAG:
-//                return new VaccineRecurringServiceJob();
             case ImageUploadServiceJob.TAG:
                 return new ImageUploadServiceJob();
             case ScheduleJob.TAG:
                 return new ScheduleJob();
             case SyncLocationsByLevelAndTagsServiceJob.TAG:
                 return new SyncLocationsByLevelAndTagsServiceJob();
-//            case DocumentConfigurationServiceJob.TAG:
-//                return new DocumentConfigurationServiceJob(DocumentConfigurationIntentService.class);
-            //TODO uncomment to enable plans
-            /*case PlanIntentServiceJob.TAG:
-                return new PlanIntentServiceJob();*/
             default:
                 Timber.d("Looks like you tried to create a job " + tag + " that is not declared in the Covacs Job Creator");
                 return null;

@@ -184,7 +184,6 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         isBulkProcessing = bulkProcessing;
     }
 
-
     @Override
     public Repository getRepository() {
         try {
