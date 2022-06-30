@@ -1,24 +1,37 @@
 package com.example.opensrp_client_covax.fragment;
 
-import android.view.View;
+import com.example.opensrp_client_covax.contract.AppChildRegisterFragmentContract;
 
+import org.smartregister.configurableviews.model.View;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import java.util.HashMap;
+import java.util.Set;
 
-public class ChildRegisterFragment extends BaseRegisterFragment {
+public class ChildRegisterFragment extends BaseRegisterFragment implements AppChildRegisterFragmentContract.View {
+
+    @Override
+    public void initializeAdapter(Set<View> visibleColumns) {
+
+    }
+
+    @Override
+    public AppChildRegisterFragmentContract.Presenter presenter() {
+        return null;
+    }
+
     @Override
     protected void initializePresenter() {
 
     }
 
     @Override
-    public void setUniqueID(String s) {
+    public void setUniqueID(String qrCode) {
 
     }
 
     @Override
-    public void setAdvancedSearchFormData(HashMap<String, String> hashMap) {
+    public void setAdvancedSearchFormData(HashMap<String, String> advancedSearchFormData) {
 
     }
 
@@ -38,12 +51,12 @@ public class ChildRegisterFragment extends BaseRegisterFragment {
     }
 
     @Override
-    protected void onViewClicked(View view) {
+    protected void onViewClicked(android.view.View view) {
 
     }
 
     @Override
-    public void showNotFoundPopup(String s) {
+    public void showNotFoundPopup(String opensrpId) {
 
     }
 }

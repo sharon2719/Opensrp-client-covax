@@ -14,6 +14,8 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import org.smartregister.BuildConfig;
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
+import org.smartregister.child.ChildLibrary;
+import org.smartregister.child.domain.ChildMetadata;
 import org.smartregister.child.util.DBConstants;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
@@ -128,7 +130,6 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
 
         //Initialize Modules
         CoreLibrary.init(context, new AppSyncConfiguration(), BuildConfig.BUILD_TIMESTAMP);
-//        ChildLibrary.init(context, getRepository(), (ChildMetadata) getMetadata(), BuildConfig.VERSION_CODE, com.example.opensrp_client_covax.BuildConfig.DATABASE_VERSION);
 
         ConfigurableViewsLibrary.init(context);
 
@@ -145,6 +146,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
 
 
     }
+
 
     public Context context() {
         return context;
