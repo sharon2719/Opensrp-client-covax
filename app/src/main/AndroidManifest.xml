@@ -32,9 +32,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute"
         tools:replace="android:allowBackup,android:icon,android:label,android:theme">
-        <activity
-            android:name=".activity.ChildRegisterActivity"
-            android:exported="true" />
+
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true"
@@ -46,6 +44,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.ChildRegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

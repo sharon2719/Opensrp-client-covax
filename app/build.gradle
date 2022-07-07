@@ -258,7 +258,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation "androidx.cardview:cardview:1.0.0"
 
-//    implementation(project(':opensrp-child')) {
+
     implementation('org.smartregister:opensrp-client-child:0.7.2-PREVIEW-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'id.zelory', module: 'compressor'
@@ -290,7 +290,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
         exclude group: 'com.ibm.fhir', module: 'fhir-model'
-//        exclude group: 'org.smartregister', module: 'opensrp-client-reporting'
+
     }
 
 
@@ -374,7 +374,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-perf'
 
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
     androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

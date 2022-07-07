@@ -7,7 +7,6 @@
     <dimen name="table_contents_text_size">22sp</dimen>
     <dimen name="register_link_width">85dp</dimen>
     <dimen name="register_link_height">85dp</dimen>
-    <dimen name="divider_margin">27dp</dimen>
     <dimen name="login_logo_top_padding">256dp</dimen>
 
 
@@ -43,4 +42,13 @@
     <dimen name="login_view_component_height">40sp</dimen>
     <dimen name="login_edit_text_textSize">16sp</dimen>
     <dimen name="login_show_password_dimen">20dp</dimen>
+    <dimen name="register_list_item_margin">15dp</dimen>
+    <dimen name="register_list_top_bottom_margin">7dp</dimen>
+    <dimen name="child_register_list_desc_size">16sp</dimen>
+    <dimen name="child_register_title_size">16sp</dimen>
+    <dimen name="referral_text_size">13sp</dimen>
+    <dimen name="child_register_list_item_width">120dp</dimen>
+    <dimen name="register_list_item_padding">7dp</dimen>
+    <dimen name="register_list_top_bottom_padding">7dp</dimen>
+    <dimen name="divider_margin">27dp</dimen>
 </resources>

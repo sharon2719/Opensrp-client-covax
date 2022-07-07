@@ -7,12 +7,6 @@
     android:filterTouchesWhenObscured="true"
     android:orientation="vertical">
 
-    <include layout="@layout/child_reg_nav_bar" />
-
-    <include
-        layout="@layout/child_register_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
 
     <include layout="@layout/child_register_header" />
 

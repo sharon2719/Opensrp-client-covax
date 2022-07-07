@@ -20,6 +20,8 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.child.ChildLibrary;
+import org.smartregister.child.domain.ChildMetadata;
 import org.smartregister.child.presenter.BaseChildDetailsPresenter;
 import org.smartregister.child.util.Utils;
 import org.smartregister.clientandeventmodel.Event;
@@ -155,7 +157,7 @@ public class AppUtils extends Utils {
         }
         try {
             Event baseEvent = AppJsonFormUtils.createEvent(new JSONArray(), new JSONObject().put(JsonFormUtils.ENCOUNTER_LOCATION, ""),
-                    AppJsonFormUtils.formTag(getAllSharedPreferences()), "", AppConstants.EventTypeConstants.CARD_STATUS_UPDATE, AppConstants.EventTypeConstants.CARD_STATUS_UPDATE);
+                    AppJsonFormUtils.formTag(getAllSharedPreferences()), "", AppConstants.EVENT_TYPE.CARD_STATUS_UPDATE, AppConstants.EVENT_TYPE.CARD_STATUS_UPDATE);
 
             baseEvent.setFormSubmissionId(UUID.randomUUID().toString());
             baseEvent.addDetails(AppConstants.KeyConstants.CARD_STATUS, cardStatus.name());
@@ -174,5 +176,9 @@ public class AppUtils extends Utils {
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    public static ChildMetadata metadata() {
+        return ChildLibrary.getInstance().metadata();
     }
 }

@@ -119,4 +119,9 @@ public class AppJsonFormUtils extends ChildJsonFormUtils {
     public static void tagEventMetadata(Event event) {
         tagSyncMetadata(event);
     }
+
+    public static void getRegistrationForm(JSONObject jsonObject, String entityId, String currentLocationId) throws JSONException {
+        jsonObject.getJSONObject(METADATA).put(ENCOUNTER_LOCATION, currentLocationId);
+        jsonObject.put(org.smartregister.util.JsonFormUtils.ENTITY_ID, entityId);
+    }
 }

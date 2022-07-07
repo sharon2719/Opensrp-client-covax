@@ -1,28 +1,4 @@
-[![Build Status](https://github.com/sharon2719/Opensrp-client-covax/tree/master)](https://github.com/sharon2719/Opensrp-client-covax)
-
-## OpenSRP Client Covacs
-
-OpenSRP Client Covacs app is a mock app built on OpenSRP and targeting Covid Vaccinations in Kenya
-for 12-18-year-olds to adults.
-
-The app enables health care workers to monitor how vaccines are given and even records any effects
-one gets from getting the vaccine.
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for
-development and testing purposes. See deployment for notes on how to deploy the project on a live
-system.
-
-## Prerequisites
-
-[Tools and Frameworks Setup](https://smartregister.atlassian.net/wiki/spaces/Documentation/pages/6619207/Tools+and+Frameworks+Setup)
-
-## Development setup
-
-### Steps to set up
-
-[OpenSRP android client app build](https://smartregister.atlassian.net/wiki/spaces/Documentation/pages/6619236/OpenSRP+App+Build)
+# Opensrp Client Covax
 
 ### Running the tests
 
