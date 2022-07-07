@@ -1,25 +1,35 @@
 package com.example.opensrp_client_covax.application;
 
+import static org.smartregister.BuildConfig.BUILD_TIMESTAMP;
+import static org.smartregister.BuildConfig.DEBUG;
+
 import android.content.Intent;
 import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.evernote.android.job.JobManager;
+import com.example.opensrp_client_covax.BuildConfig;
+import com.example.opensrp_client_covax.activity.ChildFormActivity;
+import com.example.opensrp_client_covax.activity.ChildImmunizationActivity;
+import com.example.opensrp_client_covax.activity.ChildProfileActivity;
+import com.example.opensrp_client_covax.activity.ChildRegisterActivity;
 import com.example.opensrp_client_covax.activity.LoginActivity;
+import com.example.opensrp_client_covax.domain.ChildMetadata;
 import com.example.opensrp_client_covax.job.CovacsJobCreator;
+import com.example.opensrp_client_covax.provider.AppRegisterQueryProvider;
 import com.example.opensrp_client_covax.repository.CovacsRepository;
+import com.example.opensrp_client_covax.util.AppConstants;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import org.smartregister.BuildConfig;
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
-import org.smartregister.child.ChildLibrary;
-import org.smartregister.child.domain.ChildMetadata;
 import org.smartregister.child.util.DBConstants;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
 import org.smartregister.configurableviews.helper.JsonSpecHelper;
+import org.smartregister.immunization.ImmunizationLibrary;
+import org.smartregister.immunization.repository.VaccineRepository;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.repository.EventClientRepository;
@@ -28,8 +38,12 @@ import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
 
@@ -129,11 +143,15 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         context.updateCommonFtsObject(createCommonFtsObject(context.applicationContext()));
 
         //Initialize Modules
-        CoreLibrary.init(context, new AppSyncConfiguration(), BuildConfig.BUILD_TIMESTAMP);
+        CoreLibrary.init(context, new AppSyncConfiguration(), BUILD_TIMESTAMP);
 
+        ImmunizationLibrary.init(context, getRepository(), createCommonFtsObject(context.applicationContext()),
+                BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+        ImmunizationLibrary.getInstance().setVaccineSyncTime(3, TimeUnit.MINUTES);
         ConfigurableViewsLibrary.init(context);
 
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG);
+
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!DEBUG);
 
         SyncStatusBroadcastReceiver.init(this);
 
@@ -141,10 +159,34 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
 
         //init Job Manager
         JobManager.create(this).addJobCreator(new CovacsJobCreator());
-
+        SyncStatusBroadcastReceiver.init(this);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
+        LocationHelper.init(new ArrayList<>(Arrays.asList(BuildConfig.ALLOWED_LEVELS)), BuildConfig.DEFAULT_LOCATION);
 
+        initRepositories();
+    }
+
+    private void initRepositories() {
+        vaccineRepository();
+
+    }
+
+    public VaccineRepository vaccineRepository() {
+        return ImmunizationLibrary.getInstance().vaccineRepository();
+    }
+
+    public ChildMetadata getMetadata() {
+        ChildMetadata metadata = new ChildMetadata(ChildFormActivity.class, ChildProfileActivity.class,
+                ChildImmunizationActivity.class, ChildRegisterActivity.class, true, new AppRegisterQueryProvider());
+        metadata.updateChildRegister(DBConstants.RegisterTable.CLIENT,
+                DBConstants.RegisterTable.CLIENT, AppConstants.EVENT_TYPE.CHILD_REGISTRATION,
+                AppConstants.EVENT_TYPE.UPDATE_CHILD_REGISTRATION, AppConstants.CONFIGURATION.CHILD_REGISTER,
+                AppConstants.RELATIONSHIP.GUARDIAN);
+        metadata.setFieldsWithLocationHierarchy(new HashSet<>(Arrays.asList("Home_Facility")));
+        metadata.setLocationLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.LOCATION_LEVELS)));
+        metadata.setHealthFacilityLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.HEALTH_FACILITY_LEVELS)));
+        return metadata;
     }
 
 
@@ -195,4 +237,6 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         }
         return repository;
     }
+
+
 }

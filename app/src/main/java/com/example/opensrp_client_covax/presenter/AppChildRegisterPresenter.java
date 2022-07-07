@@ -1,22 +1,28 @@
 package com.example.opensrp_client_covax.presenter;
 
 import com.example.opensrp_client_covax.activity.ChildRegisterActivity;
+import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.contract.ChildRegisterContract;
+import com.example.opensrp_client_covax.interactor.AppChildRegisterInteractor;
 import com.example.opensrp_client_covax.model.AppChildRegisterModel;
 
-
+import org.smartregister.repository.EventClientRepository;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
 
 
-public class AppChildRegisterPresenter implements ChildRegisterContract.Presenter {
+public class AppChildRegisterPresenter implements ChildRegisterContract.Presenter, ChildRegisterContract.InteractorCallBack {
+    private final EventClientRepository eventClientRepository = CovacsApplication.getInstance().eventClientRepository();
     private WeakReference<ChildRegisterContract.View> viewReference;
     private ChildRegisterContract.Model model;
     private ChildRegisterContract.Interactor interactor;
 
     public AppChildRegisterPresenter(ChildRegisterActivity childRegisterActivity, AppChildRegisterModel appChildRegisterModel) {
+        this.model = appChildRegisterModel;
+        this.viewReference = new WeakReference<>(childRegisterActivity);
+        interactor = new AppChildRegisterInteractor();
     }
 
     @Override
@@ -43,10 +49,7 @@ public class AppChildRegisterPresenter implements ChildRegisterContract.Presente
 
     @Override
     public void updateInitials() {
-        String initials = model.getInitials();
-        if (initials != null && getView() != null) {
-            getView().updateInitialsText(initials);
-        }
+//        do nothing
     }
 
     public ChildRegisterContract.View getView() {
@@ -64,6 +67,11 @@ public class AppChildRegisterPresenter implements ChildRegisterContract.Presente
 
     @Override
     public void saveForm(String jsonString, boolean isEditMode) {
+
+    }
+
+    @Override
+    public void onRegistrationSaved(boolean isEdit) {
 
     }
 }

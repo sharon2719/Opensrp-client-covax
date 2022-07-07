@@ -11,33 +11,43 @@ import java.util.Map;
 
 public interface ChildRegisterContract {
 
-    interface View extends BaseRegisterContract.View{
+    interface View extends BaseRegisterContract.View {
+        void setActiveMenuItem(int menuItemId);
+
         String getRegistrationForm();
 
         Presenter presenter();
+
         void onRegistrationSaved();
 
         void saveForm(String jsonString, UpdateRegisterParams updateRegisterParam);
     }
-    interface Presenter extends BaseRegisterContract.Presenter{
+
+    interface Presenter extends BaseRegisterContract.Presenter {
         View getView();
-        void startRegistrationForm(String formName, String updateEventType, String entityId, Map<String,String>valueMap) throws Exception;
+
+        void startRegistrationForm(String formName, String updateEventType, String entityId, Map<String, String> valueMap) throws Exception;
 
         void saveForm(String jsonString, boolean isEditMode);
     }
-    interface Model{
-        JSONObject getFormAsjson(Context context,String formName,String entityId) throws Exception;
+
+    interface Model {
+        JSONObject getFormAsjson(Context context, String formName, String entityId) throws Exception;
 
         void registerViewConfigurations(List<String> viewIdentifiers);
 
         void unregisterViewConfigurations(List<String> viewIdentifiers);
 
+        String getLocationId(String locationName);
+
         String getInitials();
     }
-    interface Interactor{
+
+    interface Interactor {
         void onDestroy(boolean isChangingConfiguration);
     }
-    interface InteractorCallBack{
+
+    interface InteractorCallBack {
         void onRegistrationSaved(boolean isEdit);
     }
 

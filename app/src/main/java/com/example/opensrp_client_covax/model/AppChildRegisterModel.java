@@ -8,7 +8,7 @@ import com.example.opensrp_client_covax.util.AppUtils;
 
 import org.json.JSONObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
-
+import org.smartregister.location.helper.LocationHelper;
 
 import java.util.List;
 
@@ -29,6 +29,11 @@ public class AppChildRegisterModel implements ChildRegisterContract.Model {
     public void unregisterViewConfigurations(List<String> viewIdentifiers) {
         ConfigurableViewsLibrary.getInstance().getConfigurableViewsHelper().unregisterViewConfiguration(viewIdentifiers);
 
+    }
+
+    @Override
+    public String getLocationId(String locationName) {
+        return LocationHelper.getInstance().getOpenMrsLocationId(locationName);
     }
 
     @Override

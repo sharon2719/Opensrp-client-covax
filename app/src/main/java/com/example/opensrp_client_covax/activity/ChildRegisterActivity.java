@@ -7,17 +7,19 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import com.example.opensrp_client_covax.R;
+import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.fragment.ChildRegisterFragment;
 import com.example.opensrp_client_covax.listener.ChildBottomNavigationListener;
 import com.example.opensrp_client_covax.model.AppChildRegisterModel;
 import com.example.opensrp_client_covax.presenter.AppChildRegisterPresenter;
 import com.example.opensrp_client_covax.util.AppConstants;
 import com.example.opensrp_client_covax.util.AppJsonFormUtils;
+import com.example.opensrp_client_covax.views.NavDrawerActivity;
+import com.example.opensrp_client_covax.views.NavigationMenu;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.json.JSONObject;
-import org.smartregister.child.contract.ChildRegisterContract;
 import org.smartregister.child.domain.UpdateRegisterParams;
 import org.smartregister.child.util.Utils;
 import org.smartregister.client.utils.domain.Form;
@@ -30,13 +32,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import timber.log.Timber;
-
-public class ChildRegisterActivity extends BaseRegisterActivity implements com.example.opensrp_client_covax.contract.ChildRegisterContract.View, ChildRegisterContract.ProgressDialogCallback {
+public class ChildRegisterActivity extends BaseRegisterActivity implements com.example.opensrp_client_covax.contract.ChildRegisterContract.View, NavDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        NavigationMenu.getInstance(this, null, null);
     }
+
     @Override
     public void initializePresenter() {
         presenter = new AppChildRegisterPresenter(this, new AppChildRegisterModel());
@@ -59,9 +61,14 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     }
 
     @Override
+    public void setActiveMenuItem(int menuItemId) {
+
+    }
+
+    @Override
     public void startFormActivity(JSONObject jsonForm) {
         Intent intent = new Intent(this, Utils.metadata().childFormActivity);
-        intent.putExtra(AppConstants.JSON_FORM_EXTRA.JSON,jsonForm.toString());
+        intent.putExtra(AppConstants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
 
         Form form = new Form();
         form.setHideSaveLabel(true);
@@ -70,35 +77,34 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     }
 
 
-
     @Override
     public void onActivityResultExtended(int requestCode, int resultCode, Intent data) {
-        if (requestCode == AppJsonFormUtils.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK) {
-            try {
-                String jsonString = data.getStringExtra(AppConstants.JSON_FORM_EXTRA.JSON);
-                Timber.d("JSONResult : %s", jsonString);
-
-                JSONObject form = new JSONObject(jsonString);
-                if (form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().childRegister.registerEventType)
-                        || form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(AppConstants.EVENT_TYPE.CHILD_REGISTRATION)
-                ) {
-                    presenter().saveForm(jsonString, false);
-                }
-            } catch (Exception e) {
-                Timber.e(e);
-            }
-
-        }
+//        if (requestCode == AppJsonFormUtils.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK) {
+//            try {
+//                String jsonString = data.getStringExtra(AppConstants.JSON_FORM_EXTRA.JSON);
+//                Timber.d("JSONResult : %s", jsonString);
+//
+//                JSONObject form = new JSONObject(jsonString);
+//                if (form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().childRegister.registerEventType)
+//                        || form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(AppConstants.EVENT_TYPE.CHILD_REGISTRATION)
+//                ) {
+//                    presenter().saveForm(jsonString, false);
+//                }
+//            } catch (Exception e) {
+//                Timber.e(e);
+//            }
+//
+//        }
     }
 
     @Override
     public List<String> getViewIdentifiers() {
-         return Arrays.asList("Covacs");
+        return Arrays.asList(CovacsApplication.getInstance().getMetadata().childRegister.config);
     }
 
     @Override
     public void startRegistration() {
-
+//TODO implementation
     }
 
     @Override
@@ -113,8 +119,10 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         if (bottomNavigationView != null) {
             bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+            bottomNavigationView.getMenu().removeItem(R.id.action_clients);
             bottomNavigationView.getMenu().removeItem(R.id.action_register);
-            bottomNavigationView.getMenu().removeItem(R.id.action_child);
+            bottomNavigationView.getMenu().removeItem(R.id.action_search);
+            bottomNavigationView.getMenu().removeItem(R.id.action_library);
 
 
             bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu);
@@ -151,7 +159,17 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
 
 
     @Override
-    public void dissmissProgressDialog() {
+    public void finishActivity() {
+        finish();
+    }
+
+    @Override
+    public void openDrawer() {
+
+    }
+
+    @Override
+    protected void onResumption() {
 
     }
 }

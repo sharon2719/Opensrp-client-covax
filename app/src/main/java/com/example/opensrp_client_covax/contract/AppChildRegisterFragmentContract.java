@@ -1,11 +1,10 @@
 package com.example.opensrp_client_covax.contract;
 
-import androidx.leanback.widget.Presenter;
+import com.example.opensrp_client_covax.cursor.AdvancedMatrixCursor;
 
 import org.json.JSONArray;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
-import org.smartregister.configurableviews.model.View;
 import org.smartregister.configurableviews.model.ViewConfiguration;
 import org.smartregister.domain.Response;
 import org.smartregister.view.contract.BaseRegisterFragmentContract;
@@ -14,13 +13,15 @@ import java.util.List;
 import java.util.Set;
 
 public interface AppChildRegisterFragmentContract {
-    interface View extends BaseRegisterFragmentContract.View{
+    interface View extends BaseRegisterFragmentContract.View {
         void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns);
 
 
         Presenter presenter();
 
+        void recalculatePagination(AdvancedMatrixCursor matrixCursor);
     }
+
     interface Presenter extends BaseRegisterFragmentContract.Presenter {
 
         void updateSortAndFilter(List<Field> filterList, Field sortField);
@@ -43,15 +44,14 @@ public interface AppChildRegisterFragmentContract {
 
         Set<org.smartregister.configurableviews.model.View> getRegisterActiveColumns(String viewConfigurationIdentifier);
 
-        String countSelect(String tableName, String mainCondition, String familyMemberTableName);
-
-        String mainSelect(String tableName, String familyTableName, String familyMemberTableName, String mainCondition);
-
         String getFilterText(List<Field> filterList, String filter);
 
         String getSortText(Field sortField);
 
         JSONArray getJsonArray(Response<String> response);
 
+        String mainSelect(String mainCondition);
+
+        String countSelect(String mainCondition);
     }
 }

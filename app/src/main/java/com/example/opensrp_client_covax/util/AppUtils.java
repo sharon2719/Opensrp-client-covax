@@ -20,7 +20,6 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.CoreLibrary;
 import org.smartregister.child.ChildLibrary;
 import org.smartregister.child.domain.ChildMetadata;
 import org.smartregister.child.presenter.BaseChildDetailsPresenter;
@@ -178,6 +177,7 @@ public class AppUtils extends Utils {
             Timber.e(e);
         }
     }
+
     public static ChildMetadata metadata() {
         return ChildLibrary.getInstance().metadata();
     }
