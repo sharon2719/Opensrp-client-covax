@@ -174,15 +174,6 @@
                     android:src="@drawable/ic_action_add"
                     tools:ignore="ContentDescription" />
 
-                <!--                <org.smartregister.view.customcontrols.CustomFontTextView-->
-                <!--                    style="@style/CustomFontTextViewStyle.ClientList.Light.twoline"-->
-                <!--                    android:layout_width="0dp"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_gravity="center_vertical"-->
-                <!--                    android:layout_weight="1"-->
-                <!--                    android:text="@string/side_nav_add"-->
-                <!--                    android:textColor="@color/white"-->
-                <!--                    android:textSize="@dimen/table_contents_text_size" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -205,14 +196,16 @@
                     tools:ignore="ContentDescription" />
 
                 <org.smartregister.view.customcontrols.CustomFontTextView
+                    android:id="@+id/outOfCatchment"
                     style="@style/CustomFontTextViewStyle.ClientList.Light.twoline"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="@string/side_nav_out_of_catchment"
+                    android:text="@string/record_out_of_catchment_vaccination"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_contents_text_size" />
+
             </LinearLayout>
 
             <LinearLayout

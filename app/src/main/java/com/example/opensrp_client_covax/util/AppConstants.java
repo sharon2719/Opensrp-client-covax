@@ -4,6 +4,15 @@ package com.example.opensrp_client_covax.util;
 public class AppConstants {
 
 
+    public static class FormActivity{
+        public static final String EnableOnCloseDialog = "EnableOnCloseDialog";
+    }
+
+    public static final class KEY{
+
+        public static final String LOOK_UP = "look_up";
+        public static final String ENTITY_ID = "entity_id";
+    }
     public static int REQUEST_CODE_GET_JSON = 2244;
 
     public interface IntentKeyUtil {

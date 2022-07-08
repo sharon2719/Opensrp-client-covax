@@ -32,6 +32,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import timber.log.Timber;
+
 public class ChildRegisterActivity extends BaseRegisterActivity implements com.example.opensrp_client_covax.contract.ChildRegisterContract.View, NavDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,22 +81,22 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
 
     @Override
     public void onActivityResultExtended(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == AppJsonFormUtils.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK) {
-//            try {
-//                String jsonString = data.getStringExtra(AppConstants.JSON_FORM_EXTRA.JSON);
-//                Timber.d("JSONResult : %s", jsonString);
-//
-//                JSONObject form = new JSONObject(jsonString);
-//                if (form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().childRegister.registerEventType)
-//                        || form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(AppConstants.EVENT_TYPE.CHILD_REGISTRATION)
-//                ) {
-//                    presenter().saveForm(jsonString, false);
-//                }
-//            } catch (Exception e) {
-//                Timber.e(e);
-//            }
-//
-//        }
+        if (requestCode == AppJsonFormUtils.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK) {
+            try {
+                String jsonString = data.getStringExtra(AppConstants.JSON_FORM_EXTRA.JSON);
+                Timber.d("JSONResult : %s", jsonString);
+
+                JSONObject form = new JSONObject(jsonString);
+                if (form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().childRegister.registerEventType)
+                        || form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(AppConstants.EVENT_TYPE.CHILD_REGISTRATION)
+                ) {
+                    presenter().saveForm(jsonString, false);
+                }
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+
+        }
     }
 
     @Override
