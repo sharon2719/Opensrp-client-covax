@@ -29,6 +29,11 @@
     <string name="age_183">Age ·</string>
     <string name="male_lavington">Male. Lavington</string>
     <string name="record_out_of_catchment_vaccination">Record out of catchment vaccination</string>
+    <string name="nav_last_sync_time">HH:mm a , MMM DD</string>
+    <string name="nav_last">Last:</string>
+    <string name="english">English</string>
+    <string name="action_log_out">Log Out</string>
+    <string name="last_sync">last %1$s</string>
 
 
 </resources>
