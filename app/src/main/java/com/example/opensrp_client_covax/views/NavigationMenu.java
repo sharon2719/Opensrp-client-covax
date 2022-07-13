@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -106,7 +108,7 @@ public class NavigationMenu implements AppNavigationContract.View, SyncStatusBro
     private void attachLanguageSpinner(Activity activity) {
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activityWeakReference.get(), R.array.languages, R.layout.app_spinner_item);
 
-        adapter.setDropDownViewResource(R.layout.item_spinner);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
         languageSpinner.setAdapter(adapter);
         languageSpinner.setOnItemSelectedListener(null);
@@ -123,6 +125,7 @@ public class NavigationMenu implements AppNavigationContract.View, SyncStatusBro
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             int count = 0;
 
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (count >= 1) {
@@ -130,7 +133,7 @@ public class NavigationMenu implements AppNavigationContract.View, SyncStatusBro
                     Locale LOCALE;
                     switch (lang) {
                         case "swahili":
-                            LOCALE = Locale.FRENCH;
+                            LOCALE = new Locale("sw");
                             languageSpinner.setSelection(i);
                             break;
                         case "english":
@@ -297,6 +300,11 @@ public class NavigationMenu implements AppNavigationContract.View, SyncStatusBro
         Toast.makeText(activity, activity.getResources().getText(R.string.action_log_out),
                 Toast.LENGTH_SHORT).show();
         CovacsApplication.getInstance().logoutCurrentUser();
+    }
+
+    @Override
+    public void refreshCount() {
+
     }
 
 

@@ -125,25 +125,25 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:visibility="gone">-->
 
 
 
 
-                <Spinner
-                    android:id="@+id/language_spinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/table_contents_text_size" />
-            </LinearLayout>
+<!--                <Spinner-->
+<!--                    android:id="@+id/language_spinner"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:textSize="@dimen/table_contents_text_size" />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/enrollment"
@@ -198,15 +198,22 @@
                     android:src="@drawable/ic_action_global"
                     tools:ignore="ContentDescription" />
 
-                <org.smartregister.view.customcontrols.CustomFontTextView
-                    style="@style/CustomFontTextViewStyle.ClientList.Light.twoline"
+                <Spinner
+                    android:id="@+id/language_spinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="@string/english"
-                    android:textColor="@color/white"
                     android:textSize="@dimen/table_contents_text_size" />
+<!--                <org.smartregister.view.customcontrols.CustomFontTextView-->
+<!--                    style="@style/CustomFontTextViewStyle.ClientList.Light.twoline"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="@string/english"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/table_contents_text_size" />-->
             </LinearLayout>
 
             <LinearLayout

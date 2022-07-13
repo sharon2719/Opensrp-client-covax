@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../layout/custom_preview.xml" value="0.3074074074074074" />
         <entry key="../.gradle/caches/transforms-2/files-2.1/090b04df8835875f9031ffdec5ac7340/jetified-opensrp-client-child-0.7.2-PREVIEW-SNAPSHOT/res/layout/child_register_header.xml" value="0.3182291666666667" />
+        <entry key="../.gradle/caches/transforms-2/files-2.1/27ae351a73543d0ae7f24a5a737d6666/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.3182291666666667" />
         <entry key="app/src/main/res/drawable-v24/drawer_item_background.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/drawable-v24/edit_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/expand_less.xml" value="0.10277777777777777" />

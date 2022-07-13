@@ -7,6 +7,7 @@ import com.example.opensrp_client_covax.contract.AppNavigationContract;
 import com.example.opensrp_client_covax.interactor.AppNavigationInteractor;
 import com.example.opensrp_client_covax.job.ScheduleJob;
 import com.example.opensrp_client_covax.model.AppNavigationModel;
+import com.example.opensrp_client_covax.model.AppNavigationOption;
 
 import org.smartregister.Context;
 import org.smartregister.job.ExtendedSyncServiceJob;
@@ -18,6 +19,7 @@ import org.smartregister.job.ValidateSyncDataServiceJob;
 import org.smartregister.repository.AllSharedPreferences;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 
 import timber.log.Timber;
 
@@ -26,6 +28,7 @@ public class AppNavigationPresenter implements AppNavigationContract.Presenter {
     private final AppNavigationContract.Model model;
     private final AppNavigationContract.Interactor interactor;
     private final WeakReference<AppNavigationContract.View> view;
+    private HashMap<String, String> tableMap = new HashMap<>();
 
     public AppNavigationPresenter(AppNavigationContract.View view) {
         this.model = AppNavigationModel.getInstance();
@@ -81,6 +84,35 @@ public class AppNavigationPresenter implements AppNavigationContract.Presenter {
         }
 
         return null;
+    }
+
+    @Override
+    public void refreshNavigationCount(final Activity activity) {
+
+        int x = 0;
+        while (x < model.getNavigationItems().size()) {
+            final AppNavigationOption navigationOption = model.getNavigationItems().get(x);
+            final String navTitle = navigationOption.getMenuTitle();
+            if (tableMap.containsKey(navTitle)) {
+                interactor.getRegisterCount(tableMap.get(navTitle), new AppNavigationContract.InteractorCallback<Integer>() {
+                    @Override
+                    public void onResult(Integer result) {
+                        navigationOption.setRegisterCount(result);
+                        getNavigationView().refreshCount();
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        // getNavigationView().displayToast(activity, "Error retrieving count for " + tableMap.get(mModel.getNavigationItems().get(finalX).getMenuTitle()));
+                        Timber.e("Error retrieving count for %s", tableMap.get(navTitle));
+                    }
+                });
+            }else if (navigationOption.hasRegisterCount()){
+                Timber.e("Error retrieving count for %s, table not defined in 'tableMap'", navTitle);
+            }
+            x++;
+        }
+
     }
 
 

@@ -165,6 +165,9 @@ android {
             buildConfigField "String", 'DEFAULT_LOCATION', '"Health Facility"'
             buildConfigField "String", "OAUTH_CLIENT_ID", getLocalProperty("oauth.client.id")
             buildConfigField "String", "OAUTH_CLIENT_SECRET", getLocalProperty("oauth.client.secret")
+            resValue("string", "DB_PASSWORD_DRISHTI", properties['db.password'])
+            resValue("string", "PORT_NUMBER", properties['db.port'])
+
         }
 
         preview {
@@ -257,6 +260,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation "androidx.cardview:cardview:1.0.0"
+    debugImplementation 'com.amitshekhar.android:debug-db-encrypt:1.0.6'
 
 
     implementation('org.smartregister:opensrp-client-child:0.7.2-PREVIEW-SNAPSHOT@aar') {
