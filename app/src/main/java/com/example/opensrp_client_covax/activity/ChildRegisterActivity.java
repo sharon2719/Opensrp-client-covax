@@ -12,6 +12,7 @@ import com.example.opensrp_client_covax.fragment.ChildRegisterFragment;
 import com.example.opensrp_client_covax.listener.ChildBottomNavigationListener;
 import com.example.opensrp_client_covax.model.AppChildRegisterModel;
 import com.example.opensrp_client_covax.presenter.AppChildRegisterPresenter;
+import com.example.opensrp_client_covax.util.AppChildJsonFormUtils;
 import com.example.opensrp_client_covax.util.AppConstants;
 import com.example.opensrp_client_covax.util.AppJsonFormUtils;
 import com.example.opensrp_client_covax.views.NavDrawerActivity;
@@ -19,6 +20,7 @@ import com.example.opensrp_client_covax.views.NavigationMenu;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.child.domain.UpdateRegisterParams;
 import org.smartregister.child.util.Utils;
@@ -27,6 +29,10 @@ import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.view.activity.BaseRegisterActivity;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.List;
@@ -69,13 +75,25 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
 
     @Override
     public void startFormActivity(JSONObject jsonForm) {
-        Intent intent = new Intent(this, Utils.metadata().childFormActivity);
-        intent.putExtra(AppConstants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
+        Intent intent = new Intent(this, com.example.opensrp_client_covax.util.Utils.metadata().childFormActivity);
+        intent.putExtra(AppConstants.INTENT_KEY.JSON, jsonForm.toString());
 
         Form form = new Form();
+        form.setWizard(false);
         form.setHideSaveLabel(true);
+        form.setNextLabel("");
+        form.setName(getFormTitle());
+        form.setActionBarBackground(R.color.actionbar);
+        form.setNavigationBackground(R.color.toolbar_background);
+        form.setHomeAsUpIndicator(R.drawable.ic_action_clear);
+
+
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
-        startActivityForResult(intent, AppJsonFormUtils.REQUEST_CODE_GET_JSON);
+        startActivityForResult(intent, AppChildJsonFormUtils.REQUEST_CODE_GET_JSON);
+    }
+
+    private String getFormTitle() {
+        return null;
     }
 
 
@@ -106,7 +124,7 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
 
     @Override
     public void startRegistration() {
-//TODO implementation
+        startFormActivity(getFormJson(getRegistrationForm()));
     }
 
     @Override
@@ -144,11 +162,31 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
 
     @Override
     public void onRegistrationSaved() {
-        Intent intent = new Intent(this, getActivityClass());
+        Intent intent = new Intent(this, ChildRegisterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(intent);
     }
+    public JSONObject getFormJson(String formIdentity) {
+        try {
+            InputStream inputStream = getApplicationContext().getAssets()
+                    .open("json.form/" + formIdentity + ".json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,
+                    "UTF-8"));
+            String jsonString;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ((jsonString = reader.readLine()) != null) {
+                stringBuilder.append(jsonString);
+            }
+            inputStream.close();
 
+            return new JSONObject(stringBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public void saveForm(String jsonString, UpdateRegisterParams updateRegisterParam) {
 
@@ -174,4 +212,5 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     protected void onResumption() {
 
     }
+
 }

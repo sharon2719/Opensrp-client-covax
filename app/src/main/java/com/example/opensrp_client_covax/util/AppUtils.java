@@ -7,35 +7,55 @@ import static com.vijay.jsonwizard.constants.JsonFormConstants.STEP1;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
 
 import android.content.ContentValues;
+import android.graphics.Color;
+import android.text.InputType;
+import android.util.DisplayMetrics;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.opensrp_client_covax.BuildConfig;
 import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.dao.AppChildDao;
+import com.example.opensrp_client_covax.domain.ChildMetadata;
+import com.example.opensrp_client_covax.domain.EditWrapper;
+import com.google.common.collect.Lists;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.Context;
 import org.smartregister.child.ChildLibrary;
-import org.smartregister.child.domain.ChildMetadata;
 import org.smartregister.child.presenter.BaseChildDetailsPresenter;
-import org.smartregister.child.util.Utils;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.domain.Client;
+import org.smartregister.immunization.ImmunizationLibrary;
+import org.smartregister.immunization.domain.Vaccine;
+import org.smartregister.immunization.repository.VaccineRepository;
 import org.smartregister.location.helper.LocationHelper;
+import org.smartregister.repository.AllSharedPreferences;
+import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.util.JsonFormUtils;
+import org.smartregister.util.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -43,142 +63,247 @@ import timber.log.Timber;
 
 public class AppUtils extends Utils {
 
+    public static final SimpleDateFormat DB_DF = new SimpleDateFormat(AppConstants.SQLITE_DATE_TIME_FORMAT);
 
-    public static final ArrayList<String> ALLOWED_LEVELS;
-    public static final String FACILITY = "Facility";
-    public static final String DEFAULT_LOCATION_LEVEL = "Health Facility";
 
-    static {
-        ALLOWED_LEVELS = new ArrayList<>();
-        ALLOWED_LEVELS.add(DEFAULT_LOCATION_LEVEL);
-        ALLOWED_LEVELS.add(FACILITY);
-    }
-
-    private static void updateChildTables(Client client, ContentValues values, String tableName) {
-        AllCommonsRepository allCommonsRepository = CovacsApplication.getInstance().context().allCommonsRepositoryobjects(tableName);
-        if (allCommonsRepository != null) {
-            allCommonsRepository.update(tableName, values, client.getBaseEntityId());
-            allCommonsRepository.updateSearch(client.getBaseEntityId());
+    public static TableRow getDataRow(android.content.Context context, String label, String value, TableRow row) {
+        TableRow tr = row;
+        if (row == null) {
+            tr = new TableRow(context);
+            TableRow.LayoutParams trlp =
+                    new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tr.setLayoutParams(trlp);
+            tr.setPadding(10, 5, 10, 5);
         }
+
+        TextView l = new TextView(context);
+        l.setText(label + ": ");
+        l.setPadding(20, 2, 20, 2);
+        l.setTextColor(Color.BLACK);
+        l.setTextSize(14);
+        l.setBackgroundColor(Color.WHITE);
+        tr.addView(l);
+
+        TextView v = new TextView(context);
+        v.setText(value);
+        v.setPadding(20, 2, 20, 2);
+        v.setTextColor(Color.BLACK);
+        v.setTextSize(14);
+        v.setBackgroundColor(Color.WHITE);
+        tr.addView(v);
+
+        return tr;
     }
 
-    @NonNull
-    public static ArrayList<String> getLocationLevels() {
-        return new ArrayList<>(Arrays.asList(BuildConfig.LOCATION_LEVELS));
-    }
-
-    @NonNull
-    public static ArrayList<String> getHealthFacilityLevels() {
-        return new ArrayList<>(Arrays.asList(BuildConfig.HEALTH_FACILITY_LEVELS));
-    }
-
-    @NonNull
-    public static String getCurrentLocality() {
-        String selectedLocation = CovacsApplication.getInstance().context().allSharedPreferences().fetchCurrentLocality();
-        if (StringUtils.isBlank(selectedLocation)) {
-            selectedLocation = LocationHelper.getInstance().getDefaultLocation();
-            CovacsApplication.getInstance().context().allSharedPreferences().saveCurrentLocality(selectedLocation);
+    public static TableRow getDataRow(android.content.Context context, String label, String value, String field,
+                                      TableRow row) {
+        TableRow tr = row;
+        if (row == null) {
+            tr = new TableRow(context);
+            TableRow.LayoutParams trlp =
+                    new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tr.setLayoutParams(trlp);
+            tr.setPadding(10, 5, 10, 5);
         }
-        return selectedLocation;
+
+        TextView l = new TextView(context);
+        l.setText(label + ": ");
+        l.setPadding(20, 2, 20, 2);
+        l.setTextColor(Color.BLACK);
+        l.setTextSize(14);
+        l.setBackgroundColor(Color.WHITE);
+        tr.addView(l);
+
+        EditWrapper editWrapper = new EditWrapper();
+        editWrapper.setCurrentValue(value);
+        editWrapper.setField(field);
+
+        EditText e = new EditText(context);
+        e.setTag(editWrapper);
+        e.setText(value);
+        e.setPadding(20, 2, 20, 2);
+        e.setTextColor(Color.BLACK);
+        e.setTextSize(14);
+        e.setBackgroundColor(Color.WHITE);
+        e.setInputType(InputType.TYPE_NULL);
+        tr.addView(e);
+
+        return tr;
     }
 
-    public static boolean timeBetweenLastExecutionAndNow(int i, String reportJobExecutionTime) {
+    public static TableRow getDataRow(android.content.Context context) {
+        TableRow tr = new TableRow(context);
+        TableRow.LayoutParams trlp =
+                new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        tr.setLayoutParams(trlp);
+        tr.setPadding(0, 0, 0, 0);
+        // tr.setBackgroundColor(Color.BLUE);
+        return tr;
+    }
+
+    public static int addAsInts(boolean ignoreEmpty, String... vals) {
+        int i = 0;
+        for (String v : vals) {
+            i += ignoreEmpty && StringUtils.isBlank(v) ? 0 : Integer.parseInt(v);
+        }
+        return i;
+    }
+
+    public static TableRow addToRow(android.content.Context context, String value, TableRow row) {
+        return addToRow(context, value, row, false, 1);
+    }
+
+    public static TableRow addToRow(android.content.Context context, String value, TableRow row, int weight) {
+        return addToRow(context, value, row, false, weight);
+    }
+
+    public static TableRow addToRow(android.content.Context context, String value, TableRow row, boolean compact) {
+        return addToRow(context, value, row, compact, 1);
+    }
+
+    public static void putAll(Map<String, String> map, Map<String, String> extend) {
+        Collection<String> values = extend.values();
+        while (true) {
+            if (!(values.remove(null))) break;
+        }
+        map.putAll(extend);
+    }
+
+    public static void addVaccine(VaccineRepository vaccineRepository, Vaccine vaccine) {
         try {
-            long executionTime = Long.parseLong(reportJobExecutionTime);
-            long now = System.currentTimeMillis();
-            long diffNowExecutionTime = now - executionTime;
-            return TimeUnit.MILLISECONDS.toMinutes(diffNowExecutionTime) > i;
-        } catch (NumberFormatException e) {
-            Timber.e(e);
-            return false;
-        }
-    }
-
-    public static void updateSyncStatus(boolean isComplete) {
-        CovacsApplication.getInstance().context().allSharedPreferences().savePreference("syncComplete", String.valueOf(isComplete));
-    }
-
-    public static Date getLastDayOfMonth(Date month) {
-        if (month == null) {
-            return null;
-        }
-
-        Calendar c = Calendar.getInstance();
-        c.setTime(month);
-        c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
-        return c.getTime();
-    }
-
-    public static boolean isSameYear(Date date1, Date date2) {
-        if (date1 != null && date2 != null) {
-            DateTime dateTime1 = new DateTime(date1);
-            DateTime dateTime2 = new DateTime(date2);
-
-            return dateTime1.getYear() == dateTime2.getYear();
-        }
-        return false;
-    }
-
-    public static int yearFromDate(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return calendar.get(Calendar.YEAR);
-    }
-
-    public static String validateChildZone(String jsonString) {
-        try {
-            JSONObject jsonForm = JsonFormUtils.toJSONObject(jsonString);
-            JSONArray fields = JsonFormUtils.fields(jsonForm);
-            for (int fieldIndex = 0; fieldIndex < fields.length(); fieldIndex++) {
-                JSONObject field = fields.getJSONObject(fieldIndex);
-                if (field.getString(KEY).equalsIgnoreCase(CHILD_ZONE) &&
-                        field.has(VALUE)) {
-                    String value = field.getString(VALUE);
-                    if (StringUtils.isNotBlank(value) && value.equalsIgnoreCase(field.getString(JsonFormConstants.HINT))) {
-                        field.remove(VALUE);
-                        fields.put(fieldIndex, field);
-                        break;
-                    }
-                }
-
+            if (vaccineRepository == null || vaccine == null) {
+                return;
             }
-            jsonForm.getJSONObject(STEP1).put(FIELDS, fields);
-            return jsonForm.toString();
-        } catch (JSONException e) {
-            Timber.e(e);
-        }
-        return jsonString;
-    }
 
-    public static void createClientCardReceivedEvent(String baseEntityId, BaseChildDetailsPresenter.CardStatus cardStatus, String cardStatusDate) {
-        //We do not want to unnecessary events when card is not needed
-        if (cardStatus == BaseChildDetailsPresenter.CardStatus.does_not_need_card && !AppChildDao.clientNeedsCard(baseEntityId)) {
-            return;
-        }
-        try {
-            Event baseEvent = AppJsonFormUtils.createEvent(new JSONArray(), new JSONObject().put(JsonFormUtils.ENCOUNTER_LOCATION, ""),
-                    AppJsonFormUtils.formTag(getAllSharedPreferences()), "", AppConstants.EVENT_TYPE.CARD_STATUS_UPDATE, AppConstants.EVENT_TYPE.CARD_STATUS_UPDATE);
+            //Update team and team_id before adding vaccine
+            AllSharedPreferences allSharedPreferences = getAllSharedPreferences();
+            String providerId = allSharedPreferences.fetchRegisteredANM();
+            vaccine.setTeam(allSharedPreferences.fetchDefaultTeam(providerId));
+            vaccine.setTeamId(allSharedPreferences.fetchDefaultTeamId(providerId));
 
-            baseEvent.setFormSubmissionId(UUID.randomUUID().toString());
-            baseEvent.addDetails(AppConstants.KeyConstants.CARD_STATUS, cardStatus.name());
-            baseEvent.addDetails(AppConstants.KeyConstants.CARD_STATUS_DATE, cardStatusDate);
-            baseEvent.setBaseEntityId(baseEntityId);
-            AppJsonFormUtils.tagEventMetadata(baseEvent);
+            vaccine.setName(vaccine.getName().trim());
+            // Add the vaccine
+            vaccineRepository.add(vaccine);
 
-            CovacsApplication appInstance = CovacsApplication.getInstance();
-            ECSyncHelper ecSyncHelper = appInstance.getEcSyncHelper();
+            String name = vaccine.getName();
+            if (!StringUtils.isBlank(name) && name.contains("/")) {
 
-            ecSyncHelper.addEvent(baseEntityId, new JSONObject(AppJsonFormUtils.gson.toJson(baseEvent)));
-            appInstance.getClientProcessor().processClient(ecSyncHelper.getEvents(Collections.singletonList(baseEvent.getFormSubmissionId())));
+                updateFTSForCombinedVaccineAlternatives(vaccineRepository, vaccine);
+            }
+//            if (!BaseRepository.TYPE_Synced.equals(vaccine.getSyncStatus()))
+//                Utils.postEvent(new ClientDirtyFlagEvent(vaccine.getBaseEntityId(), VaccineIntentService.EVENT_TYPE));
 
-            Date lastSyncDate = new Date(getAllSharedPreferences().fetchLastUpdatedAtDate(0));
-            getAllSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
         } catch (Exception e) {
             Timber.e(e);
         }
+
+    }
+
+
+    /**
+     * Update vaccines in the same group where either can be given. For example measles 1 / mr 1
+     *
+     * @param vaccineRepository
+     * @param vaccine
+     */
+    public static void updateFTSForCombinedVaccineAlternatives(VaccineRepository vaccineRepository, Vaccine vaccine) {
+
+        List<String> ftsVaccineNames = getAlternativeCombinedVaccines(VaccineRepository.removeHyphen(vaccine.getName()), ImmunizationLibrary.COMBINED_VACCINES_MAP);
+
+        if (ftsVaccineNames != null) {
+
+            for (String ftsVaccineName : ftsVaccineNames) {
+                ftsVaccineName = VaccineRepository.addHyphen(ftsVaccineName.toLowerCase());
+                Vaccine ftsVaccine = new Vaccine();
+                ftsVaccine.setBaseEntityId(vaccine.getBaseEntityId());
+                ftsVaccine.setName(ftsVaccineName);
+                vaccineRepository.updateFtsSearch(ftsVaccine);
+            }
+
+        }
+    }
+
+    /**
+     * @param vaccineName_       Vaccine whos alternative vaccines names must be found
+     * @param combinedVaccineMap Combined vaccine map
+     * @return list of alternative vaccines to {@code vaccineName_}
+     */
+
+    public static List<String> getAlternativeCombinedVaccines(String vaccineName_, Map<String, String> combinedVaccineMap) {
+
+        List<String> comboVaccineList = null;
+
+        String vaccineName = VaccineRepository.removeHyphen(vaccineName_);
+        String comboVaccinesValue = combinedVaccineMap.get(vaccineName_);
+        if (comboVaccinesValue != null) {
+
+            String[] comboVaccines = StringUtils.stripAll(comboVaccinesValue.split("/"));
+
+            comboVaccineList = Lists.newArrayList(comboVaccines);
+
+            comboVaccineList.remove(vaccineName);
+        }
+        return comboVaccineList;
+
+    }
+
+    public static Date dobStringToDate(String dobString) {
+        DateTime dateTime = dobStringToDateTime(dobString);
+        if (dateTime != null) {
+            return dateTime.toDate();
+        }
+        return null;
+    }
+
+    public static DateTime dobStringToDateTime(String dobString) {
+        try {
+            if (StringUtils.isBlank(dobString)) {
+                return null;
+            }
+            return new DateTime(dobString);
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static String getTodaysDate() {
+        return convertDateFormat(LocalDate.now().toDate(), DB_DF);
+    }
+
+    public static String convertDateFormat(Date date, SimpleDateFormat formatter) {
+
+        return formatter.format(date);
+    }
+
+    public static Context context() {
+        return CovacsApplication.getInstance().context();
     }
 
     public static ChildMetadata metadata() {
-        return ChildLibrary.getInstance().metadata();
+        return CovacsApplication.getInstance().getMetadata();
+    }
+
+    // date utils from core
+    public static String getDuration(String date) {
+        DateTime duration;
+        if (StringUtils.isNotBlank(date)) {
+            try {
+                duration = new DateTime(date);
+                return getDuration(String.valueOf(duration)); //check if String.valueOf is necessary
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+        }
+        return "";
+    }
+
+    public static float convertDpToPixel(float dp, android.content.Context context) {
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
+
+    public static String getNextOpenMrsId() {
+        UniqueIdRepository uniqueIdRepo = CovacsApplication.getInstance().getUniqueIdRepository();
+        return uniqueIdRepo.getNextUniqueId() != null ? uniqueIdRepo.getNextUniqueId().getOpenmrsId() : "";
     }
 }

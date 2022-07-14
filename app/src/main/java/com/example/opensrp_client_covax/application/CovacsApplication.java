@@ -34,6 +34,7 @@ import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.repository.Repository;
+import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
@@ -54,6 +55,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     private EventClientRepository eventClientRepository;
     private ECSyncHelper ecSyncHelper;
     private boolean isBulkProcessing;
+    private UniqueIdRepository uniqueIdRepository;
 
     public static JsonSpecHelper getJsonSpecHelper() {
         return jsonSpecHelper;
@@ -81,19 +83,16 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     }
 
     private static String[] getFtsSearchFields(String tableName) {
-        switch (tableName) {
-            case DBConstants.RegisterTable.CLIENT:
-                return new String[]{
-                        DBConstants.KEY.ZEIR_ID,
-                        DBConstants.KEY.FIRST_NAME,
-                        DBConstants.KEY.LAST_NAME
-                };
-            case DBConstants.RegisterTable.CHILD_DETAILS:
-                return new String[]{DBConstants.KEY.LOST_TO_FOLLOW_UP, DBConstants.KEY.INACTIVE};
-
-            default:
-                return null;
+        if (AppConstants.RegisterTable.CHILD_DETAILS.equals(tableName)) {
+            return new String[]{
+                    AppConstants.KeyConstants.ZEIR_ID,
+                    AppConstants.KeyConstants.FIRST_NAME,
+                    AppConstants.KeyConstants.LAST_NAME
+            };
+//            case AppConstants.RegisterTable.CHILD_DETAILS:
+//                return new String[]{AppConstants.KeyConstants.LOST_TO_FOLLOW_UP, AppConstants.KeyConstants.INACTIVE};
         }
+        return null;
     }
 
     public static Locale getCurrentLocale() {
@@ -239,4 +238,10 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     }
 
 
+    public UniqueIdRepository getUniqueIdRepository() {
+        if (uniqueIdRepository == null) {
+            uniqueIdRepository = new UniqueIdRepository();
+        }
+        return uniqueIdRepository;
+    }
 }
