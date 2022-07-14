@@ -41,7 +41,10 @@ public class CovacsRepository extends Repository {
         LocationRepository.createTable(database);
         LocationTagRepository.createTable(database);
         UniqueIdRepository.createTable(database);
-        onUpgrade(database, 1, databaseVersion);
+        ClientRegisterTypeRepository.createTable(database);
+        ChildAlertUpdatedRepository.createTable(database);
+        onUpgrade(database,  BuildConfig.DATABASE_VERSION-1, BuildConfig.DATABASE_VERSION);
+
     }
 
     @Override

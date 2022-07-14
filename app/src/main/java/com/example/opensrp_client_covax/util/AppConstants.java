@@ -4,10 +4,18 @@ package com.example.opensrp_client_covax.util;
 public class AppConstants {
     public static final String SQLITE_DATE_TIME_FORMAT = "yyyy-MM-dd";
 
+
     public static class FormActivity{
         public static final String EnableOnCloseDialog = "EnableOnCloseDialog";
     }
 
+    public static class TableNameConstants {
+        public static final String ALL_CLIENTS = "ec_client";
+        public static final String REGISTER_TYPE = "client_register_type";
+        public static final String CHILD_UPDATED_ALERTS = "child_updated_alerts";
+        public static final String CHILD_DETAILS = "ec_child_details";
+//        public static final String BOOSTER_VACCINES = "ec_booster_vaccines";
+    }
     public static final class KEY{
 
         public static final String LOOK_UP = "look_up";
@@ -19,7 +27,14 @@ public class AppConstants {
         String IS_REMOTE_LOGIN = "is_remote_login";
     }
 
-    ;
+    ;  public interface Columns {
+        interface RegisterType {
+            String BASE_ENTITY_ID = "base_entity_id";
+            String REGISTER_TYPE = "register_type";
+            String DATE_REMOVED = "date_removed";
+            String DATE_CREATED = "date_created";
+        }
+    }
 
     public interface RegisterTable {
         String CHILD_DETAILS = "child";
