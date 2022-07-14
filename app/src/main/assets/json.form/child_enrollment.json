@@ -1,9 +1,10 @@
 {
   "count": "1",
   "encounter_type": "Subject Registration",
+  "entity_id": "",
+  "relational_id": "",
   "validate_on_submit": true,
   "show_errors_on_submit": true,
-  "entity_id": "",
   "metadata": {
     "start": {
       "openmrs_entity_parent": "",
@@ -64,7 +65,7 @@
         "label": "{{child_enrollment.step1.First_Name.label}}",
         "label_info_text": "{{child_enrollment.step1.First_Name.label_info_text}}",
         "label_info_title": "{{child_enrollment.step1.First_Name.label_info_title}}",
-        "hint": "{{child_enrollment.step1.First_Name.hint}}",
+        "hint": "Enter First name",
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\s\\.\\-]*",

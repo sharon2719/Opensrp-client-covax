@@ -41,6 +41,9 @@ import java.util.Map;
 import timber.log.Timber;
 
 public class ChildRegisterActivity extends BaseRegisterActivity implements com.example.opensrp_client_covax.contract.ChildRegisterContract.View, NavDrawerActivity {
+
+    private int disabledMenuId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +71,6 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
 //        do nothing
     }
 
-    @Override
-    public void setActiveMenuItem(int menuItemId) {
-
-    }
 
     @Override
     public void startFormActivity(JSONObject jsonForm) {
@@ -207,10 +206,35 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     public void openDrawer() {
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        onResumption();
+    }
 
     @Override
     protected void onResumption() {
+        reEnableMenuItem();
+        setSelectedBottomBarMenuItem(R.id.action_home);
+    }
 
+    private void reEnableMenuItem() {
+        if (disabledMenuId != 0)
+            bottomNavigationView.getMenu().findItem(disabledMenuId).setEnabled(true);
+    }
+
+    @Override
+    public void setActiveMenuItem(int menuItemId) {
+        disabledMenuId = menuItemId;
+    }
+    @Override
+    public void onBackPressed() {
+        if (currentPage == 0) {
+            super.onBackPressed();
+        } else {
+            switchToBaseFragment();
+            setSelectedBottomBarMenuItem(R.id.action_home);
+        }
     }
 
 }
