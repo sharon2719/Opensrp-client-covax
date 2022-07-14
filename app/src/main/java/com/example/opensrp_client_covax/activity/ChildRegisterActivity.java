@@ -44,7 +44,7 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NavigationMenu.getInstance(this, null, null);
+        NavigationMenu.getInstance(this);
     }
 
     @Override

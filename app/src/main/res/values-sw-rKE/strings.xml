@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Opensrp Client Covacs</string>
     <string name="powered_by">Powered by</string>
@@ -7,7 +8,7 @@
     <string name="show_password_text">Show Password</string>
     <string name="login_text">Log In</string>
     <string name="username">Username</string>
-    <string name="search_hint">Find name or id</string>
+    <string name="search_hint">Tafuta jina au namba</string>
     <string name="app_label">COVACS</string>
     <string name="update_child_registration">Update Child Registration</string>
     <string name="add_child">Add Child</string>
@@ -34,6 +35,5 @@
     <string name="english">English</string>
     <string name="action_log_out">Log Out</string>
     <string name="last_sync">last %1$s</string>
-
 
 </resources>
