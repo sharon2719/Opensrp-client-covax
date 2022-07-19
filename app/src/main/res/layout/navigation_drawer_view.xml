@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--suppress AndroidUnresolvableTag -->
+<?xml version="1.0" encoding="utf-8"?><!--suppress AndroidUnresolvableTag -->
 <com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,8 +11,7 @@
     app:itemBackground="@drawable/drawer_item_background"
     app:itemIconTint="@android:color/white"
     app:itemTextColor="@android:color/white"
-    app:theme="@style/NavigationDrawerStyle"
-    >
+    app:theme="@style/NavigationDrawerStyle">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -125,25 +123,15 @@
             android:gravity="center"
             android:orientation="vertical">
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:visibility="gone">-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
-
-
-
-<!--                <Spinner-->
-<!--                    android:id="@+id/language_spinner"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:textSize="@dimen/table_contents_text_size" />-->
-<!--            </LinearLayout>-->
+                        </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/enrollment"
@@ -172,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="@string/side_nav_add"
+                    android:text="@string/nav_add"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_contents_text_size" />
             </LinearLayout>
@@ -195,8 +183,8 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:paddingTop="5dp"
-                    android:src="@drawable/ic_action_global"
-                    tools:ignore="ContentDescription" />
+                    app:srcCompat="@drawable/edit_icon"
+                     />
 
                 <Spinner
                     android:id="@+id/language_spinner"
@@ -204,16 +192,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
+                    android:visibility="visible"
                     android:textSize="@dimen/table_contents_text_size" />
-<!--                <org.smartregister.view.customcontrols.CustomFontTextView-->
-<!--                    style="@style/CustomFontTextViewStyle.ClientList.Light.twoline"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="@string/english"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="@dimen/table_contents_text_size" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -293,15 +273,6 @@
                         android:orientation="horizontal"
                         android:visibility="gone">
 
-                        <ImageView
-                            android:layout_width="@dimen/custom_navigation_icon_size"
-                            android:layout_height="@dimen/custom_navigation_icon_size"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:src="@mipmap/ic_card_white"
-                            tools:ignore="ContentDescription" />
 
                         <org.smartregister.view.customcontrols.CustomFontTextView
                             style="@style/CustomFontTextViewStyle.ClientList.Light.twoline"

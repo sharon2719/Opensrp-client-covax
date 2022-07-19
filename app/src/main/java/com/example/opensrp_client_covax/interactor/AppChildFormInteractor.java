@@ -14,6 +14,9 @@ public class AppChildFormInteractor extends JsonFormInteractor {
         super();
     }
 
+    public static JsonFormInteractor getInstance(){
+        return CHILD_INTERACTOR_INSTANCE;
+    }
     public static JsonFormInteractor getChildInteractorInstance() {
         return CHILD_INTERACTOR_INSTANCE;
     }

@@ -72,7 +72,7 @@
             android:gravity="center"
             android:padding="32dp"
             android:text="@string/no_record"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </FrameLayout>
 </LinearLayout>

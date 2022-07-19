@@ -82,4 +82,12 @@ public class Field {
     public List<Map<String, String>> getOptions() {
         return options;
     }
+
+    public CharSequence getDisplayName() {
+        return null;
+    }
+
+    public CharSequence getDbAlias() {
+        return null;
+    }
 }

@@ -34,6 +34,12 @@
     <string name="english">English</string>
     <string name="action_log_out">Log Out</string>
     <string name="last_sync">last %1$s</string>
+    <string name="child_profile">Child</string>
+    <string name="nav_add">Nav</string>
+    <string name="home">Home</string>
+    <string name="any_changes_you_make">Are these the changes you are making?</string>
+    <string name="navigation_drawer_open">Open navigation</string>
+    <string name="navigation_drawer_close">Close navigation</string>
 
 
 </resources>

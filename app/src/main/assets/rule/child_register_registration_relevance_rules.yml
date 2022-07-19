@@ -1,0 +1,15 @@
+---
+name: step1_Home_Facility_name
+description: Home_Facility_name
+priority: 1
+condition: "step1_Home_Facility == 'Home_Facility'"
+actions:
+  - "isRelevent = true"
+---
+name: step1_birth_facility_name_other
+description: birth_facility_name_other
+priority: 1
+condition: "step1_birth_facility_name == 'other'"
+actions:
+  - "isRelevant = true"
+---

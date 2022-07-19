@@ -1,29 +1,30 @@
 package com.example.opensrp_client_covax.activity;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.opensrp_client_covax.R;
 import com.example.opensrp_client_covax.application.CovacsApplication;
+import com.example.opensrp_client_covax.domain.UpdateRegisterParams;
 import com.example.opensrp_client_covax.fragment.ChildRegisterFragment;
 import com.example.opensrp_client_covax.listener.ChildBottomNavigationListener;
 import com.example.opensrp_client_covax.model.AppChildRegisterModel;
 import com.example.opensrp_client_covax.presenter.AppChildRegisterPresenter;
-import com.example.opensrp_client_covax.util.AppChildJsonFormUtils;
 import com.example.opensrp_client_covax.util.AppConstants;
 import com.example.opensrp_client_covax.util.AppJsonFormUtils;
+import com.example.opensrp_client_covax.util.Utils;
 import com.example.opensrp_client_covax.views.NavDrawerActivity;
 import com.example.opensrp_client_covax.views.NavigationMenu;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+
+import com.google.android.material.navigation.NavigationBarView;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.child.domain.UpdateRegisterParams;
-import org.smartregister.child.util.Utils;
 import org.smartregister.client.utils.domain.Form;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.view.activity.BaseRegisterActivity;
@@ -82,13 +83,14 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
         form.setHideSaveLabel(true);
         form.setNextLabel("");
         form.setName(getFormTitle());
-        form.setActionBarBackground(R.color.actionbar);
+        form.setActionBarBackground(R.color.tab_indicator_color);
         form.setNavigationBackground(R.color.toolbar_background);
         form.setHomeAsUpIndicator(R.drawable.ic_action_clear);
 
 
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
-        startActivityForResult(intent, AppChildJsonFormUtils.REQUEST_CODE_GET_JSON);
+        intent.putExtra(JsonFormConstants.PERFORM_FORM_TRANSLATION, true);
+        startActivityForResult(intent, AppJsonFormUtils.REQUEST_CODE_GET_JSON);
     }
 
     private String getFormTitle() {
@@ -130,28 +132,31 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     public String getRegistrationForm() {
         return AppConstants.JSON_FORM.CHILD_ENROLLMENT;
     }
-
-    @SuppressLint("WrongConstant")
     @Override
     public void registerBottomNavigation() {
+
         bottomNavigationHelper = new BottomNavigationHelper();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        if (bottomNavigationView != null) {
-            bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+
+        if(bottomNavigationView != null) {
+            bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_AUTO);
             bottomNavigationView.getMenu().removeItem(R.id.action_clients);
             bottomNavigationView.getMenu().removeItem(R.id.action_register);
             bottomNavigationView.getMenu().removeItem(R.id.action_search);
             bottomNavigationView.getMenu().removeItem(R.id.action_library);
 
-
             bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu);
 
             bottomNavigationHelper.disableShiftMode(bottomNavigationView);
 
-            ChildBottomNavigationListener childBottomNavigationListener = new ChildBottomNavigationListener(this);
-            bottomNavigationView.setOnNavigationItemSelectedListener(childBottomNavigationListener);
-
         }
+
+        ChildBottomNavigationListener childBottomNavigationListener = getChildBottomNavigationListener();
+        bottomNavigationView.setOnNavigationItemSelectedListener(childBottomNavigationListener);
+    }
+
+    protected ChildBottomNavigationListener getChildBottomNavigationListener() {
+        return new ChildBottomNavigationListener(this);
     }
 
     @Override

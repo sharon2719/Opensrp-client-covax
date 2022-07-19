@@ -10,8 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.opensrp_client_covax.R;
 import com.example.opensrp_client_covax.fragment.AppChildFormFragment;
-import com.example.opensrp_client_covax.util.AppChildJsonFormUtils;
 import com.example.opensrp_client_covax.util.AppConstants;
+import com.example.opensrp_client_covax.util.AppJsonFormUtils;
 import com.vijay.jsonwizard.activities.JsonFormActivity;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
@@ -57,7 +57,7 @@ public class ChildFormActivity extends JsonFormActivity {
         super.onResume();
         try {
 
-            String et = form.getString(AppChildJsonFormUtils.ENCOUNTER_TYPE);
+            String et = form.getString(AppJsonFormUtils.ENCOUNTER_TYPE);
 
             confirmCloseTitle = getString(R.string.confirm_form_close);
             confirmCloseMessage = et.trim().toLowerCase().contains("update") ? this.getString(R.string.any_changes_you_make) : this.getString(R.string.confirm_form_close_explanation);

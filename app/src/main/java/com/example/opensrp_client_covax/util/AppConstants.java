@@ -1,8 +1,13 @@
 package com.example.opensrp_client_covax.util;
 
 
+import android.net.wifi.SupplicantState;
+
 public class AppConstants {
     public static final String SQLITE_DATE_TIME_FORMAT = "yyyy-MM-dd";
+    public static final class CHILD_STATUS {
+
+    }
 
 
     public static class FormActivity{

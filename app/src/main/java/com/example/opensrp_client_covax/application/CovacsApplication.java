@@ -24,7 +24,6 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
-import org.smartregister.child.util.DBConstants;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
 import org.smartregister.configurableviews.helper.JsonSpecHelper;
@@ -79,7 +78,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     }
 
     private static String[] getFtsTables() {
-        return new String[]{DBConstants.RegisterTable.CLIENT, DBConstants.RegisterTable.MOTHER_DETAILS, DBConstants.RegisterTable.CHILD_DETAILS};
+        return new String[]{AppConstants.RegisterTable.CLIENT};
     }
 
     private static String[] getFtsSearchFields(String tableName) {
@@ -178,13 +177,11 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     public ChildMetadata getMetadata() {
         ChildMetadata metadata = new ChildMetadata(ChildFormActivity.class, ChildProfileActivity.class,
                 ChildImmunizationActivity.class, ChildRegisterActivity.class, true, new AppRegisterQueryProvider());
-        metadata.updateChildRegister(DBConstants.RegisterTable.CLIENT,
-                DBConstants.RegisterTable.CLIENT, AppConstants.EVENT_TYPE.CHILD_REGISTRATION,
-                AppConstants.EVENT_TYPE.UPDATE_CHILD_REGISTRATION, AppConstants.CONFIGURATION.CHILD_REGISTER,
-                AppConstants.RELATIONSHIP.GUARDIAN);
+        metadata.updateChildRegister(AppConstants.JSON_FORM.CHILD_ENROLLMENT, AppConstants.RegisterTable.CLIENT,
+                AppConstants.EVENT_TYPE.CHILD_REGISTRATION, AppConstants.EVENT_TYPE.UPDATE_CHILD_REGISTRATION, AppConstants.CONFIGURATION.CHILD_REGISTER);
         metadata.setFieldsWithLocationHierarchy(new HashSet<>(Arrays.asList("Home_Facility")));
-        metadata.setLocationLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.LOCATION_LEVELS)));
-        metadata.setHealthFacilityLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.HEALTH_FACILITY_LEVELS)));
+        metadata.setLocationLevels(new ArrayList<>(Arrays.asList(BuildConfig.LOCATION_LEVELS)));
+        metadata.setHealthFacilityLevels(new ArrayList<>(Arrays.asList(BuildConfig.HEALTH_FACILITY_LEVELS)));
         return metadata;
     }
 

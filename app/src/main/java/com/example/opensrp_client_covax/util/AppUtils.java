@@ -1,12 +1,5 @@
 package com.example.opensrp_client_covax.util;
 
-import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.CHILD_ZONE;
-import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.KEY;
-import static com.vijay.jsonwizard.constants.JsonFormConstants.FIELDS;
-import static com.vijay.jsonwizard.constants.JsonFormConstants.STEP1;
-import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
-
-import android.content.ContentValues;
 import android.graphics.Color;
 import android.text.InputType;
 import android.util.DisplayMetrics;
@@ -15,49 +8,27 @@ import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.example.opensrp_client_covax.BuildConfig;
 import com.example.opensrp_client_covax.application.CovacsApplication;
-import com.example.opensrp_client_covax.dao.AppChildDao;
 import com.example.opensrp_client_covax.domain.ChildMetadata;
 import com.example.opensrp_client_covax.domain.EditWrapper;
 import com.google.common.collect.Lists;
-import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.smartregister.Context;
-import org.smartregister.child.ChildLibrary;
-import org.smartregister.child.presenter.BaseChildDetailsPresenter;
-import org.smartregister.clientandeventmodel.Event;
-import org.smartregister.commonregistry.AllCommonsRepository;
-import org.smartregister.domain.Client;
 import org.smartregister.immunization.ImmunizationLibrary;
 import org.smartregister.immunization.domain.Vaccine;
 import org.smartregister.immunization.repository.VaccineRepository;
-import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.UniqueIdRepository;
-import org.smartregister.sync.helper.ECSyncHelper;
-import org.smartregister.util.JsonFormUtils;
 import org.smartregister.util.Utils;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
 

@@ -6,6 +6,8 @@
         <entry key="../../../layout/custom_preview.xml" value="0.3074074074074074" />
         <entry key="../.gradle/caches/transforms-2/files-2.1/090b04df8835875f9031ffdec5ac7340/jetified-opensrp-client-child-0.7.2-PREVIEW-SNAPSHOT/res/layout/child_register_header.xml" value="0.3182291666666667" />
         <entry key="../.gradle/caches/transforms-2/files-2.1/27ae351a73543d0ae7f24a5a737d6666/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.3182291666666667" />
+        <entry key="../.gradle/caches/transforms-2/files-2.1/2804e6ac138236d2ddd2a616f3c05bbd/jetified-opensrp-client-core-4.3.23-SNAPSHOT/res/menu/bottom_navigation_menu.xml" value="0.3182291666666667" />
+        <entry key="../.gradle/caches/transforms-2/files-2.1/d0b077f24913d8101ce1e80ed40d510b/jetified-opensrp-client-core-4.3.23-SNAPSHOT/res/drawable/bottom_navigation_selector.xml" value="0.13854166666666667" />
         <entry key="app/src/main/res/drawable-v24/drawer_item_background.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/drawable-v24/edit_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/expand_less.xml" value="0.10277777777777777" />
@@ -17,7 +19,12 @@
         <entry key="app/src/main/res/drawable-v24/rounded_corner_edit_text.xml" value="0.14629629629629629" />
         <entry key="app/src/main/res/drawable-v24/rounded_corner_edit_text_bg.xml" value="0.14629629629629629" />
         <entry key="app/src/main/res/drawable-v24/white_checkbox_bg.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/drawer_item_background.xml" value="0.20520833333333333" />
+        <entry key="app/src/main/res/drawable/edit_icon.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.16574074074074074" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.20520833333333333" />
+        <entry key="app/src/main/res/drawable/rounded_corner_edit_text_bg.xml" value="0.20520833333333333" />
+        <entry key="app/src/main/res/drawable/white_checkbox_bg.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/layout/activity_child_register.xml" value="0.3182291666666667" />
         <entry key="app/src/main/res/layout/activity_fragment_child.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3273092369477912" />
@@ -29,7 +36,7 @@
         <entry key="app/src/main/res/layout/child_reg_nav_bar.xml" value="0.3182291666666667" />
         <entry key="app/src/main/res/layout/child_register_fragment_activity.xml" value="0.31333333333333335" />
         <entry key="app/src/main/res/layout/child_register_header.xml" value="0.19322916666666667" />
-        <entry key="app/src/main/res/layout/child_register_list_row.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/child_register_list_row.xml" value="0.4430379746835443" />
         <entry key="app/src/main/res/layout/child_register_search_bar.xml" value="0.33" />
         <entry key="app/src/main/res/layout/header_banner.xml" value="0.3182291666666667" />
         <entry key="app/src/main/res/layout/item_spinner.xml" value="0.31333333333333335" />

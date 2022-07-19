@@ -51,7 +51,7 @@
             android:name=".activity.ChildFormActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/ChildTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

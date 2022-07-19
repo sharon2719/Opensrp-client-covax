@@ -22,9 +22,9 @@ import com.example.opensrp_client_covax.model.AppChildRegisterFragmentModel;
 import com.example.opensrp_client_covax.presenter.AppChildRegisterFragmentPresenter;
 import com.example.opensrp_client_covax.provider.AppChildRegisterProvider;
 import com.example.opensrp_client_covax.util.AppConstants;
+import com.example.opensrp_client_covax.util.Utils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.smartregister.child.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
@@ -200,7 +200,7 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
                 sql = sqb.addlimitandOffset(sql, clientAdapter.getCurrentlimit(), clientAdapter.getCurrentoffset());
 
                 List<String> ids = commonRepository().findSearchIds(sql);
-                query = Utils.metadata().getRegisterQueryProvider().mainRegisterQuery() +
+                query = com.example.opensrp_client_covax.util.Utils.metadata().getRegisterQueryProvider().mainRegisterQuery() +
                         " WHERE _id IN (%s) OR ec_mother_details.base_entity_id in (%s)" + (StringUtils.isBlank(getDefaultSortQuery()) ? "" : " order by " + getDefaultSortQuery());
 
                 String joinedIds = "'" + StringUtils.join(ids, "','") + "'";

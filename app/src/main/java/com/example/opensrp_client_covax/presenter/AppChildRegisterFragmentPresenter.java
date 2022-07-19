@@ -2,14 +2,16 @@ package com.example.opensrp_client_covax.presenter;
 
 import com.example.opensrp_client_covax.contract.AppChildRegisterFragmentContract;
 import com.example.opensrp_client_covax.cursor.AdvancedMatrixCursor;
+import com.example.opensrp_client_covax.domain.Field;
 import com.example.opensrp_client_covax.fragment.ChildRegisterFragment;
 import com.example.opensrp_client_covax.model.AppChildRegisterFragmentModel;
 
 import org.apache.commons.lang3.StringUtils;
-import org.smartregister.configurableviews.model.Field;
+
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.configurableviews.model.ViewConfiguration;
+
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -35,7 +37,7 @@ public class AppChildRegisterFragmentPresenter implements AppChildRegisterFragme
 
     @Override
     public void updateSortAndFilter(List<Field> filterList, Field sortField) {
-        String filterText = model.getFilterText(filterList, getView().getString(org.smartregister.child.R.string.filter));
+        String filterText = model.getFilterText(filterList, getView().getString(org.smartregister.R.string.filter));
         String sortText = model.getSortText(sortField);
 
         getView().updateFilterAndFilterStatus(filterText, sortText);
@@ -72,7 +74,7 @@ public class AppChildRegisterFragmentPresenter implements AppChildRegisterFragme
             return;
         }
 
-        ViewConfiguration viewConfiguration = model.getViewConfiguration(viewConfigurationIdentifier);
+        ViewConfiguration viewConfiguration = (org.smartregister.configurableviews.model.ViewConfiguration) model.getViewConfiguration(viewConfigurationIdentifier);
         if (viewConfiguration != null) {
             config = (RegisterConfiguration) viewConfiguration.getMetadata();
             setVisibleColumns(model.getRegisterActiveColumns(viewConfigurationIdentifier));
