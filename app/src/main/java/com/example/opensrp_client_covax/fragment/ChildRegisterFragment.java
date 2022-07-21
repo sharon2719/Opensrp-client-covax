@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
@@ -23,9 +22,9 @@ import com.example.opensrp_client_covax.model.AppChildRegisterFragmentModel;
 import com.example.opensrp_client_covax.presenter.AppChildRegisterFragmentPresenter;
 import com.example.opensrp_client_covax.provider.AppChildRegisterProvider;
 import com.example.opensrp_client_covax.util.AppConstants;
-import com.example.opensrp_client_covax.util.Utils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.smartregister.child.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
@@ -41,12 +40,14 @@ import java.util.Set;
 import timber.log.Timber;
 
 public class ChildRegisterFragment extends BaseRegisterFragment implements AppChildRegisterFragmentContract.View, android.view.View.OnClickListener, LocationPickerView.OnLocationChangeListener {
-    protected View view;
+    public static final String CLICK_VIEW_NORMAL = "click_view_normal";
+    protected android.view.View view;
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public android.view.View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-       View view = inflater.inflate(R.layout.activity_child_register, container, false);
+        android.view.View view = inflater.inflate(R.layout.activity_child_register, container, false);
         mView = view;
         onInitialization();
         setupViews(view);
@@ -80,7 +81,7 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
         if (getActivity() == null) {
             return;
         }
-        String viewConfigurationIdentifier = "";
+        String viewConfigurationIdentifier = ((BaseRegisterActivity) getActivity()).getViewIdentifiers().get(0);
         presenter = new AppChildRegisterFragmentPresenter(this, new AppChildRegisterFragmentModel(), viewConfigurationIdentifier);
     }
 
@@ -117,6 +118,12 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
         if (getActivity() == null) {
             return;
         }
+//
+//        if (view.getTag() != null && view.getTag(R.id.VIEW_ID) == CLICK_VIEW_NORMAL) {
+//            if (view.getTag() instanceof CommonPersonObjectClient) {
+//                goToChildDetailActivity((CommonPersonObjectClient) view.getTag(), false);
+//            }
+//        }
     }
 
     private void goToChildDetailActivity(CommonPersonObjectClient person, boolean launchDialog) {
@@ -131,7 +138,10 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
 
     @Override
     public void showNotFoundPopup(String opensrpId) {
-//        TODO
+//        if (getActivity() == null) {
+//            return;
+//        }
+//        NoMatchDialogFragment.launchDialog((BaseRegisterActivity) getActivity(), DIALOG_TAG, opensrpId);
     }
 
     @Override
@@ -190,7 +200,7 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
                 sql = sqb.addlimitandOffset(sql, clientAdapter.getCurrentlimit(), clientAdapter.getCurrentoffset());
 
                 List<String> ids = commonRepository().findSearchIds(sql);
-                query = com.example.opensrp_client_covax.util.Utils.metadata().getRegisterQueryProvider().mainRegisterQuery() +
+                query = Utils.metadata().getRegisterQueryProvider().mainRegisterQuery() +
                         " WHERE _id IN (%s) OR ec_mother_details.base_entity_id in (%s)" + (StringUtils.isBlank(getDefaultSortQuery()) ? "" : " order by " + getDefaultSortQuery());
 
                 String joinedIds = "'" + StringUtils.join(ids, "','") + "'";

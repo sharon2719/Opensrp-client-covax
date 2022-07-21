@@ -1,83 +1,127 @@
 package com.example.opensrp_client_covax.util;
 
-import static com.vijay.jsonwizard.utils.NativeFormLangUtils.getTranslatedString;
+import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.BIRTH_FACILITY_NAME;
+import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.DOB;
+import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.FIRST_NAME;
+import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.LAST_NAME;
+import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.PLACE_OF_BIRTH;
+import static com.example.opensrp_client_covax.util.AppConstants.KeyConstants.PMTCT_STATUS;
 
 import android.content.Context;
 
-import com.example.opensrp_client_covax.application.CovacsApplication;
+import com.example.opensrp_client_covax.R;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.AllConstants;
+import org.smartregister.child.util.ChildJsonFormUtils;
+import org.smartregister.child.util.Constants;
+import org.smartregister.child.util.Utils;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.util.FormUtils;
-import org.smartregister.util.JsonFormUtils;
 
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.List;
 import java.util.Map;
 
-public class AppJsonFormUtils extends JsonFormUtils {
+import timber.log.Timber;
 
-    public static final String METADATA = "metadata";
-    public static final String ENCOUNTER_TYPE = "encounter_type";
-    public static final int REQUEST_CODE_GET_JSON = 2244;
-    public static final String CURRENT_OPENSRP_ID = "current_opensrp_id";
-    public static final String READ_ONLY = "read_only";
-    public static final String STEP2 = "step2";
-    public static final String RELATIONAL_ID = "relational_id";
-    public static final String CURRENT_ZEIR_ID = "current_zeir_id";
-    public static final String ZEIR_ID = "ZEIR_ID";
-    public static final String updateBirthRegistrationDetailsEncounter = "Update Birth Registration";
-    public static final String BCG_SCAR_EVENT = "Bcg Scar";
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(com.vijay.jsonwizard.utils.FormUtils.NATIIVE_FORM_DATE_FORMAT_PATTERN, Locale.ENGLISH);
-    public static final String GENDER = "gender";
-    public static final String M_ZEIR_ID = "M_ZEIR_ID";
-    public static final String F_ZEIR_ID = "F_ZEIR_ID";
-    private static final String ENCOUNTER = "encounter";
-    private static final String IDENTIFIERS = "identifiers";
-    private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-    private static final String OPENSRP_ID = "opensrp_id";
-    private static final String FORM_SUBMISSION_FIELD = "formsubmissionField";
-    private static final String LABEL_TEXT_STYLE = "label_text_style";
-    private static final String RECURRING_SERVICES_FILE = "services.json";
+public class AppJsonFormUtils extends ChildJsonFormUtils {
+    private static final HashMap<String, String> alternativeKeys = new HashMap<String, String>() {
+        {
+            put("First_Name", FIRST_NAME);
+            put("Last_Name", LAST_NAME);
+            put("Date_Birth", DOB);
+            put("Sex", "gender");
+            put("Weight", "Weight");
+        }
+    };
+
+    public static String populateFormValues(Context context, Map<String, String> childDetails, List<String> nonEditableFields) {
+        JSONObject form = null;
+        try {
+            form = new FormUtils(context).getFormJson(Utils.metadata().childRegister.formName);
+            form.put(ChildJsonFormUtils.ENTITY_ID, childDetails.get(Constants.KEY.BASE_ENTITY_ID));
+            form.put(ChildJsonFormUtils.ENCOUNTER_TYPE, Utils.metadata().childRegister.updateEventType);
+            form.put(ChildJsonFormUtils.RELATIONAL_ID, childDetails.get(RELATIONAL_ID));
+            form.put(ChildJsonFormUtils.CURRENT_ZEIR_ID, Utils.getValue(childDetails, Constants.KEY.ZEIR_ID, true).replace("-", ""));
+            form.put(ChildJsonFormUtils.CURRENT_OPENSRP_ID, Utils.getValue(childDetails, Constants.JSON_FORM_KEY.UNIQUE_ID, false));
+            JSONObject metadata = form.getJSONObject(ChildJsonFormUtils.METADATA);
+            metadata.put(ChildJsonFormUtils.ENCOUNTER_LOCATION, ChildJsonFormUtils.getProviderLocationId(context));
+
+            JSONObject stepOne = form.getJSONObject(ChildJsonFormUtils.STEP1);
+            stepOne.put(JsonFormConstants.STEP_TITLE, context.getString(R.string.update_child_registration));
+            JSONArray fields = stepOne.getJSONArray(ChildJsonFormUtils.FIELDS);
 
 
-    public static JSONObject getJson(Context context, String formName, String baseEntityID) throws Exception {
-        String locationId = CovacsApplication.getInstance().getContext().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
-        JSONObject jsonObject = new JSONObject(getTranslatedString(FormUtils.getInstance(context).getFormJson(formName).toString(), context));
-        AppJsonFormUtils.getRegistrationForm(jsonObject, baseEntityID, locationId);
-        return jsonObject;
-    }
-
-    public static void getRegistrationForm(JSONObject jsonObject, String entityId, String currentLocationId) throws org.json.JSONException {
-        //empty block
-    }
-
-    public static void populateJsonForm(@NotNull JSONObject jsonObject, @NotNull Map<String, String> valueMap) throws JSONException {
-        Map<String, String> _valueMap = new HashMap<>(valueMap);
-        int step = 1;
-        while (jsonObject.has("step" + step)) {
-            JSONObject jsonStepObject = jsonObject.getJSONObject("step" + step);
-            JSONArray array = jsonStepObject.getJSONArray(JsonFormConstants.FIELDS);
-            int position = 0;
-            while (position < array.length() && _valueMap.size() > 0) {
-
-                JSONObject object = array.getJSONObject(position);
-                String key = object.getString(JsonFormConstants.KEY);
-
-                if (_valueMap.containsKey(key)) {
-                    object.put(JsonFormConstants.VALUE, _valueMap.get(key));
-                    _valueMap.remove(key);
-                }
-
-                position++;
+            for (int i = 0; i < fields.length(); i++) {
+                JSONObject field = fields.getJSONObject(i);
+                field.put(ChildJsonFormUtils.READ_ONLY, nonEditableFields.contains(field.getString(ChildJsonFormUtils.KEY)));
+                setFieldValue(field, childDetails);
             }
 
-            step++;
+        } catch (Exception e) {
+            Timber.e(e);
         }
+        return form != null ? form.toString() : null;
+    }
+
+    protected static void setFieldValue(JSONObject field, Map<String, String> childDetails) throws JSONException {
+        String key = field.getString(JsonFormConstants.KEY);
+        //Key on child details  maybe different
+        if (alternativeKeys.containsKey(key)) {
+            key = alternativeKeys.get(key);
+        }
+        switch (field.getString(JsonFormConstants.TYPE)) {
+            case JsonFormConstants.DATE_PICKER:
+                if (DOB.equalsIgnoreCase(key) || DOB.equalsIgnoreCase(key)) {
+                    if (childDetails.get(key) != null) {
+                        String prefix = getEntityPrefix(field);
+                        processDate(childDetails, prefix, field);
+                    }
+                } else {
+                    processDateField(field, childDetails, key);
+                }
+                break;
+            case JsonFormConstants.SPINNER:
+                //backward compatibility for spinner previously saving values instead of option keys
+                // (conventionally key is value in lowercase with space replaced with underscore)
+                if (childDetails.get(key) != null && (BIRTH_FACILITY_NAME.equalsIgnoreCase(key) || GENDER.equalsIgnoreCase(key) ||
+                        PLACE_OF_BIRTH.equalsIgnoreCase(key) || PMTCT_STATUS.equalsIgnoreCase(key))) {
+                    field.put(JsonFormConstants.VALUE, childDetails.get(key).toLowerCase().replace(" ", "_"));
+                } else {
+                    field.put(JsonFormConstants.VALUE, childDetails.get(key));
+                }
+                break;
+            case JsonFormConstants.EDIT_TEXT:
+            case JsonFormConstants.HIDDEN:
+            case JsonFormConstants.BARCODE:
+                field.put(JsonFormConstants.VALUE, childDetails.get(key));
+                break;
+            default:
+                break;
+        }
+    }
+
+    private static void processDateField(JSONObject field, Map<String, String> childDetails, String key) throws JSONException {
+        if (childDetails.get(key) != null) {
+            Date date = Utils.dobStringToDate(childDetails.get(key));
+            if (date != null) {
+                field.put(JsonFormConstants.VALUE, DATE_FORMAT.format(date));
+            } else {
+                field.put(JsonFormConstants.VALUE, childDetails.get(key));
+            }
+        }
+    }
+
+    public static void tagEventMetadata(Event event) {
+        tagSyncMetadata(event);
+    }
+
+    public static void getRegistrationForm(JSONObject jsonObject, String entityId, String currentLocationId) throws JSONException {
+        jsonObject.getJSONObject(METADATA).put(ENCOUNTER_LOCATION, currentLocationId);
+        jsonObject.put(org.smartregister.util.JsonFormUtils.ENTITY_ID, entityId);
     }
 }

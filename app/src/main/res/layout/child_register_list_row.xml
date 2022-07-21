@@ -22,7 +22,7 @@
         android:paddingLeft="2dp"
         android:paddingBottom="2dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/child_boy_infant" />
+        android:src="@mipmap/ic_boy_child" />
 
     <LinearLayout
         android:id="@+id/patient_column"

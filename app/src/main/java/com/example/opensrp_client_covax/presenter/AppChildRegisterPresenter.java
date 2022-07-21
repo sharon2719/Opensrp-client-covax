@@ -6,7 +6,6 @@ import com.example.opensrp_client_covax.contract.ChildRegisterContract;
 import com.example.opensrp_client_covax.interactor.AppChildRegisterInteractor;
 import com.example.opensrp_client_covax.model.AppChildRegisterModel;
 
-import org.smartregister.domain.FetchStatus;
 import org.smartregister.repository.EventClientRepository;
 
 import java.lang.ref.WeakReference;
@@ -73,7 +72,6 @@ public class AppChildRegisterPresenter implements ChildRegisterContract.Presente
 
     @Override
     public void onRegistrationSaved(boolean isEdit) {
-        getView().refreshList(FetchStatus.fetched);
-        getView().hideProgressDialog();
+
     }
 }

@@ -1,13 +1,13 @@
 package com.example.opensrp_client_covax.model;
 
 import com.example.opensrp_client_covax.contract.AppChildRegisterFragmentContract;
-import com.example.opensrp_client_covax.domain.Field;
 import com.example.opensrp_client_covax.util.ConfigHelper;
 import com.example.opensrp_client_covax.util.Utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
+import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.configurableviews.model.ViewConfiguration;
@@ -35,8 +35,6 @@ public class AppChildRegisterFragmentModel implements AppChildRegisterFragmentCo
     public Set<View> getRegisterActiveColumns(String viewConfigurationIdentifier) {
         return ConfigurableViewsLibrary.getInstance().getConfigurableViewsHelper().getRegisterActiveColumns(viewConfigurationIdentifier);
     }
-
-
 
     @Override
     public String mainSelect(String mainCondition) {
