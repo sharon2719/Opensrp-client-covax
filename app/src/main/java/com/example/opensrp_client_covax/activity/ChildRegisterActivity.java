@@ -119,6 +119,7 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
         }
     }
 
+
     @Override
     public List<String> getViewIdentifiers() {
         return Arrays.asList();
