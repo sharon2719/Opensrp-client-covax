@@ -20,7 +20,8 @@ import com.example.opensrp_client_covax.util.Utils;
 import com.example.opensrp_client_covax.views.NavDrawerActivity;
 import com.example.opensrp_client_covax.views.NavigationMenu;
 
-import com.google.android.material.navigation.NavigationBarView;
+//import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.json.JSONException;
@@ -137,10 +138,10 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     protected void registerBottomNavigation() {
 
         bottomNavigationHelper = new BottomNavigationHelper();
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(org.smartregister.R.id.bottom_navigation);
 
         if(bottomNavigationView != null) {
-            bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_AUTO);
+            bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
             bottomNavigationView.getMenu().removeItem(R.id.action_clients);
             bottomNavigationView.getMenu().removeItem(R.id.action_register);
             bottomNavigationView.getMenu().removeItem(R.id.action_search);
@@ -195,11 +196,6 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
     @Override
     public void saveForm(String jsonString, UpdateRegisterParams updateRegisterParam) {
 
-    }
-
-
-    private Class<? extends BaseRegisterActivity> getActivityClass() {
-        return ChildRegisterActivity.class;
     }
 
 

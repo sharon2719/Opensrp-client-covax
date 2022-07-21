@@ -41,10 +41,8 @@ import java.util.Set;
 import timber.log.Timber;
 
 public class ChildRegisterFragment extends BaseRegisterFragment implements AppChildRegisterFragmentContract.View, android.view.View.OnClickListener, LocationPickerView.OnLocationChangeListener {
-    public static final String CLICK_VIEW_NORMAL = "click_view_normal";
     protected View view;
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -82,7 +80,7 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
         if (getActivity() == null) {
             return;
         }
-        String viewConfigurationIdentifier = ((BaseRegisterActivity) getActivity()).getViewIdentifiers().get(0);
+        String viewConfigurationIdentifier = "";
         presenter = new AppChildRegisterFragmentPresenter(this, new AppChildRegisterFragmentModel(), viewConfigurationIdentifier);
     }
 
@@ -133,10 +131,7 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
 
     @Override
     public void showNotFoundPopup(String opensrpId) {
-//        if (getActivity() == null) {
-//            return;
-//        }
-//        NoMatchDialogFragment.launchDialog((BaseRegisterActivity) getActivity(), DIALOG_TAG, opensrpId);
+//        TODO
     }
 
     @Override
