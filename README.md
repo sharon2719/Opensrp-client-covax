@@ -11,7 +11,7 @@
 ## Features
 
 - All Client Register
-- Peer to peer sync
+- Sync implementation
 - Immunization Schedule
 
 ## Versioning
