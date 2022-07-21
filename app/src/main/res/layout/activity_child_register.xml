@@ -3,8 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white_dark"
+    android:background="@color/client_list_header_dark_grey"
     android:filterTouchesWhenObscured="true"
     android:orientation="vertical">
 
@@ -17,11 +16,33 @@
 
     <include layout="@layout/child_register_header" />
 
+    <LinearLayout
+        android:id="@+id/clients_upper_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_header_height"
+        android:layout_marginStart="@dimen/list_view_margin_left_and_right"
+        android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
+        android:layout_marginEnd="@dimen/list_view_margin_left_and_right"
+        android:layout_marginRight="@dimen/list_view_margin_left_and_right"
+        android:orientation="horizontal"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:id="@+id/clients_lower_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_header_height"
+        android:layout_marginStart="@dimen/list_view_margin_left_and_right"
+        android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
+        android:layout_marginEnd="@dimen/list_view_margin_left_and_right"
+        android:layout_marginRight="@dimen/list_view_margin_left_and_right"
+        android:orientation="horizontal"
+        android:visibility="gone" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="@dimen/smart_register_client_divider_height"
-        android:src="@color/white_dark" />
+        android:src="@color/smart_register_client_divider_color" />
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -51,7 +72,7 @@
             android:gravity="center"
             android:padding="32dp"
             android:text="@string/no_record"
-            android:visibility="visible" />
-    </FrameLayout>
+            android:visibility="gone" />
 
+    </FrameLayout>
 </LinearLayout>

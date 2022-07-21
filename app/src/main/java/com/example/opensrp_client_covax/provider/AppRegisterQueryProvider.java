@@ -3,11 +3,11 @@ package com.example.opensrp_client_covax.provider;
 import com.example.opensrp_client_covax.util.AppConstants;
 
 import org.apache.commons.lang3.StringUtils;
-
+import org.smartregister.child.provider.RegisterQueryProvider;
 import org.smartregister.commonregistry.CommonFtsObject;
 
 
-public class AppRegisterQueryProvider{
+public class AppRegisterQueryProvider extends RegisterQueryProvider {
     public String getObjectIdsQuery(String mainCondition, String filters) {
 
         String strMainCondition = getMainCondition(mainCondition);

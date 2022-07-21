@@ -79,9 +79,6 @@ public class ChildMetadata {
         return childRegisterActivity;
     }
 
-    public void updateChildRegister(String childEnrollment, String client, String childRegistration, String updateChildRegistration, String childRegister) {
-    }
-
     public class ChildRegister {
 
         public final String formName;
