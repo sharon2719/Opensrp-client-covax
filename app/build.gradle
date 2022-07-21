@@ -76,7 +76,7 @@ android {
         if (variant.name == "debug") {
             variant.outputs.each { output ->
                 output.versionCodeOverride = 32
-                output.versionNameOverride = "0.0.33-debug"
+                output.versionNameOverride = "0.0.01-debug"
             }
         } else if (variant.name == "preview") {
             variant.outputs.each { output ->
