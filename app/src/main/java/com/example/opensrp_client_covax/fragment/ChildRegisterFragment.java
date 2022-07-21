@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
@@ -41,13 +42,13 @@ import timber.log.Timber;
 
 public class ChildRegisterFragment extends BaseRegisterFragment implements AppChildRegisterFragmentContract.View, android.view.View.OnClickListener, LocationPickerView.OnLocationChangeListener {
     public static final String CLICK_VIEW_NORMAL = "click_view_normal";
-    protected android.view.View view;
+    protected View view;
 
     @Nullable
     @Override
-    public android.view.View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        android.view.View view = inflater.inflate(R.layout.activity_child_register, container, false);
+       View view = inflater.inflate(R.layout.activity_child_register, container, false);
         mView = view;
         onInitialization();
         setupViews(view);
@@ -118,12 +119,6 @@ public class ChildRegisterFragment extends BaseRegisterFragment implements AppCh
         if (getActivity() == null) {
             return;
         }
-//
-//        if (view.getTag() != null && view.getTag(R.id.VIEW_ID) == CLICK_VIEW_NORMAL) {
-//            if (view.getTag() instanceof CommonPersonObjectClient) {
-//                goToChildDetailActivity((CommonPersonObjectClient) view.getTag(), false);
-//            }
-//        }
     }
 
     private void goToChildDetailActivity(CommonPersonObjectClient person, boolean launchDialog) {
