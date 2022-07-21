@@ -123,7 +123,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="6dp"
-                    android:button="@drawable/white_checkbox_bg" />
+                    android:button="@drawable/white_checkbox_bg_selector" />
 
                 <TextView
                     android:id="@+id/login_show_password_text_view"

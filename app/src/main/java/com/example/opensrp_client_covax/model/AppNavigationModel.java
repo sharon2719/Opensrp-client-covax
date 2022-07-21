@@ -4,6 +4,8 @@ import com.example.opensrp_client_covax.contract.AppNavigationContract;
 
 import org.smartregister.util.Utils;
 
+import java.util.List;
+
 import timber.log.Timber;
 
 public class AppNavigationModel implements AppNavigationContract.Model {
@@ -26,5 +28,10 @@ public class AppNavigationModel implements AppNavigationContract.Model {
         }
 
         return currentUser;
+    }
+
+    @Override
+    public List<AppNavigationOption> getNavigationItems() {
+        return instance.getNavigationItems();
     }
 }

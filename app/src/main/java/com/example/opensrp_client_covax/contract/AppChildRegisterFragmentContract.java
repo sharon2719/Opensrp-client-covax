@@ -1,9 +1,9 @@
 package com.example.opensrp_client_covax.contract;
 
 import com.example.opensrp_client_covax.cursor.AdvancedMatrixCursor;
+import com.example.opensrp_client_covax.domain.Field;
 
 import org.json.JSONArray;
-import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.ViewConfiguration;
 import org.smartregister.domain.Response;

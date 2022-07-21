@@ -1,9 +1,10 @@
 {
-  "count": "1",
   "encounter_type": "Subject Registration",
-  "validate_on_submit": true,
   "show_errors_on_submit": true,
+  "count": "1",
+  "display_scroll_bars": true,
   "entity_id": "",
+  "relational_id": "",
   "metadata": {
     "start": {
       "openmrs_entity_parent": "",
@@ -53,26 +54,117 @@
     }
   },
   "step1": {
-    "title": "{{child_enrollment.step1.title}}",
+    "display_back_button": "true",
+    "title": "Child Registration",
     "fields": [
+      {
+        "key": "Home_Facility",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute\nperson_address",
+        "openmrs_entity_id": "Home_Facility\naddress4",
+        "openmrs_mapping": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "text",
+        "type": "tree",
+        "hint": "Child's home health facility",
+        "tree": [
+          {
+            "name": "Nairobi Women Hospital",
+            "key": "Nairobi",
+            "level": "1",
+            "nodes": [
+              {
+                "name": "Nairobi",
+                "key": "nairobi"
+              }
+            ]
+          },
+          {
+            "name": "Montana Hospital",
+            "key": "montana_hospital",
+            "level": "1",
+            "nodes": [
+              {
+                "name": "Mombasa",
+                "key": "mombasa"
+              }
+            ]
+          },
+          {
+            "name": "Jalaram Nursing Home",
+            "key": "jalaram_nursing_kisumu",
+            "level": "1",
+            "nodes": [
+              {
+                "name": "Kisumu",
+                "key": "kisumu"
+              }
+            ]
+          },
+          {
+            "name": "Jaramogi Oginga Odinga Teaching & Referral Hospital (JOOTRH)",
+            "key": "jootrh_kisumu",
+            "level": "1",
+            "nodes": [
+              {
+                "name": "Kisumu",
+                "key": "kisumu"
+              }
+            ]
+          },
+          {
+            "name": "Provincial General Hospital",
+            "key": "provincial_nyeri",
+            "level": "1",
+            "nodes": [
+              {
+                "name": "Nyeri",
+                "key": "nyeri"
+              }
+            ]
+          },
+          {
+            "name": "Outspan Hospital",
+            "key": "outspan_nyeri",
+            "level": "1",
+            "nodes": [
+              {
+                "name": "Nyeri",
+                "key": "nyeri"
+              }
+            ]
+          }
+        ],
+        "default": "Nairobi Women Hospital",
+        "v_required": {
+          "value": false,
+          "err": "Please enter the child's home facility"
+        }
+      },
+      {
+        "key": "ZEIR_ID",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "ZEIR_ID",
+        "read_only": true,
+        "value": "1891389133",
+        "type": "edit_text",
+        "hint": "Write this number on the child's card"
+      },
       {
         "key": "First_Name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
         "openmrs_entity_id": "first_name",
         "type": "edit_text",
-        "label": "{{child_enrollment.step1.First_Name.label}}",
-        "label_info_text": "{{child_enrollment.step1.First_Name.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.First_Name.label_info_title}}",
-        "hint": "{{child_enrollment.step1.First_Name.hint}}",
+        "hint": "First name",
         "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the first name"
+        },
         "v_regex": {
           "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "{{child_enrollment.step1.First_Name.v_regex.err}}"
-        },
-        "v_required": {
-          "value": "false",
-          "err": "{{child_enrollment.step1.First_Name.v_required.err}}"
+          "err": "Please enter a valid name"
         }
       },
       {
@@ -81,38 +173,15 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "last_name",
         "type": "edit_text",
-        "label": "{{child_enrollment.step1.Last_Name.label}}",
-        "label_info_text": "{{child_enrollment.step1.Last_Name.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Last_Name.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Last_Name.hint}}",
+        "hint": "Last name",
         "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the last name"
+        },
         "v_regex": {
           "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "{{child_enrollment.step1.Last_Name.v_regex.err}}"
-        },
-        "v_required": {
-          "value": "false",
-          "err": "{{child_enrollment.step1.Last_Name.v_required.err}}"
-        }
-      },
-      {
-        "key": "ZEIR_ID",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "ZEIR_ID",
-        "type": "edit_text",
-        "label": "{{child_enrollment.step1.ZEIR_ID.label}}",
-        "label_info_text": "{{child_enrollment.step1.ZEIR_ID.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.ZEIR_ID.label_info_title}}",
-        "hint": "{{child_enrollment.step1.ZEIR_ID.hint}}",
-        "value": "0",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{child_enrollment.step1.ZEIR_ID.v_numeric.err}}"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "{{child_enrollment.step1.ZEIR_ID.v_required.err}}"
+          "err": "Please enter a valid name"
         }
       },
       {
@@ -121,27 +190,14 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "gender",
         "type": "spinner",
-        "label": "{{child_enrollment.step1.Sex.label}}",
-        "label_info_text": "{{child_enrollment.step1.Sex.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Sex.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Sex.hint}}",
-        "options": [
-          {
-            "key": "male",
-            "text": "{{child_enrollment.step1.Sex.options.male.text}}",
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "female",
-            "text": "{{child_enrollment.step1.Sex.options.female.text}}",
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
-          }
+        "hint": "Sex",
+        "values": [
+          "Male",
+          "Female"
         ],
         "v_required": {
           "value": "true",
-          "err": "{{child_enrollment.step1.Sex.v_required.err}}"
+          "err": "Please enter the sex"
         }
       },
       {
@@ -150,19 +206,18 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "birthdate",
         "type": "date_picker",
-        "label": "{{child_enrollment.step1.Date_Birth.label}}",
-        "label_info_text": "{{child_enrollment.step1.Date_Birth.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Date_Birth.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Date_Birth.hint}}",
+        "hint": "Child's DOB",
+        "label_info_title": "Child's Date of Birth",
+        "label_info_text": "here is some text on this dialog",
         "expanded": false,
         "duration": {
-          "label": "{{child_enrollment.step1.Date_Birth.duration.label}}"
+          "label": "Age"
         },
         "min_date": "today-12y",
         "max_date": "today",
         "v_required": {
           "value": "true",
-          "err": "{{child_enrollment.step1.Date_Birth.v_required.err}}"
+          "err": "Please enter the date of birth"
         }
       },
       {
@@ -170,72 +225,37 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5916AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "text",
         "type": "edit_text",
-        "label": "{{child_enrollment.step1.Weight.label}}",
-        "label_info_text": "{{child_enrollment.step1.Weight.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Weight.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Weight.hint}}",
+        "hint": "Weight",
         "v_min": {
           "value": "0.1",
-          "err": "{{child_enrollment.step1.Weight.v_min.err}}"
+          "err": "Weight should not be less than 0"
         },
         "v_numeric": {
           "value": "true",
-          "err": "{{child_enrollment.step1.Weight.v_numeric.err}}"
+          "err": "Must be a number"
         },
         "v_required": {
-          "value": "true",
-          "err": "{{child_enrollment.step1.Weight.v_required.err}}"
+          "value": true,
+          "err": "Please enter the correct weight"
         }
       },
       {
         "key": "Covax_Protection",
-        "type": "spinner",
-        "openmrs_data_type": "select one",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "163340AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_entity_parent": "",
-        "label": "{{child_enrollment.step1.Covax_Protection.label}}",
-        "label_info_text": "{{child_enrollment.step1.Covax_Protection.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Covax_Protection.label_info_title}}",
-        "hint": "{child_enrollment.step1.Covax_Protection.hint}}",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "164826AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "spinner",
+        "hint": "Covid Vaccine Protection",
+        "edit_type": "name",
         "values": [
-          "{{child_enrollment.step1.Covax_Protection.values[0]}}",
-          "{{child_enrollment.step1.Covax_Protection.values[1]}}",
-          "{{child_enrollment.step1.Covax_Protection.values[2]}}"
-        ],
-        "keys": [
           "Yes",
           "No",
-          "Don't know"
+          "Don't Know"
         ],
-        "openmrs_choice_ids": {
-          "Yes": "",
-          "No": "",
-          "Don't know": ""
-        },
         "v_required": {
-          "value": true,
-          "err": "{{child_enrollment.step1.Covax_Protection.v_required.err}}"
-        }
-      },
-      {
-        "key": "Home_Facility",
-        "openmrs_entity_parent": "usual_residence",
-        "openmrs_entity": "person_address",
-        "openmrs_entity_id": "address4",
-        "openmrs_mapping": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "text",
-        "type": "spinner",
-        "sub_type": "location",
-        "label": "{{child_enrollment.step1.Home_Facility.label}}",
-        "label_info_text": "{{child_enrollment.step1.Home_Facility.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Home_Facility.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Home_Facility.hint}}",
-        "v_required": {
-          "value": true,
-          "err": "{{child_enrollment.step1.Home_Facility.v_required.err}}"
+          "value": "true",
+          "err": "Please enter the sex"
         }
       },
       {
@@ -245,17 +265,18 @@
         "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "entity_id": "father",
         "type": "edit_text",
-        "label": "{{child_enrollment.step1.Phone_Number.label}}",
-        "label_info_text": "{{child_enrollment.step1.Phone_Number.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Phone_Number.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Phone_Number.hint}}",
+        "hint": "Phone number",
         "v_numeric": {
           "value": "true",
-          "err": "{{child_enrollment.step1.Phone_Number.v_numeric.err}}"
+          "err": "Please enter the correct number"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the phone number"
         },
         "v_regex": {
           "value": "(0[0-9]{9})|\\s*",
-          "err": "{{child_enrollment.step1.Phone_Number.v_regex.err}}"
+          "err": "Digits should be a total of 8"
         }
       },
       {
@@ -263,44 +284,62 @@
         "openmrs_entity_parent": "usual_residence",
         "openmrs_entity": "person_address",
         "openmrs_entity_id": "address3",
-        "type": "spinner",
-        "type": "edit_text",
-        "label": "{{child_enrollment.step1.Residential_Area.label}}",
-        "label_info_text": "{{child_enrollment.step1.Residential_Area.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Residential_Area.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Residential_Area.hint}}",
+        "type": "tree",
+        "hint": "Commune",
+        "sub_type": "location",
         "edit_type": "name",
-        "values": [
-          "{{child_enrollment.step1.Residential_Area.values[0]}}",
-          "{{child_enrollment.step1.Residential_Area.values[1]}}"
+        "tree": [
+          {
+            "name": "Nairobi",
+            "key": "Nairobi",
+            "nodes": [
+              {
+                "name": "Nairobi",
+                "key": "nairobi"
+              }
+            ]
+          },
+          {
+            "name": "Kisumu",
+            "key": "kisumu"
+          },
+          {
+            "name": "Nyeri",
+            "key": "nyeri"
+          },
+          {
+            "name": "Mombasa",
+            "key": "mombasa"
+          },
+          {
+            "name": "Other",
+            "key": "other"
+          }
         ],
-        "keys": [
-          "Location",
-          "Other"
-        ],
-        "openmrs_choice_ids": {
-          "Location": "",
-          "Other": ""
-        },
+        "default": "Nairobi ",
         "v_required": {
           "value": true,
-          "err": "{{child_enrollment.step1.Residential_Area.v_required.err}}"
+          "err": "Please choose a residential area"
         }
+
       },
       {
         "key": "Residential_Area_Other",
         "openmrs_entity_parent": "usual_residence",
         "openmrs_entity": "person_address",
         "openmrs_entity_id": "address5",
-        "type": "spinner",
-        "label": "{{child_enrollment.step1.Residential_Area_Other.label}}",
-        "label_info_text": "{{child_enrollment.step1.Residential_Area_Other.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Residential_Area_Other.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Residential_Area_Other.hint}}",
-        "edit_type": "name",
-        "v_required": {
-          "value": true,
-          "err": "{{child_enrollment.step1.Residential_Area_Other.v_required.err}}"
+        "type": "edit_text",
+        "hint": "Other commune",
+        "edit_type": "text",
+        "relevance": {
+          "step1:Residential_Area": {
+            "type": "string",
+            "ex": "equalTo(., \"Other\")"
+          },
+          "v_required": {
+            "value": true,
+            "err": "Please enter the residential area"
+          }
         }
       },
       {
@@ -309,17 +348,14 @@
         "openmrs_entity": "person_address",
         "openmrs_entity_id": "address2",
         "type": "edit_text",
-        "label": "{{child_enrollment.step1.Residential_Address.label}}",
-        "label_info_text": "{{child_enrollment.step1.Residential_Address.label_info_text}}",
-        "label_info_title": "{{child_enrollment.step1.Residential_Address.label_info_title}}",
-        "hint": "{{child_enrollment.step1.Residential_Address.hint}}",
-        "edit_type": "name",
+        "label": "Home Address",
+        "hint": "Residential Address",
+        "edit_type": "text",
         "v_required": {
           "value": true,
-          "err": "{{child_enrollment.step1.Residential_Address.v_required.err}}"
+          "err": "Please enter the residential address"
         }
       }
     ]
-  },
-  "properties_file_name": "child_enrollment"
+  }
 }

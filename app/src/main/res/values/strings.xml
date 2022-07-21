@@ -19,6 +19,8 @@
     <string name="opensrp_covacs_app">OPENSRP COVACS APP</string>
     <string name="vaccine_status">Vaccine status</string>
     <string name="reports">Reports</string>
+    <string name="confirm_form_close">Confirm Form Close</string>
+    <string name="confirm_form_close_explanation">Are you sure you want to go back? All data you have entered in this form will be cleared.</string>
     <string name="reset_card">Reset Card</string>
     <string name="nav_register">Register</string>
     <string name="sync">Sync</string>
@@ -26,6 +28,18 @@
     <string name="child_s_name">Child\'s Name</string>
     <string name="age_183">Age ·</string>
     <string name="male_lavington">Male. Lavington</string>
+    <string name="record_out_of_catchment_vaccination">Record out of catchment vaccination</string>
+    <string name="nav_last_sync_time">HH:mm a , MMM DD</string>
+    <string name="nav_last">Last:</string>
+    <string name="english">English</string>
+    <string name="action_log_out">Log Out</string>
+    <string name="last_sync">last %1$s</string>
+    <string name="child_profile">Child</string>
+    <string name="nav_add">Nav</string>
+    <string name="home">Home</string>
+    <string name="any_changes_you_make">Are these the changes you are making?</string>
+    <string name="navigation_drawer_open">Open navigation</string>
+    <string name="navigation_drawer_close">Close navigation</string>
 
 
 </resources>

@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_child"
+        android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@mipmap/ic_home"
+        android:icon="@drawable/ic_home"
         android:title="@string/home"
-        app:showAsAction="ifRoom" />
+         />
 
     <item
         android:id="@+id/action_register"
         android:enabled="true"
         android:icon="@drawable/ic_tabmenu_addchild"
         android:title="@string/add_child"
-        app:showAsAction="ifRoom" />
+        />
 </menu>

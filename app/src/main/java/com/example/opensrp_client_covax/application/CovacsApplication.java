@@ -24,7 +24,6 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
-import org.smartregister.child.util.DBConstants;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
 import org.smartregister.configurableviews.helper.JsonSpecHelper;
@@ -34,6 +33,7 @@ import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.repository.Repository;
+import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
@@ -54,6 +54,7 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     private EventClientRepository eventClientRepository;
     private ECSyncHelper ecSyncHelper;
     private boolean isBulkProcessing;
+    private UniqueIdRepository uniqueIdRepository;
 
     public static JsonSpecHelper getJsonSpecHelper() {
         return jsonSpecHelper;
@@ -77,23 +78,20 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     }
 
     private static String[] getFtsTables() {
-        return new String[]{DBConstants.RegisterTable.CLIENT, DBConstants.RegisterTable.MOTHER_DETAILS, DBConstants.RegisterTable.CHILD_DETAILS};
+        return new String[]{AppConstants.RegisterTable.CLIENT};
     }
 
     private static String[] getFtsSearchFields(String tableName) {
-        switch (tableName) {
-            case DBConstants.RegisterTable.CLIENT:
-                return new String[]{
-                        DBConstants.KEY.ZEIR_ID,
-                        DBConstants.KEY.FIRST_NAME,
-                        DBConstants.KEY.LAST_NAME
-                };
-            case DBConstants.RegisterTable.CHILD_DETAILS:
-                return new String[]{DBConstants.KEY.LOST_TO_FOLLOW_UP, DBConstants.KEY.INACTIVE};
-
-            default:
-                return null;
+        if (AppConstants.RegisterTable.CHILD_DETAILS.equals(tableName)) {
+            return new String[]{
+                    AppConstants.KeyConstants.ZEIR_ID,
+                    AppConstants.KeyConstants.FIRST_NAME,
+                    AppConstants.KeyConstants.LAST_NAME
+            };
+//            case AppConstants.RegisterTable.CHILD_DETAILS:
+//                return new String[]{AppConstants.KeyConstants.LOST_TO_FOLLOW_UP, AppConstants.KeyConstants.INACTIVE};
         }
+        return null;
     }
 
     public static Locale getCurrentLocale() {
@@ -179,13 +177,11 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     public ChildMetadata getMetadata() {
         ChildMetadata metadata = new ChildMetadata(ChildFormActivity.class, ChildProfileActivity.class,
                 ChildImmunizationActivity.class, ChildRegisterActivity.class, true, new AppRegisterQueryProvider());
-        metadata.updateChildRegister(DBConstants.RegisterTable.CLIENT,
-                DBConstants.RegisterTable.CLIENT, AppConstants.EVENT_TYPE.CHILD_REGISTRATION,
-                AppConstants.EVENT_TYPE.UPDATE_CHILD_REGISTRATION, AppConstants.CONFIGURATION.CHILD_REGISTER,
-                AppConstants.RELATIONSHIP.GUARDIAN);
+        metadata.updateChildRegister(AppConstants.JSON_FORM.CHILD_ENROLLMENT, AppConstants.RegisterTable.CLIENT,
+                AppConstants.EVENT_TYPE.CHILD_REGISTRATION, AppConstants.EVENT_TYPE.UPDATE_CHILD_REGISTRATION, AppConstants.CONFIGURATION.CHILD_REGISTER);
         metadata.setFieldsWithLocationHierarchy(new HashSet<>(Arrays.asList("Home_Facility")));
-        metadata.setLocationLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.LOCATION_LEVELS)));
-        metadata.setHealthFacilityLevels(new ArrayList<>(Arrays.asList(com.example.opensrp_client_covax.BuildConfig.HEALTH_FACILITY_LEVELS)));
+        metadata.setLocationLevels(new ArrayList<>(Arrays.asList(BuildConfig.LOCATION_LEVELS)));
+        metadata.setHealthFacilityLevels(new ArrayList<>(Arrays.asList(BuildConfig.HEALTH_FACILITY_LEVELS)));
         return metadata;
     }
 
@@ -239,4 +235,10 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     }
 
 
+    public UniqueIdRepository getUniqueIdRepository() {
+        if (uniqueIdRepository == null) {
+            uniqueIdRepository = new UniqueIdRepository();
+        }
+        return uniqueIdRepository;
+    }
 }

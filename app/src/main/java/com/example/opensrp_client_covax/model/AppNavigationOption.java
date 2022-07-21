@@ -1,0 +1,61 @@
+package com.example.opensrp_client_covax.model;
+
+public class AppNavigationOption {
+    private int ResourceID;
+    private int ResourceActiveID;
+    private int TitleID;
+    private String MenuTitle;
+    private long RegisterCount;
+
+    public AppNavigationOption(int resourceID, int resourceActiveID, int titleID, String menuTitle, long registerCount) {
+        ResourceID = resourceID;
+        ResourceActiveID = resourceActiveID;
+        TitleID = titleID;
+        MenuTitle = menuTitle;
+        RegisterCount = registerCount;
+    }
+
+    public int getResourceID() {
+        return ResourceID;
+    }
+
+    public void setResourceID(int resourceID) {
+        ResourceID = resourceID;
+    }
+
+    public int getResourceActiveID() {
+        return ResourceActiveID;
+    }
+
+    public void setResourceActiveID(int resourceActiveID) {
+        ResourceActiveID = resourceActiveID;
+    }
+
+    public int getTitleID() {
+        return TitleID;
+    }
+
+    public void setTitleID(int titleID) {
+        TitleID = titleID;
+    }
+
+    public String getMenuTitle() {
+        return MenuTitle;
+    }
+
+    public void setMenuTitle(String menuTitle) {
+        MenuTitle = menuTitle;
+    }
+
+    public long getRegisterCount() {
+        return RegisterCount;
+    }
+
+    public void setRegisterCount(long registerCount) {
+        RegisterCount = registerCount;
+    }
+
+    public boolean hasRegisterCount() {
+        return this.RegisterCount >= 0;
+    }
+}
