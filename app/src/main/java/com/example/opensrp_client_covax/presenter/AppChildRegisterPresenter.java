@@ -1,8 +1,12 @@
 package com.example.opensrp_client_covax.presenter;
 
+import android.util.Log;
+
 import com.example.opensrp_client_covax.activity.ChildRegisterActivity;
 import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.contract.ChildRegisterContract;
+import com.example.opensrp_client_covax.domain.ChildEventClient;
+import com.example.opensrp_client_covax.domain.UpdateRegisterParams;
 import com.example.opensrp_client_covax.interactor.AppChildRegisterInteractor;
 import com.example.opensrp_client_covax.model.AppChildRegisterModel;
 
@@ -12,6 +16,8 @@ import org.smartregister.repository.EventClientRepository;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
+
+import timber.log.Timber;
 
 
 public class AppChildRegisterPresenter implements ChildRegisterContract.Presenter, ChildRegisterContract.InteractorCallBack {
@@ -67,8 +73,19 @@ public class AppChildRegisterPresenter implements ChildRegisterContract.Presente
     }
 
     @Override
-    public void saveForm(String jsonString, boolean isEditMode) {
+    public void saveForm(String jsonString, UpdateRegisterParams updateRegisterParams) {
+        try {
 
+            List<ChildEventClient> childEventClientList = model.processRegistration(jsonString, updateRegisterParams.getFormTag());
+            if (childEventClientList == null || childEventClientList.isEmpty()) {
+                return;
+            }
+
+            interactor.saveRegistration(childEventClientList, jsonString, updateRegisterParams, this);
+
+        } catch (Exception e) {
+            Timber.e(Log.getStackTraceString(e));
+        }
     }
 
     @Override

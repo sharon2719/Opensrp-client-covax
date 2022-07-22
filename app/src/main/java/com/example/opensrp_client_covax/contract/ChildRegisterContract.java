@@ -6,6 +6,7 @@ import com.example.opensrp_client_covax.domain.ChildEventClient;
 import com.example.opensrp_client_covax.domain.UpdateRegisterParams;
 
 import org.json.JSONObject;
+import org.smartregister.domain.tag.FormTag;
 import org.smartregister.view.contract.BaseRegisterContract;
 
 import java.util.List;
@@ -31,19 +32,26 @@ public interface ChildRegisterContract {
 
         void startRegistrationForm(String formName, String updateEventType, String entityId, Map<String, String> valueMap) throws Exception;
 
-        void saveForm(String jsonString, boolean isEditMode);
+        void saveForm(String jsonString, UpdateRegisterParams updateRegisterParams);
     }
 
     interface Model {
-        JSONObject getFormAsjson(Context context, String formName, String entityId) throws Exception;
+
 
         void registerViewConfigurations(List<String> viewIdentifiers);
 
         void unregisterViewConfigurations(List<String> viewIdentifiers);
 
+        JSONObject getEditFormAsJson(Context context, String formName, String updateEventType, String entityId, Map<String, String> valueMap) throws Exception;
+
+
+        JSONObject getFormAsJson(Context context, String formName, String entityId) throws Exception;
+
         String getLocationId(String locationName);
 
         String getInitials();
+
+        List<ChildEventClient> processRegistration(String jsonString, FormTag formTag);
     }
 
     interface Interactor {
