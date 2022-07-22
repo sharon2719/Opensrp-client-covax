@@ -11,6 +11,20 @@
           }
         },
         {
+          "column_name": "opensrp_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "identifiers.zeir_id"
+          }
+        },
+        {
+          "column_name": "opensrp_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "identifiers.ZEIR_ID"
+          }
+        },
+        {
           "column_name": "first_name",
           "type": "Client",
           "json_mapping": {
@@ -22,6 +36,13 @@
           "type": "Client",
           "json_mapping": {
             "field": "lastName"
+          }
+        },
+        {
+          "column_name": "dob",
+          "type": "Client",
+          "json_mapping": {
+            "field": "birthdate"
           }
         },
         {
@@ -39,17 +60,92 @@
           }
         },
         {
-          "column_name": "sex",
+          "column_name": "gender",
           "type": "Client",
           "json_mapping": {
-            "field": "sex"
+            "field": "gender"
+          }
+        },
+        {
+          "column_name": "date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "eventDate"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        },
+        {
+          "column_name": "registration_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "eventDate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_child_details",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "first_name",
+          "type": "Client",
+          "json_mapping": {
+            "field": "first_name"
+          }
+        },
+        {
+          "column_name": "last_name",
+          "type": "Client",
+          "json_mapping": {
+            "field": "last_name"
           }
         },
         {
           "column_name": "dob",
           "type": "Client",
           "json_mapping": {
-            "field": "birthdate"
+            "field": "birth_date"
+          }
+        },
+        {
+          "column_name": "zeir_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "identifiers.zeir_id"
+          }
+        },
+        {
+          "column_name": "zeir_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "identifiers.ZEIR_ID"
+          }
+        },
+        {
+          "column_name": "gender",
+          "type": "Client",
+          "json_mapping": {
+            "field": "gender"
+          }
+        },
+        {
+          "column_name": "age",
+          "type": "Client",
+          "json_mapping": {
+            "field": "age"
           }
         },
         {
@@ -60,10 +156,31 @@
           }
         },
         {
-          "column_name": "covaxProtection",
+          "column_name": "covax_protection",
           "type": "Client",
           "json_mapping": {
-            "field": "covaxProtection"
+            "field": "covax_protection"
+          }
+        },
+        {
+          "column_name": "phone_number",
+          "type": "Client",
+          "json_mapping": {
+            "field": "phone_number"
+          }
+        },
+        {
+          "column_name": "date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "eventDate"
+          }
+        },
+        {
+          "column_name": "home_facility",
+          "type": "Client",
+          "json_mapping": {
+            "field": "addresses.address4"
           }
         },
         {
@@ -78,6 +195,27 @@
           "column_name": "residential_area",
           "type": "Client",
           "json_mapping": {
+            "field": "attributes.residential_area"
+          }
+        },
+        {
+          "column_name": "residential_area",
+          "type": "Client",
+          "json_mapping": {
+            "field": "addresses.address3"
+          }
+        },
+        {
+          "column_name": "residential_address",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.residential_address"
+          }
+        },
+        {
+          "column_name": "residential_address",
+          "type": "Client",
+          "json_mapping": {
             "field": "addresses.address3"
           }
         },
@@ -89,10 +227,81 @@
           }
         },
         {
-          "column_name": "residential_address",
+          "column_name": "inactive",
           "type": "Client",
           "json_mapping": {
-            "field": "addresses.address2"
+            "field": "attributes.inactive"
+          }
+        },
+        {
+          "column_name": "lost_to_follow_up",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.lost_to_follow_up"
+          }
+        },
+        {
+          "column_name": "event_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "eventDate"
+          }
+        },
+        {
+          "column_name": "event_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "eventDate"
+          }
+        },
+        {
+          "column_name": "date_removed",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.dateRemoved"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_booster_vaccines",
+      "columns": [
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "selected_vaccines",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "selected_vaccines"
+          }
+        },
+        {
+          "column_name": "selected_vaccines_counter",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "selected_vaccines_counter"
+          }
+        },
+        {
+          "column_name": "vaccine_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "booster_vaccine_date"
           }
         }
       ]
