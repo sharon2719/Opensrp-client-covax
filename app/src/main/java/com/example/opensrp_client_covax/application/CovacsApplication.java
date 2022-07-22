@@ -4,6 +4,7 @@ import static org.smartregister.BuildConfig.BUILD_TIMESTAMP;
 import static org.smartregister.BuildConfig.DEBUG;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -34,7 +35,10 @@ import org.smartregister.receiver.SyncStatusBroadcastReceiver;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.repository.Repository;
 import org.smartregister.repository.UniqueIdRepository;
+import org.smartregister.sync.ClientProcessorForJava;
 import org.smartregister.sync.helper.ECSyncHelper;
+import org.smartregister.util.AppProperties;
+import org.smartregister.view.LocationPickerView;
 import org.smartregister.view.activity.DrishtiApplication;
 import org.smartregister.view.receiver.TimeChangedBroadcastReceiver;
 
@@ -55,6 +59,8 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     private ECSyncHelper ecSyncHelper;
     private boolean isBulkProcessing;
     private UniqueIdRepository uniqueIdRepository;
+    private LocationPickerView locationPickerView;
+    private ClientProcessorForJava clientProcessorForJava;
 
     public static JsonSpecHelper getJsonSpecHelper() {
         return jsonSpecHelper;
@@ -63,7 +69,18 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
     public static synchronized CovacsApplication getInstance() {
         return (CovacsApplication) mInstance;
     }
+    public AppProperties getProperties() {
+        return CoreLibrary.getInstance().context().getAppProperties();
+    }
 
+    public LocationPickerView getLocationPickerView(android.content.Context context) {
+        if (locationPickerView == null) {
+            locationPickerView = new LocationPickerView(context);
+            new Handler(context.getMainLooper()).post(() -> locationPickerView.init());
+
+        }
+        return locationPickerView;
+    }
     public static CommonFtsObject createCommonFtsObject(android.content.Context context) {
         if (commonFtsObject == null) {
             commonFtsObject = new CommonFtsObject(getFtsTables());
@@ -197,6 +214,16 @@ public class CovacsApplication extends DrishtiApplication implements TimeChanged
         return eventClientRepository;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+    public ClientProcessorForJava getClientProcessorForJava() {
+        if (clientProcessorForJava == null) {
+            clientProcessorForJava = DrishtiApplication.getInstance().getClientProcessor();
+        }
+        return clientProcessorForJava;
+    }
     public ECSyncHelper getEcSyncHelper() {
         if (ecSyncHelper == null) {
             ecSyncHelper = ECSyncHelper.getInstance(getApplicationContext());

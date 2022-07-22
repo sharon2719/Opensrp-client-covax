@@ -8,6 +8,10 @@ public class AppConstants {
     public static final class CHILD_STATUS {
 
     }
+    public static class JSON_FORM_KEY{
+        public static final String LAST_INTERACTED_WITH = "last_interacted_with";
+
+    }
 
 
     public static class FormActivity{
@@ -60,14 +64,14 @@ public class AppConstants {
         public static final String REGISTRATION_LOCATION_ID = "registration_location_id";
         public static final String REGISTRATION_LOCATION_NAME = "registration_location_name";
         public static final String KEY = "key";
-        public static final String CHILD_ZONE = "child_zone";
+        public static final String CHILD= "child";
         public static final String CARD_STATUS = "card_status";
         public static final String PLACE_OF_BIRTH = "place_of_birth";
         public static final String BIRTH_FACILITY_NAME = "birth_facility_name";
         public static final String PMTCT_STATUS = "pmtct_status";
         public static final String CARD_STATUS_DATE = "card_status_date";
         public static final String LAST_INTERACTED_WITH = "last_interacted_with";
-
+        public static final String VALUE = "value";
         public static final String ID = "id";
         public static final String RELATIONAL_ID = "relational_id";
         public static final String ZEIR_ID = "Zeir_id";
@@ -78,6 +82,7 @@ public class AppConstants {
         public static final String AGE = "age";
         public static final String BASE_ENTITY_ID = "base_entity_id";
         public static final String GENDER = "gender";
+        public static final String ADVANCED_DATA_CAPTURE_STRATEGY_PREFIX = "ADCS_";
     }
 
     public static final class ACTIVITY_PAYLOAD_TYPE {

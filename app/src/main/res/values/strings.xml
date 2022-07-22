@@ -40,6 +40,7 @@
     <string name="any_changes_you_make">Are these the changes you are making?</string>
     <string name="navigation_drawer_open">Open navigation</string>
     <string name="navigation_drawer_close">Close navigation</string>
+    <string name="saving_dialog_title">Saving...</string>
 
 
 </resources>

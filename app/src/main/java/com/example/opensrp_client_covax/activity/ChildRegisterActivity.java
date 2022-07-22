@@ -3,12 +3,12 @@ package com.example.opensrp_client_covax.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 
 import androidx.fragment.app.Fragment;
 
 import com.example.opensrp_client_covax.R;
-import com.example.opensrp_client_covax.application.CovacsApplication;
 import com.example.opensrp_client_covax.domain.UpdateRegisterParams;
 import com.example.opensrp_client_covax.fragment.ChildRegisterFragment;
 import com.example.opensrp_client_covax.listener.ChildBottomNavigationListener;
@@ -19,8 +19,6 @@ import com.example.opensrp_client_covax.util.AppJsonFormUtils;
 import com.example.opensrp_client_covax.util.Utils;
 import com.example.opensrp_client_covax.views.NavDrawerActivity;
 import com.example.opensrp_client_covax.views.NavigationMenu;
-
-//import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
@@ -100,22 +98,24 @@ public class ChildRegisterActivity extends BaseRegisterActivity implements com.e
 
 
     @Override
-    public void onActivityResultExtended(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResultExtended(int requestCode, int resultCode, Intent data) {
         if (requestCode == AppJsonFormUtils.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK) {
             try {
-                String jsonString = data.getStringExtra(AppConstants.JSON_FORM_EXTRA.JSON);
-                Timber.d("JSONResult : %s", jsonString);
+                String jsonString = data.getStringExtra(AppConstants.INTENT_KEY.JSON);
+                Timber.d(jsonString);
 
                 JSONObject form = new JSONObject(jsonString);
-                if (form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().childRegister.registerEventType)
-                        || form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(AppConstants.EVENT_TYPE.CHILD_REGISTRATION)
-                ) {
-                    presenter().saveForm(jsonString, false);
+                if (form.getString(AppJsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().childRegister.registerEventType)) {
+                    UpdateRegisterParams updateRegisterParam = new UpdateRegisterParams();
+                    updateRegisterParam.setEditMode(false);
+                    updateRegisterParam.setFormTag(AppJsonFormUtils.formTag(Utils.context().allSharedPreferences()));
+
+                    showProgressDialog(R.string.saving_dialog_title);
+                    presenter().saveForm(jsonString, updateRegisterParam);
                 }
             } catch (Exception e) {
-                Timber.e(e);
+                Timber.e(Log.getStackTraceString(e));
             }
-
         }
     }
 
